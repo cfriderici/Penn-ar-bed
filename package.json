@@ -20,5 +20,8 @@
   "homepage": "https://github.com/cfriderici/boilerplate-mern#readme",
   "devDependencies": {
     "concurrently": "^7.5.0"
+  },
+  "dependencies": {
+    "styled-components": "^5.3.6"
   }
 }

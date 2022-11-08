@@ -9,19 +9,36 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 // ------ COMPONENT ------  //
 
-const Header = () => {
-    return (
-        <StyledHeaderWrapper>
-            <BrowserRouter>
+const Header = ({ full }) => {
 
-                <div>LOGIN</div>
-                <div>BLIB</div>
+    if(full) {
+        return (
+            <StyledHeaderWrapper>
+                <BrowserRouter>
 
-                <Link to="/">START</Link>
+                    <Link to="/dashboard"><div>Dashboard</div></Link>
+                    <div>Beaches</div>
+                    <div>Posts</div>
+                    <div>Chats</div>
+                    <div>Events</div>
+    
+                    <Link to="/">Profile</Link>
+    
+                </BrowserRouter>            
+            </StyledHeaderWrapper>
+        )
 
-            </BrowserRouter>            
-        </StyledHeaderWrapper>
-    )
+    } else {
+        return (
+            <StyledHeaderWrapper>
+                <BrowserRouter>
+    
+                    <Link to="/">Profile</Link>
+    
+                </BrowserRouter>            
+            </StyledHeaderWrapper>
+        )
+    }
 }
 
 export default Header;

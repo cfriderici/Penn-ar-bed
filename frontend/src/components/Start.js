@@ -13,6 +13,7 @@ import styled from "styled-components";
 const Start = () => {
     return (
         <StyledStartWrapper>
+            {/* SmallHeader */}
             <Headline />
             <Slider />
             <Text />

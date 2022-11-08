@@ -2,6 +2,7 @@
 import Header from "./components/Header";
 import Start from "./components/Start";
 import Checkin from "./components/Checkin";
+import Dashboard from "./components/Dashboard";
 import Footer from "./components/Footer";
 
 
@@ -19,13 +20,15 @@ function App() {
 
       <StyledAppWrapper>
       
-        <Header />
+        <Header full />
 
         <BrowserRouter>
           <Routes>
 
             <Route path="/" element={ <Start /> } />
             <Route path="/checkin" element={ <Checkin /> } />
+            <Route path="/dashboard" element={ <Dashboard /> } />
+
             <Route path="/test" element={ <div>Test-Route</div> } />
 
           </Routes>

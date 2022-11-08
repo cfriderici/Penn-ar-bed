@@ -1,4 +1,5 @@
 // My components 
+import Header from "./Header";
 import Login from "./Login";
 import Register from "./Register";
 
@@ -12,6 +13,8 @@ import styled from "styled-components";
 const Checkin = () => {
     return (
         <StyledCheckinWrapper>
+            <Header  />
+
             <Login />
             <Register />
         </StyledCheckinWrapper>

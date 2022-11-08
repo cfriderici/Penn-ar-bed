@@ -14,28 +14,23 @@ const Header = ({ full }) => {
     if(full) {
         return (
             <StyledHeaderWrapper>
-                <BrowserRouter>
 
-                    <Link to="/dashboard"><div>Dashboard</div></Link>
-                    <div>Beaches</div>
-                    <div>Posts</div>
-                    <div>Chats</div>
-                    <div>Events</div>
+                <StyledLink to="/dashboard"><div>Dash board</div></StyledLink>
+                <StyledLink to="/my-beach"><div>Beaches</div></StyledLink>
+                <StyledLink to="/bottle-posts"><div>Posts</div></StyledLink>
+                <StyledLink to="/chats"><div>Chats</div></StyledLink>
+                <StyledLink to="/events"><div>Events</div></StyledLink>
+                <StyledLink to="/profile"><div>Profile</div></StyledLink>
     
-                    <Link to="/">Profile</Link>
-    
-                </BrowserRouter>            
             </StyledHeaderWrapper>
         )
 
     } else {
         return (
             <StyledHeaderWrapper>
-                <BrowserRouter>
     
-                    <Link to="/">Profile</Link>
+                <StyledLink to="/checkin"><div>Checkin</div></StyledLink>
     
-                </BrowserRouter>            
             </StyledHeaderWrapper>
         )
     }
@@ -51,13 +46,14 @@ const StyledHeaderWrapper = styled.div`
     background-color: rgba(250, 0, 250, 0.2);
     color: red;
     display: flex;
-    justify-content: flex-end;
-    text-align: center;
+    justify-content: space-between;
+    text-align: center;   
+`
 
-    > div {
-        background-color: rgba(250, 0, 250, 0.2);
-        width: 50px;
-        height: 50px;
-        margin: 10px;
-    }    
+const StyledLink  = styled(Link)`
+    background-color: rgba(250, 0, 250, 0.2);
+    width: 50px;
+    height: 50px;
+    font-size: smaller;
+    text-transform: uppercase;
 `

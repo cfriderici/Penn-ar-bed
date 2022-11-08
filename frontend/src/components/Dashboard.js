@@ -1,4 +1,6 @@
 // My components 
+import Header from "./Header";
+
 // import Post from "./Post";
 // import Friendpost from "./Friendpost";
 // import Beach from "./Beach";
@@ -14,9 +16,14 @@ import styled from "styled-components";
 const Dashboard = () => {
     return (
         <StyledDashboardWrapper>
-            <div>Dein letzter Post</div>
-            <div>Dein letzter Freundes-Post</div>
-            <div>Dein Lieblingsstrand</div>
+
+            <Header full />
+
+            <h1>Mein Dashboard</h1>
+            <div>Mein letzter Post</div>
+            <div>mein letzter Freundes-Post</div>
+            <div>Mein Lieblingsstrand</div>
+
         </StyledDashboardWrapper>
     )
 }

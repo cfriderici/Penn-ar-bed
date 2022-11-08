@@ -1,4 +1,6 @@
 // My components 
+import Header from "./Header";
+
 import Headline from "./Headline";
 import Slider from "./Slider";
 import Text from "./Text";
@@ -13,7 +15,7 @@ import styled from "styled-components";
 const Start = () => {
     return (
         <StyledStartWrapper>
-            {/* SmallHeader */}
+            <Header />
             <Headline />
             <Slider />
             <Text />

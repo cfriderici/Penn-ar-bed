@@ -12,15 +12,16 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <StyledFooterWrapper>
 
+        <StyledStickyFooter>
+            <StyledFooterWrapper>
 
-            <StyledLink to="/impressum"><div>Impressum</div></StyledLink>
+                <StyledLink to="/impressum"><div>Impressum</div></StyledLink>
+                <p>Copyright etc.</p> 
 
-            <p>Copyright etc.</p> 
+            </StyledFooterWrapper>
+        </StyledStickyFooter>
 
-
-        </StyledFooterWrapper>
     )
 }
 
@@ -29,6 +30,14 @@ export default Footer;
 
 
 // ------ STYLED COMPONENTS ------  //
+const StyledStickyFooter = styled.div`
+    background: white;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    padding: 8px ;
+`
 
 const StyledFooterWrapper = styled.div`
     background-color: rgba(250, 0, 250, 0.2);  

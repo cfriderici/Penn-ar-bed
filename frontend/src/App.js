@@ -2,6 +2,7 @@
 import Start from "./components/Start";
 import Checkin from "./components/Checkin";
 import Profile from "./components/Profile";
+import Password from "./components/Password";
 import Dashboard from "./components/Dashboard";
 import Beaches from "./components/Beaches";
 import Posts from "./components/Posts";
@@ -34,13 +35,14 @@ function App() {
             <Route path="/" element={ <Start /> } />
             <Route path="/checkin" element={ <Checkin /> } />
             <Route path="/profile" element={ <Profile /> } />
+            <Route path="/password" element={ <Password /> } />
+
             <Route path="/dashboard" element={ <Dashboard /> } />
             <Route path="/my-beach" element={ <Beaches /> } />
             <Route path="/bottle-posts" element={ <Posts /> } />
             <Route path="/chats" element={ <Chats /> } />
             <Route path="/events" element={ <Events /> } />
             <Route path="/impressum" element={ <Impressum /> } />
-
 
             <Route path="/test" element={ <div>Test-Route</div> } />
 

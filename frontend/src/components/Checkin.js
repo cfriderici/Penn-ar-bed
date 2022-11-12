@@ -13,10 +13,11 @@ import styled from "styled-components";
 const Checkin = () => {
     return (
         <StyledCheckinWrapper>
-            <Header  />
 
+            <Header  />
             <Login />
             <Register />
+            
         </StyledCheckinWrapper>
     )
 }

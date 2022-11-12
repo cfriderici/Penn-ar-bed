@@ -2,13 +2,16 @@
 import Header from "./Header";
 
 import Headline from "./Headline";
-import Slider from "./Slider";
+// import Slider from "./Slider";
+import Carousel from "./Carousel";
 import Text from "./Text";
 
 
 // External Components 
 import styled from "styled-components";
-     
+// import { Carousel } from "react-responsive-carousel";
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+
 
 
 // ------ COMPONENT ------  //
@@ -17,7 +20,8 @@ const Start = () => {
         <StyledStartWrapper>
             <Header />
             <Headline />
-            <Slider />
+            {/* <Slider /> */}
+            <Carousel />
             <Text />
         </StyledStartWrapper>
     )

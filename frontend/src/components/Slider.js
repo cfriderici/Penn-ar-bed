@@ -1,5 +1,6 @@
 import styled from "styled-components";
-
+import Carousel from "./Carousel";
+// import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 
 // ------ COMPONENT ------  //
@@ -8,8 +9,7 @@ const Slider = () => {
     return (
         <StyledSliderWrapper>
 
-            <img src={ require('../img/IMG_2937.JPG') } className="img" alt="img" />
-            <p>Christina / Baie des Trépassés / 02.02.2022</p>
+            <Carousel />
             
         </StyledSliderWrapper>
     )

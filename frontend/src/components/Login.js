@@ -1,8 +1,44 @@
+// My Components 
+import Input from "./Input";
+
+
 // External Components 
 import styled from "styled-components";
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import {Fragment} from "react";
 
-     
+  
+
+// ------ INSIDE COMPONENTS ------  //
+const LoginHeader = ()  => {
+    return  (
+        <Fragment>
+            <h2>Login</h2>
+            <h3>Prima - du hast schon einen Account!</h3>
+        </Fragment>
+    )
+}   
+const LoginContent = ()  => {
+    return  (
+        <Fragment>   
+
+            <div>E-Mail</div>
+            <Input />
+
+            <div>Passwort</div>
+            <Input /> 
+
+        </Fragment>
+    )
+}
+const LoginActions = ()  => {
+    return  (
+        <Fragment>              
+            <StyledLink to="/password">Passwort verggessen?</StyledLink>
+            <StyledLink to="/dashboard"><button>anmelden</button></StyledLink>  
+        </Fragment>
+    )
+}
 
 
 // ------ COMPONENT ------  //
@@ -10,12 +46,10 @@ const Login = () => {
     return (
         <StyledLockinWrapper>
             
-            <h2>LOGIN</h2>
-            <h3>Prima - du hast schon einen Account!</h3>
-            <p>E-Mail</p>
-            <p>Passwort</p>
-            <StyledLink to="/dashboard"><button>anmelden</button></StyledLink>
-
+            <LoginHeader />
+            <LoginContent />
+            <LoginActions />
+ 
         </StyledLockinWrapper>
     )
 }
@@ -34,15 +68,15 @@ const StyledLockinWrapper = styled.div`
         text-align: center;
     }
 
-    > p {
-        background-color: rgba(250, 250, 0, 1);
+    > div {
+        background-color: rgba(250, 200, 0, 0.6);
     }
 `
 
 const StyledLink  = styled(Link)`
-    background-color: rgba(250, 0, 250, 0.2);
-    width: 50px;
-    height: 50px;
+    background-color: rgba(250, 200, 0, 0.6);
+    /* width: 50px;
+    height: 50px; */
     font-size: smaller;
     text-transform: uppercase;
 `

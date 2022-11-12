@@ -1,9 +1,14 @@
 // My components 
 import Header from "./Header";
+import Input from "./sub/Input";
+import StyledButton from "./styled/StyledButton";
+import StyledImgWrapper from "./styled/StyledImgWrapper";
 
 
 // External Components 
 import styled from "styled-components";
+import { FaPen } from "react-icons/fa";
+
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import {Fragment} from "react";
 
@@ -23,9 +28,16 @@ const ProfileContent = ()  => {
 
             <StyledProfileImg>
                 <img src={ require('../img/IMG_3115.jpg') } alt=""/>
+                <StyledInputWrapper>
+                    Profilbild bearbeiten 
+                    <StyledImgWrapper> <FaPen /> </StyledImgWrapper>
+                </StyledInputWrapper>
             </StyledProfileImg>
                 
-            <div>Vorname</div>
+            <Input />
+            
+                <div>Vorname</div>
+
             <div>Name</div>
             <div>E-Mail-Adresse</div>
             <div>...</div>
@@ -36,7 +48,7 @@ const ProfileContent = ()  => {
 
 const ProfileActions = ()  => {
     return  (
-        <StyledLink to="/"><button>Logout</button></StyledLink>
+        <StyledButton><Link to="/">Logout</Link></StyledButton>
     )
 }
 
@@ -45,14 +57,17 @@ const ProfileActions = ()  => {
 // ------ COMPONENT ------  //
 const Profile = () => {
     return (
-        <StyledProfileWrapper>
+        <Fragment>
 
             <Header full />
-            <ProfileHeader />
-            <ProfileContent />
-            <ProfileActions />
 
-        </StyledProfileWrapper>
+            <StyledProfileWrapper>
+                <ProfileHeader />
+                <ProfileContent />
+                <ProfileActions />
+            </StyledProfileWrapper>
+
+        </Fragment>
     )
 }
 
@@ -63,11 +78,16 @@ export default Profile;
 // ------ STYLED COMPONENTS ------  //
 const StyledProfileWrapper = styled.div`
     background-color: rgba(250, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 `
 const StyledProfileImg  = styled.div`
     background-color: rgba(250, 0, 250, 0.2);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
 
     > img {
         width: 50%;
@@ -75,12 +95,27 @@ const StyledProfileImg  = styled.div`
         border-radius: 50%;
     }
 
-`
+    > div {
+        /* width: 100%; */
+        background-color: rgba(250, 0, 250, 0.2);
 
-const StyledLink  = styled(Link)`
-    background-color: rgba(250, 0, 250, 0.2);
-    width: 50px;
-    height: 50px;
-    font-size: smaller;
-    text-transform: uppercase;
+    }
+
+`
+const StyledInputWrapper = styled.div`
+    background-color: white;
+    background-color: rgba(0, 250, 0, 0.4);
+    /* width: 80%; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 4px;
+    box-shadow: inset 1px 1px 4px gray;
+    padding: 6px;
+    margin-bottom: 30px;
+
+    @media only screen and (min-width: 992px) {
+        width: 50%;
+    }
 `

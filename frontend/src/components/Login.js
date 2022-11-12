@@ -1,5 +1,8 @@
 // My Components 
-import Input from "./Input";
+import Header from "./Header";
+import Input from "./sub/Input";
+import StyledLink from "./styled/StyledLink";
+import StyledButton from "./styled/StyledButton";
 
 
 // External Components 
@@ -34,8 +37,10 @@ const LoginContent = ()  => {
 const LoginActions = ()  => {
     return  (
         <Fragment>              
+            <StyledButton><Link to="/dashboard">anmelden</Link></StyledButton>  
             <StyledLink to="/password">Passwort verggessen?</StyledLink>
-            <StyledLink to="/dashboard"><button>anmelden</button></StyledLink>  
+
+            <StyledLink to="/register">Neu hier? Registrieren</StyledLink>  
         </Fragment>
     )
 }
@@ -44,13 +49,17 @@ const LoginActions = ()  => {
 // ------ COMPONENT ------  //
 const Login = () => {
     return (
-        <StyledLockinWrapper>
+        <Fragment>
+
+           <Header />
+
+            <StyledLockinWrapper>
+                <LoginHeader />
+                <LoginContent />
+                <LoginActions />
+            </StyledLockinWrapper>
             
-            <LoginHeader />
-            <LoginContent />
-            <LoginActions />
- 
-        </StyledLockinWrapper>
+        </Fragment>
     )
 }
 
@@ -63,6 +72,7 @@ const StyledLockinWrapper = styled.div`
     background-color: rgba(250, 250, 0, 0.2);
     display: flex;
     flex-direction: column;
+    justify-content: center;
 
     > h2, h3 {
         text-align: center;
@@ -71,12 +81,4 @@ const StyledLockinWrapper = styled.div`
     > div {
         background-color: rgba(250, 200, 0, 0.6);
     }
-`
-
-const StyledLink  = styled(Link)`
-    background-color: rgba(250, 200, 0, 0.6);
-    /* width: 50px;
-    height: 50px; */
-    font-size: smaller;
-    text-transform: uppercase;
 `

@@ -1,5 +1,5 @@
-import Header from "./Header";
-import Impressum from "./Impressum";
+// My Components
+import StyledLink from "./styled/StyledLink";
 
 
 // External Components 
@@ -46,11 +46,4 @@ const StyledFooterWrapper = styled.div`
     font-size: smaller;
     text-align: center;
 
-`
-const StyledLink  = styled(Link)`
-    background-color: rgba(250, 0, 250, 0.2);
-    /* width: 50px; */
-    /* height: 50px; */
-    font-size: smaller;
-    text-transform: uppercase;
 `

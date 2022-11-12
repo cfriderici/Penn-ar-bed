@@ -26,10 +26,4 @@ const StyledSliderWrapper = styled.div`
     display: flex;    
     flex-direction: column;
     justify-content: flex-end;
-
-    > p {
-        background-color: rgba(250, 0, 250, 0.2);
-        font-size: smaller;
-        text-align: right;
-    }    
 `

@@ -1,6 +1,6 @@
 // My Components 
 import Header from "./Header";
-import Input from "./Input";
+import Input from "./sub/Input";
 
 
 
@@ -20,7 +20,7 @@ const PwHeader = ()  => {
 const PwContent = ()  => {
     return  (
         <Fragment>
-            
+
             <div>Neuse Passwort eingeben</div>
             <Input /> 
 

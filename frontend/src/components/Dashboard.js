@@ -41,10 +41,3 @@ const StyledDashboardWrapper = styled.div`
     background-color: rgba(20, 20, 20, 0.2);
 `
 
-// const StyledStickyHeader = styled.div`
-//     background-color: rgba(50, 50, 50, 0.2);
-//     background: white;
-//     position: sticky;
-//     top: 8px;
-//     padding-bottom: 8px;
-// `

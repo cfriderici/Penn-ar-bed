@@ -17,12 +17,12 @@ const Header = ({ full }) => {
             <StyledStickyHeader>
                 <StyledHeaderWrapper>
 
-                    <StyledLink to="/dashboard"><div> <FaDharmachakra /> </div></StyledLink>
-                    <StyledLink to="/my-beach"><div> <FaUmbrellaBeach /> </div></StyledLink>
-                    <StyledLink to="/bottle-posts"><div> <FaWineBottle /> </div></StyledLink>
-                    <StyledLink to="/chats"><div> <FaComments /> </div></StyledLink>
-                    <StyledLink to="/events"><div> <FaCalendarAlt /> </div></StyledLink>
-                    <StyledLink to="/profile"><div> <FaUserCircle /> </div></StyledLink>
+                    <StyledHeaderLink to="/dashboard"><div> <FaDharmachakra /> </div></StyledHeaderLink>
+                    <StyledHeaderLink to="/my-beach"><div> <FaUmbrellaBeach /> </div></StyledHeaderLink>
+                    <StyledHeaderLink to="/bottle-posts"><div> <FaWineBottle /> </div></StyledHeaderLink>
+                    <StyledHeaderLink to="/chats"><div> <FaComments /> </div></StyledHeaderLink>
+                    <StyledHeaderLink to="/events"><div> <FaCalendarAlt /> </div></StyledHeaderLink>
+                    <StyledHeaderLink to="/profile"><div> <FaUserCircle /> </div></StyledHeaderLink>
         
                 </StyledHeaderWrapper>
             </StyledStickyHeader>
@@ -33,7 +33,7 @@ const Header = ({ full }) => {
             <StyledStickyHeader>
                 <StyledHeaderWrapper className="header_small">
         
-                    <StyledLink to="/checkin"><div> <FaUserCircle /> </div></StyledLink>
+                    <StyledHeaderLink to="/login"><div> <FaUserCircle /> </div></StyledHeaderLink>
         
                 </StyledHeaderWrapper>
             </StyledStickyHeader>
@@ -52,6 +52,7 @@ const StyledStickyHeader = styled.div`
     position: sticky;
     top: 0px;
     padding-bottom: 8px;
+    border-bottom: 1px solid gray;
 `
 
 const StyledHeaderWrapper = styled.div`
@@ -65,7 +66,7 @@ const StyledHeaderWrapper = styled.div`
     }
 `
 
-const StyledLink  = styled(Link)`
+const StyledHeaderLink  = styled(Link)`
     /* background-color: rgba(250, 0, 250, 0.2); */
     font-size: xx-large;
     text-transform: uppercase;

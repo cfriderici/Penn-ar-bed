@@ -1,29 +1,48 @@
 // My components 
 import Header from "./Header";
-
-import Headline from "./Headline";
-// import Slider from "./Slider";
-import Carousel from "./Carousel";
+import Slider from "./sub/Slider";
 import Text from "./Text";
+import StyledH1 from "./styled/StyledHeadlines";
 
 
 // External Components 
 import styled from "styled-components";
-// import { Carousel } from "react-responsive-carousel";
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { Fragment } from "react";
 
 
+
+// ------ SUB COMPONENTS ------  //
+const StartHeader = ()  => {
+    return  (
+        <StyledH1>Penn-ar-bed</StyledH1>
+    )
+}  
+const StartContent = ()  => {
+    return  (
+        <Fragment>  
+
+            <Slider />
+            <Text />
+
+        </Fragment>
+    )
+}
 
 // ------ COMPONENT ------  //
 const Start = () => {
     return (
-        <StyledStartWrapper>
+
+        <Fragment>
+
             <Header />
-            <Headline />
-            {/* <Slider /> */}
-            <Carousel />
-            <Text />
-        </StyledStartWrapper>
+
+            <StyledStartWrapper>
+                <StartHeader />
+                <StartContent />
+
+            </StyledStartWrapper>
+
+        </Fragment>
     )
 }
 

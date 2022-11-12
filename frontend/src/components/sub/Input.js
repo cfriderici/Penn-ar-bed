@@ -2,7 +2,7 @@ import { FaPen } from "react-icons/fa";
 
 // Styled Components
 import styled from "styled-components";
-import ImgWrapper from "./ImgWrapper";
+import StyledImgWrapper from "../styled/StyledImgWrapper";
 
 // REF-HOOK in der jeweiligen Komponente importieren 
 // import { useRef } from "react";
@@ -36,9 +36,9 @@ const Input = ( /*{ addTodo } */ ) => {
 
             <StyledInput placeholder="" /*ref={todoNameRef} onKeyDown={handleAddKeyPress} */ ></StyledInput>
             
-                <ImgWrapper> 
-                    <FaPen  /* onClick={handleAddClick} */  /> 
-                </ImgWrapper>
+            <StyledImgWrapper> 
+                <FaPen  /* onClick={handleAddClick} */  /> 
+            </StyledImgWrapper>
 
         </StyledInputWrapper>
     );
@@ -52,7 +52,7 @@ export default Input;
 
 const StyledInput = styled.input`
     background-color: transparent;
-    /* background-color: rgba(0, 250, 0, 0.2); */
+    background-color: rgba(0, 250, 0, 0.2);
     width: 100%;
     border: none;
     outline: none;
@@ -60,8 +60,8 @@ const StyledInput = styled.input`
 
 const StyledInputWrapper = styled.div`
     background-color: white;
-    /* background-color: rgba(0, 250, 0, 0.4); */
-    width: 80%;
+    background-color: rgba(0, 250, 0, 0.4);
+    /* width: 80%; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;

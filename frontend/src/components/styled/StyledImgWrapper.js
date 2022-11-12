@@ -1,6 +1,8 @@
+// External Components 
 import styled from "styled-components";
 
 
+// ------ STYLED COMPONENTS ------  //
 const StyledImgWrapper = styled.div`
     /* background-color: rgba(0, 250, 250, 0.4); */
     display: flex;

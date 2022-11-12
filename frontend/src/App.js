@@ -1,6 +1,7 @@
 // My components 
 import Start from "./components/Start";
-import Checkin from "./components/Checkin";
+import Login from "./components/Login";
+import Register from "./components/Register";
 import Profile from "./components/Profile";
 import Password from "./components/Password";
 import Dashboard from "./components/Dashboard";
@@ -25,15 +26,14 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 function App() {
   return (
 
-
-      <StyledAppWrapper>
-      
+      <StyledAppWrapper>      
         <BrowserRouter>
-
           <Routes>
 
             <Route path="/" element={ <Start /> } />
-            <Route path="/checkin" element={ <Checkin /> } />
+            <Route path="/login" element={ <Login /> } />
+            <Route path="/register" element={ <Register /> } />
+
             <Route path="/profile" element={ <Profile /> } />
             <Route path="/password" element={ <Password /> } />
 
@@ -47,16 +47,9 @@ function App() {
             <Route path="/test" element={ <div>Test-Route</div> } />
 
           </Routes>
-
-          {/* <Link to="/footer"><Footer /></Link> */}
           <Footer />
-
-
         </BrowserRouter>
-
-
       </StyledAppWrapper>
-
   );
 }
 
@@ -67,5 +60,8 @@ export default App;
 // ------ STYLED COMPONENTS ------  //
 const StyledAppWrapper = styled.div `
     background-color: rgba(250, 250, 0, 0.2);
-    height: 100vh;
+    /* height: 100vh; */
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
 `

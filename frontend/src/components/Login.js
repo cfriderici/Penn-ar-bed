@@ -72,13 +72,16 @@ const StyledLockinWrapper = styled.div`
     background-color: rgba(250, 250, 0, 0.2);
     display: flex;
     flex-direction: column;
+    /* flex-wrap: wrap; */
     justify-content: center;
+    align-items: center;
 
     > h2, h3 {
-        text-align: center;
+        /* text-align: center; */
     }
 
     > div {
-        background-color: rgba(250, 200, 0, 0.6);
+        /* background-color: rgba(250, 200, 0, 0.6);
+        width: 100% */
     }
 `

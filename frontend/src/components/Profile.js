@@ -14,7 +14,6 @@ import {Fragment} from "react";
 
 
 
-
 // ------ INSIDE COMPONENTS ------  //
 const ProfileHeader = ()  => {
     return  (

@@ -21,7 +21,7 @@ const Slider = () => {
 
             <div>
                 <img src={ require('../../img/IMG_3778.jpg') } alt=""/>
-                <p className="legend">Anna / Posr Theolen / 20.12.2022</p>
+                <p className="legend">Anna / Pors Theolen / 20.12.2022</p>
             </div>
 
         </Carousel>

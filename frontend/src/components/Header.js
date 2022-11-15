@@ -53,6 +53,7 @@ const StyledStickyHeader = styled.div`
     top: 0px;
     padding-bottom: 8px;
     border-bottom: 1px solid gray;
+    z-index: 1000;
 `
 
 const StyledHeaderWrapper = styled.div`

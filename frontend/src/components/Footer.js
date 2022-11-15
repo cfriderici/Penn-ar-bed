@@ -32,11 +32,12 @@ export default Footer;
 // ------ STYLED COMPONENTS ------  //
 const StyledStickyFooter = styled.div`
     background: white;
-    position: fixed;
+    position: absolute;
     bottom: 0px;
     left: 0px;
     right: 0px;
     padding: 8px ;
+    display: none;
 `
 
 const StyledFooterWrapper = styled.div`

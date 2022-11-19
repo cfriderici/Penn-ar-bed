@@ -1,6 +1,5 @@
+// External Components 
 import { FaPen } from "react-icons/fa";
-
-// Styled Components
 import styled from "styled-components";
 import StyledImgWrapper from "../styled/StyledImgWrapper";
 
@@ -50,14 +49,6 @@ export default Input;
 
 // ------ STYLED COMPONENTS ------  //
 
-const StyledInput = styled.input`
-    background-color: transparent;
-    background-color: rgba(0, 250, 0, 0.2);
-    width: 100%;
-    border: none;
-    outline: none;
-`
-
 const StyledInputWrapper = styled.div`
     background-color: white;
     background-color: rgba(0, 250, 0, 0.4);
@@ -74,4 +65,12 @@ const StyledInputWrapper = styled.div`
     @media only screen and (min-width: 992px) {
         width: 50%;
     }
+`
+
+const StyledInput = styled.input`
+    background-color: transparent;
+    background-color: rgba(0, 250, 0, 0.2);
+    width: 100%;
+    border: none;
+    outline: none;
 `

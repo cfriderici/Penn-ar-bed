@@ -1,11 +1,12 @@
 
 // My Components
-import { StyledH3} from "../styled/StyledHeadlines";
+import { StyledH3 } from "../styled/StyledHeadlines";
+
 
 // External Components 
 import styled from "styled-components";
 import { Fragment } from "react";
-import { FaLifeRing, FaRegCompass, FaDharmachakra, FaFish, FaSwimmer, FaUmbrellaBeach, FaCalendarAlt, FaComment, FaCommentDots, FaComments, FaRegHeart, FaRegShareSquare, FaRegStar, FaUserCircle, FaRegPlusSquare, FaWineBottle } from "react-icons/fa";
+import { FaLifeRing, FaRegCompass, FaDharmachakra, FaFish, FaSwimmer, FaUmbrellaBeach, FaCalendarAlt, FaComment, FaRegComment, FaCommentDots, FaComments, FaRegHeart, FaRegShareSquare, FaRegStar, FaUserCircle, FaRegPlusSquare, FaWineBottle } from "react-icons/fa";
 
 
 
@@ -26,11 +27,13 @@ const PostHeader = ({ place, date })  => {
     )
 }
 
-const PostContent = ({ title, text })  => {
+const PostContent = ({ title, text, id })  => {
     return  (
         <StyledPostContent>
-            <StyledH3>{title}Title</StyledH3>
-            <div>{text}Text</div>
+            <StyledH3>{title}title</StyledH3>
+            <div>{text}text</div>
+            <div>{id}id</div>
+
         </StyledPostContent>
     )
 }
@@ -41,7 +44,7 @@ const PostActions = ({ comment, like, bookmark })  => {
 
         <div>
             <FaRegShareSquare />
-            <FaComment />
+            <FaRegComment />
             <FaRegHeart />
         </div>
 
@@ -53,12 +56,13 @@ const PostActions = ({ comment, like, bookmark })  => {
 
 
 // ------ COMPONENT ------  //
-const Post = ({ title, text, userId, userName } ) => {
+const Post = ({ title, text, userId, userName, id } ) => {
     return (
         <StyledPostWrapper>
 
             <PostHeader />
             <PostContent />
+            <div>{id}</div>
             <PostActions />
 
         </StyledPostWrapper>

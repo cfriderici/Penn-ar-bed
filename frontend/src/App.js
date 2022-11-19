@@ -7,97 +7,97 @@ import Password from "./components/Password";
 import Dashboard from "./components/Dashboard";
 import Beaches from "./components/Beaches";
 import Posts from "./components/Posts";
+import Createpost from "./components/Createpost";
 import Chats from "./components/Chats";
 import Events from "./components/Events";
 import Footer from "./components/Footer";
 import Impressum from "./components/Impressum";
 
 
-
-
 // External Components 
 import './App.css';
 import styled from "styled-components";
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 
 // Arrays
 const userArray = [
   {
-    "id": "123",
-    "name": "Christina",
-    "mail": "christina@friderici.net"
+    id: uuidv4(),
+    name: "Christina",
+    mail: "christina@friderici.net"
   },
   {
-    "id": "456",
-    "name": "Tom",
-    "mail": "tom@mot.de"
+    id: uuidv4(),
+    name: "Tom",
+    mail: "tom@mot.de"
   },
 ]
 
 const postArray = [
   {
-    "id": "321",
-    "userId": "123",
-    "image": "",
-    "profileImage": "",
-    "userName": "Christina",
-    "place": "Baie des Trépassés",
-    "date": "10.09.2020",
-    "title": "Dies ist ein Typoblindtext",
-    "text": "An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen. Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze »Pangrams«. Sehr bekannt ist dieser: The quick brown fox jumps over the lazy old dog.",
-    "comments": [
+    id: uuidv4(),
+    userId: 111,  /*userArray.id ??? */
+    image: "",
+    profileImage: "",
+    userName: "Christina",
+    place: "Baie des Trépassés",
+    date: "10.09.2020",
+    title: "Dies ist ein Typoblindtext",
+    text: "An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen. Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze »Pangrams«. Sehr bekannt ist dieser: The quick brown fox jumps over the lazy old dog.",
+    comments: [
       {
-        "id": "111",
-        "count": "1",
-        "comment": "aaaaawesome !!!",
-        "userId": "222",
-        "userName": "Jill"
+        id: uuidv4(),
+        count: 1,
+        comment: "aaaaawesome !!!",
+        userId: 222,
+        userName: "Jill"
       },
       {
-        "id": "333",
-        "count": "2",
-        "comment": "Danke für den Tip :)",
-        "userId": "444",
-        "userName": "Manuel"
+        id: uuidv4(),
+        count: 2,
+        comment: "Danke für den Tip :)",
+        userId: 444,
+        userName: "Manuel"
       }
     ],
-    "likes": [
+    likes: [
       {
-        "id": "555",
-        "count": "1",
-        "userId": "222",
-        "userName": "Jill"
+        id: uuidv4(),
+        count: 1,
+        userId: 222,
+        userName: "Jill"
       }
     ],
-    "bookmark": "1"
+    bookmark: true
   },
   {
-    "id": "654",
-    "userId": "456",
-    "image": "",
-    "profileImage": "",
-    "userName": "Tom",
-    "place": "Pors Theolen",
-    "date": "05.07.2021",
-    "title": "Er hörte leise Schritte hinter sich",
-    "text": "Das bedeutete nichts Gutes. Wer würde ihm schon folgen, spät in der Nacht und dazu noch in dieser engen Gasse mitten im übel beleumundeten Hafenviertel? Gerade jetzt, wo er das Ding seines Lebens gedreht hatte und mit der Beute verschwinden wollte! Hatte einer seiner zahllosen Kollegen dieselbe Idee gehabt, ihn beobachtet und abgewartet, um ihn nun um die Früchte seiner Arbeit zu erleichtern? Oder gehörten die Schritte hinter ihm zu einem der unzähligen Gesetzeshüter dieser Stadt, und die stählerne Acht um seine Handgelenke würde gleich zuschnappen?",
-    "comments": [],
-    "likes": [
+    id: uuidv4(),
+    userId: 456,
+    image: "",
+    profileImage: "",
+    userName: "Tom",
+    place: "Pors Theolen",
+    date: "05.07.2021",
+    title: "Er hörte leise Schritte hinter sich",
+    text: "Das bedeutete nichts Gutes. Wer würde ihm schon folgen, spät in der Nacht und dazu noch in dieser engen Gasse mitten im übel beleumundeten Hafenviertel? Gerade jetzt, wo er das Ding seines Lebens gedreht hatte und mit der Beute verschwinden wollte! Hatte einer seiner zahllosen Kollegen dieselbe Idee gehabt, ihn beobachtet und abgewartet, um ihn nun um die Früchte seiner Arbeit zu erleichtern? Oder gehörten die Schritte hinter ihm zu einem der unzähligen Gesetzeshüter dieser Stadt, und die stählerne Acht um seine Handgelenke würde gleich zuschnappen?",
+    comments: [],
+    likes: [
       {
-        "id": "666",
-        "count": "1",
-        "userId": "777",
-        "userName": "Paul"  
+        id: uuidv4(),
+        count: 1,
+        userId: 777,
+        userName: "Paul"  
       },
       {
-        "id": "888",
-        "count": "2",
-        "userId": "999",
-        "userName": "Tom"  
+        id: uuidv4(),
+        count: 2,
+        userId: 999,
+        userName: "Tom"  
       }
     ],
-    "bookmark": "0"
+    bookmark: false
   }
 ]
 
@@ -121,6 +121,7 @@ function App() {
             <Route path="/dashboard" element={ <Dashboard /> } />
             <Route path="/my-beach" element={ <Beaches /> } />
             <Route path="/bottle-posts" element={ <Posts posts={ postArray } /> } />
+            <Route path="/create-bottle-posts" element={ <Createpost /> } />
             <Route path="/chats" element={ <Chats /> } />
             <Route path="/events" element={ <Events /> } />
             <Route path="/impressum" element={ <Impressum /> } />

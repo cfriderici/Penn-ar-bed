@@ -10,6 +10,7 @@ const StyledLink  = styled(Link)`
     height: 50px; */
     font-size: smaller;
     /* text-transform: uppercase; */
+    text-decoration: none!important;
 `
 
 export default StyledLink;

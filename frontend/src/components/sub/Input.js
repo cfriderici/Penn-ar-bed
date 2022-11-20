@@ -6,6 +6,7 @@ import StyledImgWrapper from "../styled/StyledImgWrapper";
 // REF-HOOK in der jeweiligen Komponente importieren 
 // import { useRef } from "react";
 
+ 
 
 // ------ COMPONENT ------  //
 
@@ -44,6 +45,11 @@ const Input = ( /*{ addTodo } */ ) => {
 }
 
 export default Input;
+
+
+
+
+
 
 
 

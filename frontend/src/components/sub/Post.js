@@ -6,7 +6,7 @@ import { StyledH3 } from "../styled/StyledHeadlines";
 // External Components 
 import styled from "styled-components";
 import { Fragment } from "react";
-import { FaLifeRing, FaRegCompass, FaDharmachakra, FaFish, FaSwimmer, FaUmbrellaBeach, FaCalendarAlt, FaComment, FaRegComment, FaCommentDots, FaComments, FaRegHeart, FaRegShareSquare, FaRegStar, FaUserCircle, FaRegPlusSquare, FaWineBottle } from "react-icons/fa";
+import { FaLifeRing, FaRegCompass, FaDharmachakra, FaFish, FaSwimmer, FaUmbrellaBeach, FaCalendarAlt, FaComment, FaRegComment, FaCommentDots, FaComments, FaRegHeart, FaRegShareSquare, FaRegStar, FaUserCircle, FaRegPlusSquare, FaWineBottle, FaRegTrashAlt } from "react-icons/fa";
 
 
 
@@ -27,43 +27,64 @@ const PostHeader = ({ place, date })  => {
     )
 }
 
-const PostContent = ({ title, text, id })  => {
-    return  (
-        <StyledPostContent>
-            <StyledH3>{title}title</StyledH3>
-            <div>{text}text</div>
-            <div>{id}id</div>
+// const PostContent = ({ title, text, id })  => {
+//     return  (
+//         <StyledPostContent>
+//             <StyledH3>{title}title</StyledH3>
+//             <div>{text}text</div>
+//             <div>{id}id</div>
+//         </StyledPostContent>
+//     )
+// }
 
-        </StyledPostContent>
-    )
-}
-
-const PostActions = ({ comment, like, bookmark })  => {
-    return  (
-        <StyledPostActions>
-
-        <div>
-            <FaRegShareSquare />
-            <FaRegComment />
-            <FaRegHeart />
-        </div>
-
-        <FaRegStar />
-
-        </StyledPostActions>
-    )
-}
+// const PostActions = ({ comment, like, bookmark, id, posts, setPosts })  => {
+//     const deletePost = (id) => {
+//         setPosts(posts.filter(e => e.id !== id ))
+//     }
+//     return  (
+//         <StyledPostActions>
+//         <div>
+//             <FaRegShareSquare />
+//             <FaRegComment />
+//             <FaRegHeart />
+//             <FaRegStar />
+//         </div>
+//         <FaRegTrashAlt onClick={deletePost} />
+//         </StyledPostActions>
+//     )
+// }
 
 
 // ------ COMPONENT ------  //
-const Post = ({ title, text, userId, userName, id } ) => {
+const Post = ({ title, text, userId, userName, postid, posts, setPosts } ) => {
+
+    const deletePost = (id) => {
+        setPosts(posts.filter(e => e.id !== postid ))
+    }
+
     return (
+        
         <StyledPostWrapper>
 
             <PostHeader />
-            <PostContent />
-            <div>{id}</div>
-            <PostActions />
+
+            {/* <PostContent /> */}
+            <StyledH3> title: {title} </StyledH3>
+            <div> text: {text} </div>
+            <div> id: {postid} </div>   
+
+            {/* <PostActions /> */}
+            <StyledPostActions>
+                <div>
+                    <FaRegShareSquare />
+                    <FaRegComment />
+                    <FaRegHeart />
+                    <FaRegStar />
+                </div>
+
+                <FaRegTrashAlt onClick={deletePost} />
+
+            </StyledPostActions>
 
         </StyledPostWrapper>
     )

@@ -1,18 +1,15 @@
 // My components 
 import Header from "./Header";
 import Post from "./sub/Post";
-import Input from "./sub/Input";
 import Sort from "./sub/Sort";
-import Createpost from "./Createpost";
-import StyledImgWrapper from "./styled/StyledImgWrapper";
 
 
 
 // External Components 
 import styled from "styled-components";
 import { Fragment } from "react";
-import { FaPen } from "react-icons/fa";
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { FaWineBottle } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
      
 
@@ -25,7 +22,7 @@ const PostsHeader = ()  => {
             <h1>Meine Flaschen-Posts</h1>
 
             {/* <StyledImgWrapper>  */}
-                <Link to="/create-bottle-posts"><div> Neuer Flaschen-Post <FaPen /> </div></Link>
+                <Link to="/create-bottle-posts"><div> Neuer Flaschen-Post <FaWineBottle /> </div></Link>
             {/* </StyledImgWrapper>                */}
 
             <Sort placeHolder="Select..."  /> 
@@ -38,7 +35,7 @@ const PostsHeader = ()  => {
 
 
 // ------ COMPONENT ------  //
-const Posts = ({ posts }) => {
+const Posts = ({ posts, setPosts }) => {
     return (
 
         <Fragment>
@@ -51,7 +48,7 @@ const Posts = ({ posts }) => {
 
                 {
                     posts.map(e => (
-                        <Post key={e.id} image={e.image} title={e.title} text={e.text} userId={e.userId} userName={e.userName} place={e.place} date={e.date} id={e.id}  />
+                        <Post key={e.id} image={e.image} title={e.title} text={e.text} userId={e.userId} userName={e.userName} place={e.place} date={e.date} postid={e.id} posts={posts} setPosts={setPosts}/>
                     ))
                 }
                     

@@ -1,6 +1,7 @@
 // My components 
 import Header from "./Header";
 import Input from "./sub/Input";
+// import ImageUpload from "./sub/Imguploader";
 import StyledButton from "./styled/StyledButton";
 import StyledImgWrapper from "./styled/StyledImgWrapper";
 
@@ -8,7 +9,6 @@ import StyledImgWrapper from "./styled/StyledImgWrapper";
 // External Components 
 import styled from "styled-components";
 import { FaPen } from "react-icons/fa";
-
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import {Fragment} from "react";
 
@@ -27,6 +27,7 @@ const ProfileContent = ()  => {
 
             <StyledProfileImg>
                 <img src={ require('../img/IMG_3115.jpg') } alt=""/>
+                {/* <ImageUpload /> */}
                 <StyledInputWrapper>
                     Profilbild bearbeiten 
                     <StyledImgWrapper> <FaPen /> </StyledImgWrapper>

@@ -50,6 +50,8 @@ const postArray = [
     // date: "10.09.2020",
     title: "Dies ist ein Typoblindtext",
     text: "An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen. Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze »Pangrams«. Sehr bekannt ist dieser: The quick brown fox jumps over the lazy old dog.",
+    edited: false,
+    editingDate: "",
     // comments: [
     //   {
     //     id: uuidv4(),
@@ -86,6 +88,8 @@ const postArray = [
   //   date: "05.07.2021",
   //   title: "Er hörte leise Schritte hinter sich",
   //   text: "Das bedeutete nichts Gutes. Wer würde ihm schon folgen, spät in der Nacht und dazu noch in dieser engen Gasse mitten im übel beleumundeten Hafenviertel? Gerade jetzt, wo er das Ding seines Lebens gedreht hatte und mit der Beute verschwinden wollte! Hatte einer seiner zahllosen Kollegen dieselbe Idee gehabt, ihn beobachtet und abgewartet, um ihn nun um die Früchte seiner Arbeit zu erleichtern? Oder gehörten die Schritte hinter ihm zu einem der unzähligen Gesetzeshüter dieser Stadt, und die stählerne Acht um seine Handgelenke würde gleich zuschnappen?",
+  //   edited: false,
+  //   editingDate: ""
   //   comments: [],
   //   likes: [
   //     {

@@ -48,7 +48,7 @@ const Posts = ({ posts, setPosts }) => {
 
                 {
                     posts.map(e => (
-                        <Post key={e.id} image={e.image} title={e.title} text={e.text} userId={e.userId} userName={e.userName} place={e.place} date={e.date} postid={e.id} posts={posts} setPosts={setPosts}/>
+                        <Post key={e.id} image={e.image} title={e.title} text={e.text} userId={e.userId} userName={e.userName} place={e.place} date={e.date} postId={e.id} edited={e.edited} editingDate={e.editingDate} posts={posts} setPosts={setPosts}/>
                     ))
                 }
                     

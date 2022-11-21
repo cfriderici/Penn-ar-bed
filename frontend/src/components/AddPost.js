@@ -18,11 +18,11 @@ import { useRef } from "react";
 // ------ COMPONENT ------  //
 const AddPost = ({ posts, setPosts }) => {
 
-    //useRef definieren
+    //useRefs definieren --> wie geht das für das ganze array ?!?
     const AddPostTitleRef = useRef();
     const AddPostTextRef = useRef();
 
-    //Funktionen
+    //Funktion: Post hinzufügen 
     const newPost = () => {
         if (AddPostTitleRef.current.value && AddPostTextRef.current.value !== "") {
             setPosts([
@@ -30,6 +30,8 @@ const AddPost = ({ posts, setPosts }) => {
                     id: uuidv4(),
                     title: AddPostTitleRef.current.value,
                     text: AddPostTextRef.current.value,
+                    // edited: ,
+                    // editingDate: ,
                 },
                 ...posts
             ])

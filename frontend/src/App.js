@@ -46,8 +46,8 @@ const postArray = [
     // image: "",
     // profileImage: "",
     // userName: "Christina",
-    // place: "Baie des Trépassés",
-    // date: "10.09.2020",
+    place: "Baie des Trépassés",
+    date: "10.09.2020",
     title: "Dies ist ein Typoblindtext",
     text: "An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen. Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze »Pangrams«. Sehr bekannt ist dieser: The quick brown fox jumps over the lazy old dog.",
     edited: false,
@@ -116,6 +116,8 @@ function App() {
 
   //useState definieren
   const [posts, setPosts] = useState(postArray);
+  const [players, setPlayers] = useState(["a", "b", "c", "d", "e", "f"]);
+
 
 
   return (
@@ -132,7 +134,7 @@ function App() {
 
           <Route path="/dashboard" element={ <Dashboard /> } />
           <Route path="/my-beach" element={ <Beaches /> } />
-          <Route path="/bottle-posts" element={ <Posts posts={posts} setPosts={setPosts} /> } />
+          <Route path="/bottle-posts" element={ <Posts posts={posts} setPosts={setPosts} players={players} setPlayers={setPlayers}  /> } />
           <Route path="/create-bottle-posts" element={ <AddPost posts={posts} setPosts={setPosts} /> } />
           <Route path="/chats" element={ <Chats /> } />
           <Route path="/events" element={ <Events /> } />

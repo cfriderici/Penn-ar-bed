@@ -10,21 +10,18 @@ import { FaLifeRing, FaRegCompass, FaDharmachakra, FaFish, FaSwimmer, FaUmbrella
 
 
 // ------ INSIDE COMPONENTS ------  //
-const PostHeader = ({ place, date })  => {
-    return  (
-        <StyledPostHeader>
-
-            <div className="header_img">
-                <img className="post-img" src={ require('../../img/FullSizeRender.JPG') } alt=""/>
-                <img className="profile-img" src={ require('../../img/IMG_3115.jpg') } alt=""/>
-            </div>
-
-            <div>{place}place</div>
-            <div>{date}date</div> 
-
-        </StyledPostHeader>
-    )
-}
+// const PostHeader = ({ place, date })  => {
+//     return  (
+//         <StyledPostHeader>
+//             <div className="header_img">
+//                 <img className="post-img" src={ require('../../img/FullSizeRender.JPG') } alt=""/>
+//                 <img className="profile-img" src={ require('../../img/IMG_3115.jpg') } alt=""/>
+//             </div>
+//             <div>{place}place</div>
+//             <div>{date}date</div> 
+//         </StyledPostHeader>
+//     )
+// }
 
 // const PostContent = ({ title, text, id })  => {
 //     return  (
@@ -59,7 +56,7 @@ const PostHeader = ({ place, date })  => {
 
 
 // ------ COMPONENT ------  //
-const Post = ({ title, text, userId, userName, postId, edited, editingDate, posts, setPosts } ) => {
+const Post = ({ place, date, title, text, userId, userName, postId, edited, editingDate, posts, setPosts } ) => {
 
     //useRefs definieren
     const AddPostEditRef = useRef();
@@ -79,12 +76,12 @@ const Post = ({ title, text, userId, userName, postId, edited, editingDate, post
         const heute = new Date();
 
         setPosts(
-            posts.map(
-                e => { if (e.id === postId) 
+            posts.map( e => {
+                 if (e.id === postId) 
                     e.edited = !e.edited; 
                     e.editingDate = heute.toLocaleDateString();
-                    return e }
-            )
+                return e 
+                })
         );
         
         console.log("geändert" + heute.toLocaleDateString())
@@ -95,7 +92,15 @@ const Post = ({ title, text, userId, userName, postId, edited, editingDate, post
         
         <StyledPostWrapper>
 
-            <PostHeader />
+            {/* <PostHeader /> */}
+            <StyledPostHeader>
+                <div className="header_img">
+                    <img className="post-img" src={ require('../../img/FullSizeRender.JPG') } alt=""/>
+                    <img className="profile-img" src={ require('../../img/IMG_3115.jpg') } alt=""/>
+                </div>
+                <div>{place}</div>
+                <div>{date}</div> 
+            </StyledPostHeader>
 
             {/* <PostContent /> */}
             <StyledH3> title: {title} </StyledH3>

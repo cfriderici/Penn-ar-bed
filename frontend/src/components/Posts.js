@@ -26,6 +26,11 @@ const PostsHeader = ()  => {
             {/* </StyledImgWrapper>                */}
 
             <Sort placeHolder="Select..."  /> 
+
+
+
+
+
         
         </StyledPostsHeader>
 
@@ -35,7 +40,17 @@ const PostsHeader = ()  => {
 
 
 // ------ COMPONENT ------  //
-const Posts = ({ posts, setPosts }) => {
+const Posts = ({ posts, setPosts, players, setPlayers }) => {
+
+    const sortPlayers = (selectEvent) => {
+        const options = {
+          "a-z": [...players].sort((a, b) => (a < b ? -1 : 1)),
+          "z-a": [...players].sort((a, b) => (a < b ? 1 : -1))
+        };
+    
+        setPlayers(options[selectEvent.target.value]);
+      };
+
     return (
 
         <Fragment>
@@ -45,6 +60,28 @@ const Posts = ({ posts, setPosts }) => {
             <StyledPostsWrapper>
 
                 <PostsHeader />
+
+
+                <div className="App">
+                    <select onChange={sortPlayers}>
+                        <option value="a-z">A - Z</option>
+                        <option value="z-a">Z - A</option>
+                    </select>
+                    {players.map((player, index) => (
+                        <p key={index}>{player}</p>
+                    ))}
+
+                    {players.map((player, index) => {
+                        const playerNum = `${player}${index}`;
+                        return (
+                        <p key={index}>
+                            {player}
+                            {playerNum}
+                        </p>
+                        );
+                    })}
+                </div>
+                
 
                 {
                     posts.map(e => (

@@ -18,7 +18,10 @@ import { useRef } from "react";
 // ------ COMPONENT ------  //
 const AddPost = ({ posts, setPosts }) => {
 
+    const heute = new Date();
+
     //useRefs definieren --> wie geht das für das ganze array ?!?
+    const AddPostBeacheRef = useRef();
     const AddPostTitleRef = useRef();
     const AddPostTextRef = useRef();
 
@@ -28,10 +31,12 @@ const AddPost = ({ posts, setPosts }) => {
             setPosts([
                 {
                     id: uuidv4(),
+                    place: AddPostBeacheRef.current.value,
+                    date: heute.toLocaleDateString(),
                     title: AddPostTitleRef.current.value,
                     text: AddPostTextRef.current.value,
-                    // edited: ,
-                    // editingDate: ,
+                    edited: false,
+                    editingDate: "",
                 },
                 ...posts
             ])
@@ -52,6 +57,10 @@ const AddPost = ({ posts, setPosts }) => {
 
                 <StyledInputWrapper>
                     <StyledInput placeholder="Bild hochlagen" /*ref={todoNameRef} */ ></StyledInput>
+                </StyledInputWrapper>
+
+                <StyledInputWrapper>
+                    <StyledInput placeholder="Strand eingeben"  ref={AddPostBeacheRef} ></StyledInput>
                 </StyledInputWrapper>
 
                 <StyledInputWrapper>

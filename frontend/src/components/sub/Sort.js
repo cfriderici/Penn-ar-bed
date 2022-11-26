@@ -14,7 +14,6 @@ const Sort = () => {
                 <MdOutlineKeyboardArrowDown  /> 
             </StyledImgWrapper>
 
-
         </StyledSortWrapper>
 
 
@@ -30,7 +29,7 @@ export default Sort;
 
 const StyledSortWrapper = styled.div`
     background-color: white;
-    background-color: rgba(0, 250, 250, 0.4);
+    background-color: rgba(0, 50, 250, 0.2);
     /* width: 80%; */
     display: flex;
     flex-direction: row;
@@ -44,7 +43,7 @@ const StyledSortWrapper = styled.div`
 
 const StyledSort = styled.div`
     background-color: transparent;
-    background-color: rgba(0, 250, 250, 0.2);
+    background-color: rgba(0, 50, 250, 0.2);
     /* width: 100%; */
     /* border: none; */
     /* outline: none; */

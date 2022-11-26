@@ -37,6 +37,7 @@ const usePosts = () => {
         setPosts(storage);
     }, [] ); 
 
+    // Post hinzufügen
     const addPost = text => {
         setPosts([...posts,
             {
@@ -46,6 +47,7 @@ const usePosts = () => {
         ])
     }
 
+    //Post löschen
     const deletePost = id => {
         setPosts(posts.filter(e => e.id !== id))
     }

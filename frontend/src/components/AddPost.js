@@ -42,7 +42,6 @@ const AddPost = ({ posts, setPosts }) => {
             ])
         }
     }
-
     const handleAddClick = () => {
         newPost();
     }

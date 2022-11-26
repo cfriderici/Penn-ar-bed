@@ -4,69 +4,115 @@ import Input from "./sub/Input";
 import StyledLink from "./styled/StyledLink";
 import StyledButton from "./styled/StyledButton";
 import { StyledH2, StyledH3} from "./styled/StyledHeadlines";
+import StyledInput, { StyledInputWrapper, StyledTextarea } from "./styled/StyledInput";
+
 
 
 // External Components 
 import styled from "styled-components";
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
+import { Link } from 'react-router-dom';
 import {Fragment} from "react";
+import { useRef } from "react";
+
 
 
 
 // ------ SUB COMPONENTS ------  //
-const RegisterHeader = ()  => {
-    return  (
-        <Fragment>
-            <StyledH2>REGISTER</StyledH2>
-            <StyledH3>Hallo  - du bist wohl neu hier!</StyledH3>    
-        </Fragment>
-    )
-}   
-const RegisterContent = ()  => {
-    return  (
-        <Fragment>  
+// const RegisterHeader = ()  => {
+//     return  (
+//         <StyledRegisterHeader>
+//             <StyledH2>Registrieren</StyledH2>
+//             <StyledH3>Hallo  - du bist wohl neu hier!</StyledH3>    
+//         </StyledRegisterHeader>
+//     )
+// }   
 
-            <div>Vorname</div>
-            <Input />
+// const RegisterContent = ()  => {
+//     return  (
+//         <StyledRegisterContent>  
+//             <StyledInputWrapper>
+//                 <StyledInput placeholder="Vorname" /*ref={todoNameRef} */ ></StyledInput>
+//             </StyledInputWrapper>
+//             <StyledInputWrapper>
+//                 <StyledInput placeholder="E-Mail" /*ref={todoNameRef} */ ></StyledInput>
+//             </StyledInputWrapper>
+//             <StyledInputWrapper>
+//                 <StyledInput placeholder="Passwort" /*ref={todoNameRef} */ ></StyledInput>
+//             </StyledInputWrapper>
+//         </StyledRegisterContent>
+//     )
+// }
 
-            <div>Nachname</div>
-            <Input />
+// const RegisterActions = ()  => {
+//     return  (
+//         <StyledRegisterActions>                
+//             <StyledButton><Link to="/profile">registrieren</Link></StyledButton>
+//             <StyledLink to="/login">Du hast bereits einen Account? Anmelden</StyledLink>  
+//         </StyledRegisterActions>
+//     )
+// }
 
-            <div>E-Mail</div>
-            <Input />
 
-            <div>Passwort</div>
-            <Input />
-
-        </Fragment>
-    )
-}
-const RegisterActions = ()  => {
-    return  (
-        <Fragment>                
-            <StyledButton><Link to="/profile">registrieren</Link></StyledButton>
-            <StyledLink to="/login">Du hast bereits einen Account? Anmelden</StyledLink>  
-            <p>Using styled-components, we can create our own React button component and style it with css inside the template tag. If you're not familiar with styled-components, check out our guide here. Styling a button is not much different than styling a div, except we're adding styles on top of the browser's already styled button, so the good news is that we don't need to add too many properties here to make it look nice. For example, the html button's text is already centered for us.</p>
-
-        </Fragment>
-
-    )
-}
 
 
 // ------ COMPONENT ------  //
-const Register = () => {
+const Register = ({ users, setUsers }) => {
+
+    //useRefs definieren --> wie geht das für das ganze array ?!?
+    const AddUserNameRef = useRef();
+    const AddUserMailRef = useRef();
+    const AddPasswortRef = useRef();
+
+    //Funktion: User hinzufügen 
+    const newUser = () => {
+        if (AddUserMailRef.current.value && AddPasswortRef.current.value !== "") {
+            setUsers([...users,
+                {
+                    id: uuidv4(),
+                    name: AddUserNameRef.current.value,
+                    mail: AddUserMailRef.current.value,
+                    passwort: AddPasswortRef.current.value,
+                }
+            ])
+        }
+    }
+    const handleAddClick = () => {
+        newUser();
+    }
+
+
     return (
-        <Fragment>       
-
+        <Fragment>
             <Header />
-
             <StyledRegisterWrapper>
-                <RegisterHeader />
-                <RegisterContent />
-                <RegisterActions />
-            </StyledRegisterWrapper>
 
+                {/* <RegisterHeader /> */}
+                <StyledRegisterHeader>
+                    <StyledH2>Registrieren</StyledH2>
+                    <StyledH3>Hallo  - du bist wohl neu hier!</StyledH3>    
+                </StyledRegisterHeader>
+
+                {/* <RegisterContent /> */}
+                <StyledRegisterContent>  
+                    <StyledInputWrapper>
+                        <StyledInput placeholder="Vorname" ref={AddUserNameRef} ></StyledInput>
+                    </StyledInputWrapper>
+                    <StyledInputWrapper>
+                        <StyledInput placeholder="E-Mail" ref={AddUserMailRef} ></StyledInput>
+                    </StyledInputWrapper>
+                    <StyledInputWrapper>
+                        <StyledInput placeholder="Passwort" ref={AddPasswortRef} ></StyledInput>
+                    </StyledInputWrapper>
+                </StyledRegisterContent>
+
+                {/* <RegisterActions /> */}
+                <StyledRegisterActions>                
+                    <StyledButton onClick={handleAddClick}> <Link to="/profile">registrieren</Link> </StyledButton>
+                    <StyledLink to="/login">Du hast bereits einen Account? Anmelden</StyledLink>  
+                </StyledRegisterActions>
+
+            </StyledRegisterWrapper>
         </Fragment>
     )
 }
@@ -75,13 +121,42 @@ export default Register;
 
 
 
+
 // ------ STYLED COMPONENTS ------  //
+
 const StyledRegisterWrapper = styled.div`
     background-color: rgba(0, 250, 0, 0.2);
     display: flex;
     flex-direction: column;
-
-    > div {
-        background-color: rgba(0, 250, 0, 0.4);
-    }
+    align-items: center;
+    width: 100%;
 `
+
+
+const StyledRegisterHeader = styled.div`
+    background-color: rgba(250, 0, 0, 0.2);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+
+const StyledRegisterContent = styled.div`
+    background-color: rgba(0, 0, 250, 0.2);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+
+const StyledRegisterActions = styled.div`
+    background-color: rgba(0, 250, 250, 0.2);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+
+
+
+

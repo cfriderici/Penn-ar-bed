@@ -1,4 +1,3 @@
-
 // My Components
 import { StyledH3 } from "../styled/StyledHeadlines";
 
@@ -6,60 +5,68 @@ import { StyledH3 } from "../styled/StyledHeadlines";
 // External Components 
 import { useRef } from "react";
 import styled from "styled-components";
-import { FaLifeRing, FaRegCompass, FaDharmachakra, FaFish, FaSwimmer, FaUmbrellaBeach, FaCalendarAlt, FaComment, FaRegComment, FaCommentDots, FaComments, FaRegHeart, FaRegShareSquare, FaRegStar, FaUserCircle, FaRegPlusSquare, FaWineBottle, FaRegEdit, FaEdit, FaPencilAlt, FaTrashAlt, FaRegTrashAlt } from "react-icons/fa";
+import { FaLifeRing, FaRegCompass, FaDharmachakra, FaFish, FaSwimmer, FaUmbrellaBeach, FaCalendarAlt, FaComment, FaRegComment, FaCommentDots, FaComments, FaRegHeart, FaRegShareSquare, FaRegStar, FaStar, FaUserCircle, FaRegPlusSquare, FaWineBottle, FaRegEdit, FaEdit, FaPencilAlt, FaTrashAlt, FaRegTrashAlt } from "react-icons/fa";
+
+
 
 
 // ------ INSIDE COMPONENTS ------  //
-// const PostHeader = ({ place, date })  => {
-//     return  (
-//         <StyledPostHeader>
-//             <div className="header_img">
-//                 <img className="post-img" src={ require('../../img/FullSizeRender.JPG') } alt=""/>
-//                 <img className="profile-img" src={ require('../../img/IMG_3115.jpg') } alt=""/>
-//             </div>
-//             <div>{place}place</div>
-//             <div>{date}date</div> 
-//         </StyledPostHeader>
-//     )
-// }
 
-// const PostContent = ({ title, text, id })  => {
-//     return  (
-//         <StyledPostContent>
-//             <StyledH3>{title}title</StyledH3>
-//             <div>{text}text</div>
-//             <div>{id}id</div>
-//         </StyledPostContent>
-//     )
-// }
+// HEADER
+const PostHeader = ({ place, date })  => {
+    return  (
+        <StyledPostHeader>
+            <div className="header_img">
+                <img className="post-img" src={ require('../../img/FullSizeRender.JPG') } alt=""/>
+                <img className="profile-img" src={ require('../../img/IMG_3115.jpg') } alt=""/>
+            </div>
+            <div>{place}place</div>
+            <div>{date}date</div> 
+        </StyledPostHeader>
+    )
+}
 
-// const PostActions = ({ comment, like, bookmark, id, posts, setPosts })  => {
-//     const deletePost = (id) => {
-//         setPosts(posts.filter(e => e.id !== id ))
-//     }
-//     return  (
-//         <StyledPostActions>
-    //         <div>
-    //             <FaRegShareSquare />
-    //             <FaRegComment />
-    //             <FaRegHeart />
-    //             <FaRegStar />
-    //         </div>
-    //          <div>
-        //          <FaRegEdit style={{color: "red"}} ref={AddPostEditRef} onClick={changePost} />
-        //          <FaRegTrashAlt onClick={deletePost} />
-    //          </div>
-    //          <div> geändert am: {editingDate} </div>   
-//         </StyledPostActions>
-//     )
-// }
+// CONMTENT
+const PostContent = ({ title, text, id })  => {
+    return  (
+        <StyledPostContent>
+            <StyledH3>{title}title</StyledH3>
+            <div>{text}text</div>
+            <div>{id}id</div>
+        </StyledPostContent>
+    )
+}
 
+// ACTIONS
+const PostActions = ({ postId, star, edited, editingDate, posts, setPosts })  => {
 
-// ------ COMPONENT ------  //
-const Post = ({ place, date, title, text, userId, userName, postId, edited, editingDate, posts, setPosts } ) => {
+    // Funktion star toggeln
+    const togglestar = () => {
+        setPosts(
+            posts.map( e => {
+                if (e.id === postId)
+                e.star = !e.star;
+                return e
+            })
+        );
+        console.log("Bookmar getoggled")
+    }
 
-    //useRefs definieren
-    const AddPostEditRef = useRef();
+    // Funktion: Post bearbeiten
+    const changePost = () => {
+
+        const heute = new Date();
+
+        setPosts(
+            posts.map( e => {
+                    if (e.id === postId) 
+                    e.edited = !e.edited; 
+                    e.editingDate = heute.toLocaleDateString();
+                return e 
+                })
+        );        
+        console.log("geändert" + heute.toLocaleDateString())
+    }
 
     //Funktion: Post löschen
     const deletePost = (id) => {
@@ -70,61 +77,38 @@ const Post = ({ place, date, title, text, userId, userName, postId, edited, edit
         }                     
     }
 
-    // Funktion: Post bearbeiten --> bei klick (anderes ikon und) anzeigen des textes "geändert am XY"
-    const changePost = () => {
+   
+    //useRefs definieren
+    const AddTogglestarRef = useRef();
+    const AddPostEditRef = useRef(); 
 
-        const heute = new Date();
+    return  (
+        <StyledPostActions edited={edited} star={star}>
+            <div>
+                <FaRegShareSquare className="share" />
+                <FaRegComment className="comment" />
+                <FaRegHeart className="heart" />
+                <FaRegStar className="star" ref={AddTogglestarRef} onClick={togglestar} />
+            </div>
+            <div>
+                <FaRegEdit className="edit" ref={AddPostEditRef} onClick={changePost} />
+                <FaRegTrashAlt className="trash" onClick={deletePost} />
+            </div>
+            <div> geändert am: {editingDate} </div>  
+        </StyledPostActions>
+    )
+}
 
-        setPosts(
-            posts.map( e => {
-                 if (e.id === postId) 
-                    e.edited = !e.edited; 
-                    e.editingDate = heute.toLocaleDateString();
-                return e 
-                })
-        );
-        
-        console.log("geändert" + heute.toLocaleDateString())
-    }
 
-    
-    return (
-        
+
+
+// ------ COMPONENT ------  //
+const Post = ({ place, date, title, text, id, userId, userName, postId, edited, editingDate, star, posts, setPosts } ) => {
+    return (        
         <StyledPostWrapper>
-
-            {/* <PostHeader /> */}
-            <StyledPostHeader>
-                <div className="header_img">
-                    <img className="post-img" src={ require('../../img/FullSizeRender.JPG') } alt=""/>
-                    <img className="profile-img" src={ require('../../img/IMG_3115.jpg') } alt=""/>
-                </div>
-                <div>{place}</div>
-                <div>{date}</div> 
-            </StyledPostHeader>
-
-            {/* <PostContent /> */}
-            <StyledH3> title: {title} </StyledH3>
-            <div> text: {text} </div>
-            <div> id: {postId} </div>   
-
-            {/* <PostActions /> */}
-            <StyledPostActions edited={edited}>
-                <div>
-                    <FaRegShareSquare className="share" />
-                    <FaRegComment className="comment" />
-                    <FaRegHeart className="heart" />
-                    <FaRegStar className="star" />
-                </div>
-
-                <div>
-                    <FaRegEdit className="edit" ref={AddPostEditRef} onClick={changePost} />
-                    <FaRegTrashAlt className="trash" onClick={deletePost} />
-                </div>
-
-                <div> geändert am: {editingDate} </div>    
-
-            </StyledPostActions>
-
+            <PostHeader place={place} date={date}/>
+            <PostContent title={title} text={text} id={id} />
+            <PostActions postId={postId} edited={edited} editingDate={editingDate} star={star} posts={posts} setPosts={setPosts}/>
         </StyledPostWrapper>
     )
 }
@@ -168,7 +152,7 @@ const StyledPostContent = styled.div`
 `
 
 const StyledPostActions = styled.div`
-    background-color: rgba(0, 250, 0, 0.2);
+    background-color: rgba(250, 50, 0, 0.2);
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -176,8 +160,13 @@ const StyledPostActions = styled.div`
     margin: 20px 0;
     font-size: large;
 
+        .star {
+            color: ${props => props.star ? "black" : "red"};
+
+        }
+
     > div:last-of-type {
-        background-color: rgba(0, 250, 0, 0.2);
+        background-color: rgba(250, 0, 250, 0.6);
         width: 100%;
         font-size: small;
         text-align: right;

@@ -4,12 +4,13 @@ import styled from "styled-components";
 
 // ------ STYLED COMPONENTS ------  //
 const StyledImgWrapper = styled.div`
-    /* background-color: rgba(0, 250, 250, 0.4); */
+    background-color: rgba(0, 250, 250, 0.4);
     display: flex;
     align-items: center;
     padding: 0px 0px 0px 10px;
+    
     & > svg {
-        /* background-color: rgba(250, 0, 0, 0.4); */
+        background-color: rgba(250, 0, 0, 0.4);
         margin-right: 4px;
     }
     

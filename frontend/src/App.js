@@ -157,6 +157,7 @@ export default App;
 
 
 
+
 // ------ STYLED COMPONENTS ------  //
 const StyledAppWrapper = styled.div `
     background-color: rgba(250, 250, 0, 0.2);

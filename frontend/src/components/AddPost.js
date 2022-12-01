@@ -1,13 +1,13 @@
 // My Components
 import Header from "./Header";
-// import input from "./sub/input";
 import StyledButton from "./styled/StyledButton";
 import StyledInput, { StyledInputWrapper, StyledTextarea } from "./styled/StyledInput";
 
+// My Hooks
+import usePosts from "../hooks/usePosts";
 
 // External Components 
 import styled from "styled-components";
-import { v4 as uuidv4 } from 'uuid';
 import { Fragment } from "react";
 import { Link } from 'react-router-dom';
 import { useRef } from "react";
@@ -18,7 +18,7 @@ import { useRef } from "react";
 // ------ COMPONENT ------  //
 const AddPost = ({ posts, setPosts }) => {
 
-    const heute = new Date();
+    const [ addPost ] = usePosts();
 
     //useRefs definieren --> wie geht das für das ganze array ?!?
     const AddPostBeacheRef = useRef();
@@ -28,22 +28,17 @@ const AddPost = ({ posts, setPosts }) => {
     //Funktion: Post hinzufügen 
     const newPost = () => {
         if (AddPostTitleRef.current.value && AddPostTextRef.current.value !== "") {
-            setPosts([
-                {
-                    id: uuidv4(),
-                    place: AddPostBeacheRef.current.value,
-                    date: heute.toLocaleDateString(),
-                    title: AddPostTitleRef.current.value,
-                    text: AddPostTextRef.current.value,
-                    edited: false,
-                    editingDate: "",
-                },
-                ...posts
-            ])
+            addPost(
+				AddPostBeacheRef.current.value, 
+                AddPostTitleRef.current.value, 
+                AddPostTextRef.current.value
+			)
         }
     }
     const handleAddClick = () => {
         newPost();
+        console.log("Flaschen Post geschmiussen")
+
     }
 
     //

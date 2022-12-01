@@ -16,7 +16,7 @@ const usePosts = () => {
 
     // EFFECT-HOOK --> laden des Arrays
     const loadPostsFromLocalStorage = () => {
-        if (localStorage.getImtem(LOCAL_STORAGE_KEY) !== null)
+        if (localStorage.getItem(LOCAL_STORAGE_KEY) !== null)
             return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
         else return [];
     } 
@@ -37,13 +37,21 @@ const usePosts = () => {
         setPosts(storage);
     }, [] ); 
 
+
+
     // Post hinzufügen
-    const addPost = text => {
-        setPosts([...posts,
+    const addPost = (place, title, text) => {
+        setPosts([
             {
                 id: uuidv4(),
-                text: text
-            }
+                place: place,
+                date: new Date().toLocaleDateString(),
+                title: title,
+                text: text,
+                edited: false,
+                editingDate: "",
+            },
+            ...posts
         ])
     }
 

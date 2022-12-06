@@ -34,11 +34,10 @@ const AddPost = ({ posts, setPosts }) => {
                 AddPostTextRef.current.value
 			)
         }
+        console.log("Flaschen Post geschmissen")
     }
     const handleAddClick = () => {
         newPost();
-        console.log("Flaschen Post geschmiussen")
-
     }
 
     //

@@ -5,6 +5,7 @@ import Sort from "./sub/Sort";
 // import StyledImgWrapper from "./styled/StyledImgWrapper";
 import StyledLink from "./styled/StyledLink";
 
+import { useSocialAppContext } from "../providers/SocialAppContext";
 
 
 // External Components 
@@ -31,7 +32,10 @@ const PostsHeader = ()  => {
 }
 
 // CONTENT
-const PostsContent = ({ posts, setPosts }) => {
+const PostsContent = () => {
+
+    const { posts, setPosts, addPost, deletePost } = useSocialAppContext;
+
     return (
         <StyledPostsContent>
             {/* Code vom Sort Module */}
@@ -65,7 +69,9 @@ const PostsContent = ({ posts, setPosts }) => {
 
 
 // ------ COMPONENT ------  //
-const Posts = ({ posts, setPosts, players, setPlayers }) => {
+const Posts = ({ players, setPlayers }) => {
+
+    const { posts, setPosts, addPost, deletePost } = useSocialAppContext;
 
     // Code vom Sort Module
     // const sortPlayers = (selectEvent) => {

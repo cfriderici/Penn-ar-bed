@@ -14,11 +14,11 @@ import Footer from "./components/Footer";
 import Impressum from "./components/Impressum";
 
 // My Context
-import { SocialAppContextProvider } from "./providers/SocialAppContext";
+import { useSocialAppContext } from "./providers/SocialAppContext";
 
 // External Components 
 import './App.css';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
@@ -41,75 +41,7 @@ const userArray = [
   // },
 ]
 
-const postArray = [
-  {
-    id: uuidv4(),
-    // userId: 111, 
-    // image: "",
-    // profileImage: "",
-    // userName: "Christina",
-    place: "Baie des Trépassés",
-    date: "10.09.2020",
-    title: "Dies ist ein Typoblindtext",
-    text: "An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen. Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze »Pangrams«. Sehr bekannt ist dieser: The quick brown fox jumps over the lazy old dog.",
-    edited: false,
-    editingDate: "",
-    // comments: [
-    //   {
-    //     id: uuidv4(),
-    //     count: 1,
-    //     comment: "aaaaawesome !!!",
-    //     userId: 222,
-    //     userName: "Jill"
-    //   },
-    //   {
-    //     id: uuidv4(),
-    //     count: 2,
-    //     comment: "Danke für den Tip :)",
-    //     userId: 444,
-    //     userName: "Manuel"
-    //   }
-    // ],
-    // likes: [
-    //   {
-    //     id: uuidv4(),
-    //     count: 1,
-    //     userId: 222,
-    //     userName: "Jill"
-    //   }
-    // ],
-    star: false
-  }
-  // {
-  //   id: uuidv4(),
-  //   userId: 456,
-  //   image: "",
-  //   profileImage: "",
-  //   userName: "Tom",
-  //   place: "Pors Theolen",
-  //   date: "05.07.2021",
-  //   title: "Er hörte leise Schritte hinter sich",
-  //   text: "Das bedeutete nichts Gutes. Wer würde ihm schon folgen, spät in der Nacht und dazu noch in dieser engen Gasse mitten im übel beleumundeten Hafenviertel? Gerade jetzt, wo er das Ding seines Lebens gedreht hatte und mit der Beute verschwinden wollte! Hatte einer seiner zahllosen Kollegen dieselbe Idee gehabt, ihn beobachtet und abgewartet, um ihn nun um die Früchte seiner Arbeit zu erleichtern? Oder gehörten die Schritte hinter ihm zu einem der unzähligen Gesetzeshüter dieser Stadt, und die stählerne Acht um seine Handgelenke würde gleich zuschnappen?",
-  //   edited: false,
-  //   editingDate: ""
-  //   comments: [],
-  //   likes: [
-  //     {
-  //       id: uuidv4(),
-  //       count: 1,
-  //       userId: 777,
-  //       userName: "Paul"  
-  //     },
-  //     {
-  //       id: uuidv4(),
-  //       count: 2,
-  //       userId: 999,
-  //       userName: "Tom"  
-  //     }
-  //   ],
-  //   star: false
-  // }
-]
+
 
 
 
@@ -117,11 +49,16 @@ const postArray = [
 function App() {
 
   //useState definieren
-  const [posts, setPosts] = useState(postArray);
+  // const [posts, setPosts] = useState(postArray);
+
+const { posts, setPosts, addPost, deletePost } = useSocialAppContext;
+
   const [users, setUsers] = useState(userArray);
   const [players, setPlayers] = useState(["a", "b", "c", "d", "e", "f"]);
 
-
+  useEffect(() => {
+    console.log(posts)
+  }, [])
 
   return (
     <StyledAppWrapper>      

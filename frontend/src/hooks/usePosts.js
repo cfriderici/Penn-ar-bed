@@ -109,7 +109,8 @@ const usePosts = () => {
 
 
 
-    // Post hinzufügen
+
+    // Funktion definieren --> per return übergeben --> in Komponente aufrufen
     const addPost = (place, title, text) => {
         setPosts([
             {
@@ -125,18 +126,42 @@ const usePosts = () => {
         ])
     }
 
-    //Post löschen
-    const deletePost = id => {
-        let text = "Der Flaschen-Post dümpelt vergnügt vor dir hin und her.\nWillst du ihn wirklich aus dem Wasser fischen?";
-
-        if (window.confirm(text) === true) {
-            setPosts(posts.filter(e => e.id !== id ))
-        }    
+    const toggleStar = (postId) => {
+        setPosts(
+            posts.map( e => {
+                if (e.id === postId)
+                e.star = !e.star;
+                return e
+            })
+        );
+        console.log("Stern getoggled")
     }
 
-    return [posts, setPosts, addPost, deletePost]
+    const editPost = (postId) => {
+        const heute = new Date();
+        setPosts(
+            posts.map( e => {
+                    if (e.id === postId) 
+                    e.edited = !e.edited; 
+                    e.editingDate = heute.toLocaleDateString();
+                return e 
+                })
+        );        
+        console.log("Flaschen-Post geändert am: " + heute.toLocaleDateString())
+    }
+
+    const deletePost = (postId) => {
+        let text = "Der Flaschen-Post dümpelt vergnügt vor dir hin und her.\nWillst du ihn wirklich aus dem Wasser fischen?";
+        if (window.confirm(text) === true) {
+            setPosts(posts.filter(e => e.id !== postId ))
+        }    
+        console.log("diesen Post gelöscht: " + postId)
+    }
+
+
+
+
+    return [posts, setPosts, addPost, toggleStar, editPost, deletePost]
 }
-
-
 
 export default usePosts;

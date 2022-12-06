@@ -1,10 +1,15 @@
 // My Components
 import { StyledH3 } from "../styled/StyledHeadlines";
+import StyledButton from "../styled/StyledButton";
 
+
+// My Context
+import { useSocialAppContext } from "../../providers/SocialAppContext";
 
 // External Components 
 import { useRef } from "react";
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 import { FaLifeRing, FaRegCompass, FaDharmachakra, FaFish, FaSwimmer, FaUmbrellaBeach, FaCalendarAlt, FaComment, FaRegComment, FaCommentDots, FaComments, FaRegHeart, FaRegShareSquare, FaRegStar, FaStar, FaUserCircle, FaRegPlusSquare, FaWineBottle, FaRegEdit, FaEdit, FaPencilAlt, FaTrashAlt, FaRegTrashAlt } from "react-icons/fa";
 
 
@@ -27,56 +32,39 @@ const PostHeader = ({ place, date })  => {
 }
 
 // CONMTENT
-const PostContent = ({ title, text, id })  => {
+const PostContent = ({ title, text, postId })  => {
     return  (
         <StyledPostContent>
             <StyledH3>{title}title</StyledH3>
             <div>{text}text</div>
-            <div>{id}id</div>
+            <div>{postId}id</div>
         </StyledPostContent>
     )
 }
 
 // ACTIONS
-const PostActions = ({ postId, star, edited, editingDate, posts, setPosts })  => {
+const PostActions = ({ postId, star, edited, editingDate })  => {    
+    
+    const { posts, setPosts, addPost, toggleStar, editPost, deletePost } = useSocialAppContext();
 
-    // Funktion star toggeln
-    const togglestar = () => {
-        setPosts(
-            posts.map( e => {
-                if (e.id === postId)
-                e.star = !e.star;
-                return e
-            })
-        );
-        console.log("Bookmar getoggled")
+
+
+
+    // Funktionen aufrufen
+    const handleToggleClick = () => {        
+        toggleStar(postId);
     }
 
-    // Funktion: Post bearbeiten
-    const changePost = () => {
-
-        const heute = new Date();
-
-        setPosts(
-            posts.map( e => {
-                    if (e.id === postId) 
-                    e.edited = !e.edited; 
-                    e.editingDate = heute.toLocaleDateString();
-                return e 
-                })
-        );        
-        console.log("geändert" + heute.toLocaleDateString())
+    const handleEditClick = () => {        
+        editPost(postId);
     }
 
-    //Funktion: Post löschen
-    const deletePost = (id) => {
-        let text = "Der Flaschen-Post dümpelt vergnügt vor dir hin und her.\nWillst du ihn wirklich aus dem Wasser fischen?";
-
-        if (window.confirm(text) === true) {
-            setPosts(posts.filter(e => e.id !== postId ))
-        }                     
+    const handleDeleteClick = () => {        
+        deletePost(postId);
     }
 
+
+    
    
     //useRefs definieren
     const AddTogglestarRef = useRef();
@@ -88,11 +76,13 @@ const PostActions = ({ postId, star, edited, editingDate, posts, setPosts })  =>
                 <FaRegShareSquare className="share" />
                 <FaRegComment className="comment" />
                 <FaRegHeart className="heart" />
-                <FaRegStar className="star" ref={AddTogglestarRef} onClick={togglestar} />
+                <FaRegStar className="star" ref={AddTogglestarRef} onClick={handleToggleClick} />
             </div>
             <div>
-                <FaRegEdit className="edit" ref={AddPostEditRef} onClick={changePost} />
-                <FaRegTrashAlt className="trash" onClick={deletePost} />
+                <Link to="/edit-bottle-posts">
+                    <FaRegEdit className="edit" ref={AddPostEditRef} onClick={handleEditClick} />
+                </Link>
+                <FaRegTrashAlt className="trash" onClick={handleDeleteClick} />
             </div>
             <div> geändert am: {editingDate} </div>  
         </StyledPostActions>
@@ -107,7 +97,7 @@ const Post = ({ place, date, title, text, id, userId, userName, postId, edited, 
     return (        
         <StyledPostWrapper>
             <PostHeader place={place} date={date}/>
-            <PostContent title={title} text={text} id={id} />
+            <PostContent title={title} text={text} postId={postId} />
             <PostActions postId={postId} edited={edited} editingDate={editingDate} star={star} posts={posts} setPosts={setPosts}/>
         </StyledPostWrapper>
     )
@@ -118,12 +108,12 @@ export default Post;
 
 // ------ STYLED COMPONENTS ------  //
 const StyledPostWrapper = styled.div`
-    background-color: rgba(0, 250, 0, 0.2);
+    /* background-color: rgba(0, 250, 0, 0.2); */
     margin-bottom: 20px;
 `
 
 const StyledPostHeader = styled.div`
-    background-color: rgba(0, 250, 0, 0.2);
+    /* background-color: rgba(0, 250, 0, 0.2); */
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -148,11 +138,11 @@ const StyledPostHeader = styled.div`
 `
 
 const StyledPostContent = styled.div`
-    background-color: rgba(0, 250, 0, 0.2);
+    /* background-color: rgba(0, 250, 0, 0.2); */
 `
 
 const StyledPostActions = styled.div`
-    background-color: rgba(250, 50, 0, 0.2);
+    /* background-color: rgba(250, 50, 0, 0.2); */
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -161,22 +151,28 @@ const StyledPostActions = styled.div`
     font-size: large;
 
         .star {
-            color: ${props => props.star ? "black" : "red"};
+            color: ${props => props.star ? "red" : "black"};
 
         }
 
     > div:last-of-type {
-        background-color: rgba(250, 0, 250, 0.6);
+        /* background-color: rgba(250, 0, 250, 0.6); */
         width: 100%;
         font-size: small;
         text-align: right;
         display: ${props => props.edited ? "inline" : "none"};
     }
 
+    > div :link {
+        /* background-color: rgba(0, 250, 250, 1); */
+        margin-right: 10px;
+    }
+
     > div svg {
         margin-right: 10px;
 
         &:last-of-type {
+            /* background-color: rgba(250, 50, 0, 0.5); */
             margin-right: 0;
         }
     }

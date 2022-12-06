@@ -3,8 +3,8 @@ import Header from "./Header";
 import StyledButton from "./styled/StyledButton";
 import StyledInput, { StyledInputWrapper, StyledTextarea } from "./styled/StyledInput";
 
-// My Hooks
-import usePosts from "../hooks/usePosts";
+// My Context
+import { useSocialAppContext } from "../providers/SocialAppContext";
 
 // External Components 
 import styled from "styled-components";
@@ -16,11 +16,11 @@ import { useRef } from "react";
 
 
 // ------ COMPONENT ------  //
-const AddPost = ({ posts, setPosts }) => {
+const AddPost = () => {
 
-    const [ addPost ] = usePosts();
+    const { addPost } = useSocialAppContext();
 
-    //useRefs definieren --> wie geht das für das ganze array ?!?
+    //useRefs definieren
     const AddPostBeacheRef = useRef();
     const AddPostTitleRef = useRef();
     const AddPostTextRef = useRef();

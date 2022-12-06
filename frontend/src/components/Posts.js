@@ -2,9 +2,9 @@
 import Header from "./Header";
 import Post from "./sub/Post";
 import Sort from "./sub/Sort";
-// import StyledImgWrapper from "./styled/StyledImgWrapper";
 import StyledLink from "./styled/StyledLink";
 
+// My Context
 import { useSocialAppContext } from "../providers/SocialAppContext";
 
 
@@ -34,29 +34,10 @@ const PostsHeader = ()  => {
 // CONTENT
 const PostsContent = () => {
 
-    const { posts, setPosts, addPost, deletePost } = useSocialAppContext;
+    const { posts, setPosts } = useSocialAppContext();
 
     return (
         <StyledPostsContent>
-            {/* Code vom Sort Module */}
-            {/* <div className="App"> */}
-                {/* <select onChange={sortPlayers}>
-                    <option value="a-z">A - Z</option>
-                    <option value="z-a">Z - A</option>
-                </select>
-                {players.map((player, index) => (
-                    <p key={index}>{player}</p>
-                ))}
-                {players.map((player, index) => {
-                    const playerNum = `${player}${index}`;
-                    return (
-                    <p key={index}>
-                        {player}
-                        {playerNum}
-                    </p>
-                    );
-                })} */}
-            {/* </div> */}
             {           
                 posts.map(e => (
                     <Post key={e.id} image={e.image} title={e.title} text={e.text} userId={e.userId} userName={e.userName} place={e.place} date={e.date} postId={e.id} edited={e.edited} editingDate={e.editingDate} star={e.star} posts={posts} setPosts={setPosts} />
@@ -71,17 +52,7 @@ const PostsContent = () => {
 // ------ COMPONENT ------  //
 const Posts = ({ players, setPlayers }) => {
 
-    const { posts, setPosts, addPost, deletePost } = useSocialAppContext;
-
-    // Code vom Sort Module
-    // const sortPlayers = (selectEvent) => {
-    //     const options = {
-    //       "a-z": [...players].sort((a, b) => (a < b ? -1 : 1)),
-    //       "z-a": [...players].sort((a, b) => (a < b ? 1 : -1))
-    //     };
-    
-    //     setPlayers(options[selectEvent.target.value]);
-    //   };
+    const { posts, setPosts, addPost, deletePost } = useSocialAppContext();
 
     return (
         <Fragment>            

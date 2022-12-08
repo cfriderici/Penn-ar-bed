@@ -10,20 +10,21 @@ const postArray = [
       // image: "",
       // profileImage: "",
       // userName: "Christina",
-      place: "Baie des Trépassés",
-      date: "10.09.2020",
-      title: "Dies ist ein Typoblindtext",
-      text: "An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen. Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze »Pangrams«. Sehr bekannt ist dieser: The quick brown fox jumps over the lazy old dog.",
-      edited: false,
-      editingDate: "",
-      // comments: [
-      //   {
-      //     id: uuidv4(),
-      //     count: 1,
-      //     comment: "aaaaawesome !!!",
-      //     userId: 222,
-      //     userName: "Jill"
-      //   },
+        place: "Baie des Trépassés",
+        date: "10.09.2020",
+        title: "Dies ist ein Typoblindtext",
+        text: "An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen. Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze »Pangrams«. Sehr bekannt ist dieser: The quick brown fox jumps over the lazy old dog.",
+        edited: false,
+        editingDate: "",
+        comments: [
+            {
+                id: uuidv4(),
+                count: 1,
+                comment: "aaaaawesome !!!",
+                userId: 222,
+                userName: "Jill"
+            }
+        ], 
       //   {
       //     id: uuidv4(),
       //     count: 2,

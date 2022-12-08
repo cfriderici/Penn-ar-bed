@@ -25,19 +25,19 @@ const PostHeader = ({ place, date })  => {
                 <img className="post-img" src={ require('../../img/FullSizeRender.JPG') } alt=""/>
                 <img className="profile-img" src={ require('../../img/IMG_3115.jpg') } alt=""/>
             </div>
-            <div>{place}place</div>
-            <div>{date}date</div> 
+            <div>{place}</div>
+            <div>{date}</div> 
         </StyledPostHeader>
     )
 }
 
-// CONMTENT
+// CONTENT
 const PostContent = ({ title, text, postId })  => {
     return  (
         <StyledPostContent>
-            <StyledH3>{title}title</StyledH3>
-            <div>{text}text</div>
-            <div>{postId}id</div>
+            <StyledH3>{title}</StyledH3>
+            <div>{text}</div>
+            <div>{postId}</div>
         </StyledPostContent>
     )
 }

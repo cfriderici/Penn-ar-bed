@@ -57,9 +57,9 @@ const { posts, setPosts, addPost, deletePost } = useSocialAppContext();
   const [users, setUsers] = useState(userArray);
   // const [players, setPlayers] = useState(["a", "b", "c", "d", "e", "f"]);
 
-  useEffect(() => {
-    console.log(posts)
-  }, [])
+  // useEffect(() => {
+  //   console.log(posts)
+  // }, [])
 
   return (
     <StyledAppWrapper>      

@@ -2,6 +2,8 @@
 import { v4 as uuidv4 } from 'uuid';
 import { useState, useEffect } from 'react';
 
+import axios from 'axios';
+
 
 const postArray = [
     {
@@ -85,27 +87,35 @@ const usePosts = () => {
     // STATE-HOOK
     const [posts, setPosts] = useState(postArray);
 
-    // EFFECT-HOOK --> laden des Arrays
-    const loadPostsFromLocalStorage = () => {
-        if (localStorage.getItem(LOCAL_STORAGE_KEY) !== null)
-            return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-        else return [];
-    } 
+    // USE-EFFECT-HOOK --> laden des Arrays
+    const loadPostsFromBackend = async () => {
+        var config = {
+            method: 'get',
+            url: '/posts',
+            headers: { }
+        };          
+        const response = await axios(config);
+        return response.data;
+    }
 
-    // EFFECT-HOOK --> speichern eines neuen Elements
+
+
+    // EFFECT-HOOK --> speichern eines neuen Elements im LocalStorage
     const savePostsToLocalStorage = postArray => {
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(postArray));
     }
 
-    // wenn bereits Daten in STATE vorhanden (nicht undefined) wird der USE damit befüllt ???
+    // USE-EFFECT wenn bereits Daten in STATE vorhanden (nicht undefined) wird der USE damit befüllt ???
     useEffect( () => {
         if (posts) savePostsToLocalStorage(posts);
     }, [posts] );
 
-    //Einmaliges Laden des STORAGE bei erstem Aufruf
+    // USE-EFFECT Einmaliges Laden des STATES bei erstem Aufruf der App
+    // async-Funktion hier mit then benutzen
     useEffect( () => {
-        const storage = loadPostsFromLocalStorage();
-        setPosts(storage);
+        loadPostsFromBackend().then(res => {
+            setPosts(res);
+        })
     }, [] ); 
 
 

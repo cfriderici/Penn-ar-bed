@@ -24,7 +24,7 @@ var postArray = [
   },
   {
     id: "98765",
-    text: "Blub",
+    text: "Blüb",
     done: true
   }
 ]

@@ -5,89 +5,24 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
-const postArray = [
-    {
-      id: uuidv4(),
-      // userId: 111, 
-      // image: "",
-      // profileImage: "",
-      // userName: "Christina",
-        place: "Baie des Trépassés",
-        date: "10.09.2020",
-        title: "Dies ist ein Typoblindtext",
-        text: "An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen. Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze »Pangrams«. Sehr bekannt ist dieser: The quick brown fox jumps over the lazy old dog.",
-        edited: false,
-        editingDate: "",
-        comments: [
-            {
-                id: uuidv4(),
-                count: 1,
-                comment: "aaaaawesome !!!",
-                userId: 222,
-                userName: "Jill"
-            }
-        ], 
-      //   {
-      //     id: uuidv4(),
-      //     count: 2,
-      //     comment: "Danke für den Tip :)",
-      //     userId: 444,
-      //     userName: "Manuel"
-      //   }
-      // ],
-      // likes: [
-      //   {
-      //     id: uuidv4(),
-      //     count: 1,
-      //     userId: 222,
-      //     userName: "Jill"
-      //   }
-      // ],
-      star: false
-    }
-    // {
-    //   id: uuidv4(),
-    //   userId: 456,
-    //   image: "",
-    //   profileImage: "",
-    //   userName: "Tom",
-    //   place: "Pors Theolen",
-    //   date: "05.07.2021",
-    //   title: "Er hörte leise Schritte hinter sich",
-    //   text: "Das bedeutete nichts Gutes. Wer würde ihm schon folgen, spät in der Nacht und dazu noch in dieser engen Gasse mitten im übel beleumundeten Hafenviertel? Gerade jetzt, wo er das Ding seines Lebens gedreht hatte und mit der Beute verschwinden wollte! Hatte einer seiner zahllosen Kollegen dieselbe Idee gehabt, ihn beobachtet und abgewartet, um ihn nun um die Früchte seiner Arbeit zu erleichtern? Oder gehörten die Schritte hinter ihm zu einem der unzähligen Gesetzeshüter dieser Stadt, und die stählerne Acht um seine Handgelenke würde gleich zuschnappen?",
-    //   edited: false,
-    //   editingDate: ""
-    //   comments: [],
-    //   likes: [
-    //     {
-    //       id: uuidv4(),
-    //       count: 1,
-    //       userId: 777,
-    //       userName: "Paul"  
-    //     },
-    //     {
-    //       id: uuidv4(),
-    //       count: 2,
-    //       userId: 999,
-    //       userName: "Tom"  
-    //     }
-    //   ],
-    //   star: false
-    // }
-  ]
-
+const LOCAL_STORAGE_KEY = "local_storage_posts"
 
 
 // ------ MAIN COMPONENT ------  //
 
 //CUSTOM HOOK
 const usePosts = () => {
-    const LOCAL_STORAGE_KEY = "local_storage_posts"
  
     // STATE-HOOK
-    const [posts, setPosts] = useState(postArray);
+    const [posts, setPosts] = useState();
+
 
     // USE-EFFECT-HOOK --> laden des Arrays
+    // Axios-Request Aufbau immer gleich:
+        // 1. Objekt (config) definieren
+        // 2. Code aus Postman kopieren (dort then + catch statt await + response)
+        // 3. mit await die const (config) befüllen
+        // 4. mit response.data die const an die Funktion zurückgeben 
     const loadPostsFromBackend = async () => {
         var config = {
             method: 'get',
@@ -95,7 +30,46 @@ const usePosts = () => {
             headers: { }
         };          
         const response = await axios(config);
+        console.log(response)
         return response.data;
+    }
+
+    // der Funktion einen Parameter definieren (post) 
+    // diesen dem Objekt (data) als string übergeben --> axios kann nur strings 
+    // wenn Objekt übergeben wird muss header angegeben werden
+    const addPostToBackend = async post => {
+        var config = {
+        method: 'post',
+        url: '/post',
+        headers: { 
+            'Content-Type': 'application/json'
+        },
+        data : JSON.stringify(post)
+        };
+        const response = await axios(config);
+        return response.data;
+    }
+    
+    // Hier wird der Parameter (postId) benötigt
+    const deletePostFromBackend = async postId => {
+        var config = {
+            method: 'delete',
+            url: '/delete-post?id='+postId,
+            headers: { }
+          };
+        const response = await axios(config);
+        return response.data;
+    }
+
+    //
+    const toggleStarAtBackend = async postId => {
+        var config = {
+            method: 'put',
+            url: '/toggle-post?id='+postId,
+            headers: { }
+          };
+          const response = await axios(config);
+          return response.data;
     }
 
 
@@ -114,29 +88,38 @@ const usePosts = () => {
     // async-Funktion hier mit then benutzen
     useEffect( () => {
         loadPostsFromBackend().then(res => {
+            console.log(res)
             setPosts(res);
         })
     }, [] ); 
 
 
 
-
-    // Funktion definieren --> per return übergeben --> in Komponente aufrufen
+    // Funktionen definieren --> in Komponente aufrufen
+    // Ein Objekt (post) als const definieren 
+    // dieses wird per Setter-Funktion an den State angehangen
+    // und per Funktion (addPostToBackend) an die DB übergeben
+    
+    // add post
     const addPost = (place, title, text) => {
-        setPosts([
-            {
-                id: uuidv4(),
-                place: place,
-                date: new Date().toLocaleDateString(),
-                title: title,
-                text: text,
-                edited: false,
-                editingDate: "",
-            },
-            ...posts
-        ])
+        const post = {
+            id: uuidv4(),
+            place: place,
+            date: new Date().toLocaleDateString(),
+            title: title,
+            text: text,
+            edited: false,
+            editingDate: "",
+            share: "",
+            comments: [{ }], 
+            likes: [{ }], 
+            star: false
+        }
+        setPosts([...posts]);
+        addPostToBackend(post);
     }
 
+    // toggle star
     const toggleStar = (postId) => {
         setPosts(
             posts.map( e => {
@@ -145,9 +128,11 @@ const usePosts = () => {
                 return e
             })
         );
+        toggleStarAtBackend(postId)
         console.log("Stern getoggled")
     }
 
+    //edit post
     const editPost = (postId) => {
         const heute = new Date();
         setPosts(
@@ -161,16 +146,15 @@ const usePosts = () => {
         console.log("Flaschen-Post geändert am: " + heute.toLocaleDateString())
     }
 
+    // delete post
     const deletePost = (postId) => {
         let text = "Der Flaschen-Post dümpelt vergnügt vor dir hin und her.\nWillst du ihn wirklich aus dem Wasser fischen?";
         if (window.confirm(text) === true) {
-            setPosts(posts.filter(e => e.id !== postId ))
+            setPosts(posts.filter(e => e.id !== postId ));
+            deletePostFromBackend(postId)
         }    
         console.log("diesen Post gelöscht: " + postId)
     }
-
-
-
 
     return [posts, setPosts, addPost, toggleStar, editPost, deletePost]
 }

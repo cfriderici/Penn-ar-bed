@@ -18,14 +18,25 @@ app.use(express.json());
 // ----- ARRAY ----- //
 var postArray = [
   {
-    id: "12345",
-    text: "Blib",
-    done: false
-  },
-  {
-    id: "98765",
-    text: "Blüb",
-    done: true
+    id: "111",
+    place: "Strandname",
+    date: "10.09.1976",
+    title: "Flaschen-Post-Titel",
+    text: "Hier steht ein schöner Text",
+    edited: false,
+    editingDate: "",
+    share: "",
+    comments: [
+      {
+          id: "112",
+          count: 1,
+          comment: "aaaaawesome !!!",
+          userId: 113,
+          userName: "Jill"
+      }
+    ], 
+    likes: [{ }], 
+    star: false
   }
 ]
 
@@ -55,7 +66,7 @@ app.put('/toggle-post', (req, res) => {
   const postId = req.query.id;
   postArray.map(e => {
     if (e.id === postId) {
-      e.done = !e.done;
+      e.star = !e.star;
     }
   });
   res.status(200).send("Post geändert")

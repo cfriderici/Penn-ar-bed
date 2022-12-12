@@ -111,8 +111,8 @@ const usePosts = () => {
             edited: false,
             editingDate: "",
             share: "",
-            comments: [{ }], 
-            likes: [{ }], 
+            comments: "", 
+            likes: "", 
             star: false
         }
         setPosts([...posts]);

@@ -72,6 +72,23 @@ const usePosts = () => {
           return response.data;
     }
 
+        // 
+        const editPostAtBackend = async postId => {
+            var config = {
+                method: 'put',
+                url: '/edit-post?id='+postId,
+                headers: { }
+              };
+              const response = await axios(config);
+              return response.data;
+        }
+
+
+
+
+
+
+
 
 
     // EFFECT-HOOK --> speichern eines neuen Elements im LocalStorage
@@ -105,7 +122,7 @@ const usePosts = () => {
         const post = {
             id: uuidv4(),
             place: place,
-            date: new Date().toLocaleDateString(),
+            date: new Date(),
             title: title,
             text: text,
             edited: false,
@@ -115,7 +132,7 @@ const usePosts = () => {
             likes: "", 
             star: false
         }
-        setPosts([...posts]);
+        setPosts([...posts, post]);
         addPostToBackend(post);
     }
 
@@ -124,11 +141,11 @@ const usePosts = () => {
         setPosts(
             posts.map( e => {
                 if (e.id === postId)
-                e.star = !e.star;
+                e.star = !e.star; 
                 return e
             })
         );
-        toggleStarAtBackend(postId)
+        toggleStarAtBackend(postId);
         console.log("Stern getoggled")
     }
 
@@ -137,13 +154,14 @@ const usePosts = () => {
         const heute = new Date();
         setPosts(
             posts.map( e => {
-                    if (e.id === postId) 
-                    e.edited = !e.edited; 
-                    e.editingDate = heute.toLocaleDateString();
-                return e 
-                })
-        );        
-        console.log("Flaschen-Post geändert am: " + heute.toLocaleDateString())
+                if (e.id === postId) 
+                e.edited = !e.edited; 
+                e.editingDate = heute.toLocaleString();
+            return e 
+            })
+        );    
+        editPostAtBackend(postId);
+        // console.log("Flaschen-Post geändert am: " + heute.toLocaleDateString())
     }
 
     // delete post
@@ -155,6 +173,16 @@ const usePosts = () => {
         }    
         console.log("diesen Post gelöscht: " + postId)
     }
+
+    // date --> Funktion für Datumsformat
+    // var today = new Date();
+    // var dd = String(today.getDate()).padStart(2, '0');
+    // var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    // var yyyy = today.getFullYear();
+
+    // today = mm + '/' + dd + '/' + yyyy;
+    // document.write(today);
+
 
     return [posts, setPosts, addPost, toggleStar, editPost, deletePost]
 }

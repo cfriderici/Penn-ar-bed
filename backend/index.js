@@ -53,7 +53,7 @@ const bottlepostSchema = new mongoose.Schema({
   title: String,
   text: String,
   edited: Boolean,
-  editingDate: Date,
+  editingDate: String,
   share: String,
   comments: String,
   likes: String, 
@@ -89,8 +89,21 @@ app.put('/toggle-post', async (req, res) => {
   const post = await Bottlepost.findOne({ id: postId })
   post.star = !post.star;
   const response = await Bottlepost.updateOne({ id: postId}, post);
+  res.status(200).send("Star getoggled")
+});
+
+// PUT - update
+app.put('/edit-post', async (req, res) => {
+  const postId = req.query.id;
+  const post = await Bottlepost.findOne({ id: postId })
+  post.edited = !post.edited;
+  post.editingDate = "post.editingDate.toLocaleString()!!!";
+  const response = await Bottlepost.updateOne({ id: postId}, post);
   res.status(200).send("Post geändert")
 });
+
+
+
 
 // DELETE - delete
 app.delete('/delete-post', async (req, res) => {

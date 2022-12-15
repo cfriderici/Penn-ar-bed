@@ -26,7 +26,7 @@ const PostHeader = ({ place, date })  => {
                 <img className="profile-img" src={ require('../../img/IMG_3115.jpg') } alt=""/>
             </div>
             <div>{place}</div>
-            <div>{date}</div> 
+            <div>{date.toLocaleString()}</div> 
         </StyledPostHeader>
     )
 }
@@ -79,9 +79,10 @@ const PostActions = ({ postId, star, edited, editingDate })  => {
                 <FaRegStar className="star" ref={AddTogglestarRef} onClick={handleToggleClick} />
             </div>
             <div>
-                <Link to="/edit-bottle-posts">
+                {/* <Link to="/edit-bottle-posts"> */}
                     <FaRegEdit className="edit" ref={AddPostEditRef} onClick={handleEditClick} />
-                </Link>
+                    {/* <FaRegEdit className="edit" /> */}
+                {/* </Link> */}
                 <FaRegTrashAlt className="trash" onClick={handleDeleteClick} />
             </div>
             <div> geändert am: {editingDate} </div>  

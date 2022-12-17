@@ -93,6 +93,7 @@ app.put('/toggle-post', async (req, res) => {
 
 // PUT - update
 app.put('/edit-post', async (req, res) => {
+  console.log(req.query);
   const postId = req.query.id;
   const postEdited = req.query.date;
   const post = await Bottlepost.findOne({ id: postId })
@@ -100,9 +101,6 @@ app.put('/edit-post', async (req, res) => {
   const response = await Bottlepost.updateOne({ id: postId}, post);
   res.status(200).send("Post geändert")
 });
-
-
-
 
 // DELETE - delete
 app.delete('/delete-post', async (req, res) => {

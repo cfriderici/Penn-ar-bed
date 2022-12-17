@@ -11,35 +11,29 @@ import styled from "styled-components";
 import { Fragment } from "react";
 import { Link } from 'react-router-dom';
 import { useRef } from "react";
+import { useParams } from "react-router-dom";
 
 
 
 
 
 // ------ COMPONENT ------  //
-const EditPost = ({ title }) => {
+const EditPost = ({ postId, title, edited }) => {
 
-    const { editPost } = useSocialAppContext();
+    const { id } = useParams();         // für den pfad in der app.js --> der aktuelle post
+    const { posts, setPosts, addPost, toggleStar, editPost, deletePost } = useSocialAppContext();
 
-    //useRefs definieren
+    // Funktionen
+    const handleEditClick = () => {        
+        editPost(postId);
+    }    
+    
+    //useRefs
     const EditPostBeacheRef = useRef();
     const EditPostTitleRef = useRef();
     const EditPostTextRef = useRef();
+    const AddPostEditRef = useRef(); 
 
-    //Funktion: Post hinzufügen 
-    // const newPost = () => {
-    //     if (EditPostTitleRef.current.value && EditPostTextRef.current.value !== "") {
-    //         addPost(
-	// 			EditPostBeacheRef.current.value, 
-    //             EditPostTitleRef.current.value, 
-    //             EditPostTextRef.current.value
-	// 		)
-    //     }
-    //     console.log("Flaschen Post geschmissen")
-    // }
-    // const handleAddClick = () => {
-    //     newPost();
-    // }
 
     //
     return (
@@ -66,7 +60,9 @@ const EditPost = ({ title }) => {
                 </StyledInputWrapper>
 
                 <StyledButton  >
-                    <Link to="/bottle-posts">Zurück ins Meer</Link>
+                    <Link to="/bottle-posts" ref={AddPostEditRef} onClick={handleEditClick}> Zurück ins Meer </Link>
+                    {/* <Link to="/bottle-posts"> Zurück ins Meer </Link> */}
+
                 </StyledButton>
             
             </StyledEditPostWrapper>        

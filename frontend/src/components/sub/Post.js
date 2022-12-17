@@ -55,9 +55,9 @@ const PostActions = ({ postId, star, edited, editingDate })  => {
         toggleStar(postId);
     }
 
-    const handleEditClick = () => {        
-        editPost(postId);
-    }
+    // const handleEditClick = () => {        
+    //     editPost(postId);
+    // }
 
     const handleDeleteClick = () => {        
         deletePost(postId);
@@ -68,7 +68,7 @@ const PostActions = ({ postId, star, edited, editingDate })  => {
    
     //useRefs definieren
     const AddTogglestarRef = useRef();
-    const AddPostEditRef = useRef(); 
+    // const AddPostEditRef = useRef(); 
 
     return  (
         <StyledPostActions edited={edited} star={star}>
@@ -79,10 +79,10 @@ const PostActions = ({ postId, star, edited, editingDate })  => {
                 <FaRegStar className="star" ref={AddTogglestarRef} onClick={handleToggleClick} />
             </div>
             <div>
-                {/* <Link to="/edit-bottle-posts"> */}
-                    <FaRegEdit className="edit" ref={AddPostEditRef} onClick={handleEditClick} />
-                    {/* <FaRegEdit className="edit" /> */}
-                {/* </Link> */}
+                <Link to="/edit-bottle-posts">
+                    {/* <FaRegEdit className="edit" ref={AddPostEditRef} onClick={handleEditClick} /> */}
+                    <FaRegEdit className="edit" />
+                </Link>
                 <FaRegTrashAlt className="trash" onClick={handleDeleteClick} />
             </div>
             { edited ? <div className="edited"> geändert am: {edited.toLocaleString()} </div> : null }

@@ -14,7 +14,7 @@ import { Fragment } from "react";
 import { FaWineBottle } from "react-icons/fa";
 // import { Link } from 'react-router-dom';
 
-     
+
 
 // ------ INSIDE COMPONENTS ------  //
 

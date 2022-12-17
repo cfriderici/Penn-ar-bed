@@ -75,9 +75,11 @@ const { posts, setPosts, addPost, deletePost } = useSocialAppContext();
 
           <Route path="/dashboard" element={ <Dashboard /> } />
           <Route path="/my-beach" element={ <Beaches /> } />
+
           <Route path="/bottle-posts" element={ posts ? <Posts posts={posts} setPosts={setPosts} /> : null } />
           <Route path="/create-bottle-posts" element={ <AddPost posts={posts} setPosts={setPosts} /> } />
-          <Route path="/edit-bottle-posts" element={ <EditPost posts={posts} setPosts={setPosts} /> } />
+          <Route path="/edit-bottle-posts/:id" element={ <EditPost posts={posts} setPosts={setPosts} /> } />
+          
           <Route path="/chats" element={ <Chats /> } />
           <Route path="/events" element={ <Events /> } />
           <Route path="/impressum" element={ <Impressum /> } />

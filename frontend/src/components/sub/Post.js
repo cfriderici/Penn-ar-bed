@@ -85,7 +85,7 @@ const PostActions = ({ postId, star, edited, editingDate })  => {
                 {/* </Link> */}
                 <FaRegTrashAlt className="trash" onClick={handleDeleteClick} />
             </div>
-            <div> geändert am: {editingDate} </div>  
+            { edited ? <div className="edited"> geändert am: {edited.toLocaleString()} </div> : null }
         </StyledPostActions>
     )
 }
@@ -156,12 +156,11 @@ const StyledPostActions = styled.div`
 
         }
 
-    > div:last-of-type {
-        /* background-color: rgba(250, 0, 250, 0.6); */
+    .edited {
+        background-color: rgba(250, 0, 250, 0.6);
         width: 100%;
         font-size: small;
         text-align: right;
-        display: ${props => props.edited ? "inline" : "none"};
     }
 
     > div :link {

@@ -61,7 +61,7 @@ const usePosts = () => {
         return response.data;
     }
 
-    //
+    // 
     const toggleStarAtBackend = async postId => {
         var config = {
             method: 'put',
@@ -72,16 +72,16 @@ const usePosts = () => {
           return response.data;
     }
 
-        // 
-        const editPostAtBackend = async postId => {
-            var config = {
-                method: 'put',
-                url: '/edit-post?id='+postId,
-                headers: { }
-              };
-              const response = await axios(config);
-              return response.data;
-        }
+    // 
+    const editPostAtBackend = async (postId, date) => {
+        var config = {
+            method: 'put',
+            url: '/edit-post?id='+postId+'&date='+date,
+            headers: { }
+            };
+            const response = await axios(config);
+            return response.data;
+    }
 
 
 
@@ -125,8 +125,7 @@ const usePosts = () => {
             date: new Date(),
             title: title,
             text: text,
-            edited: false,
-            editingDate: "",
+            edited: null,
             share: "",
             comments: "", 
             likes: "", 
@@ -155,13 +154,12 @@ const usePosts = () => {
         setPosts(
             posts.map( e => {
                 if (e.id === postId) 
-                e.edited = !e.edited; 
-                e.editingDate = heute.toLocaleString();
-            return e 
+                    e.edited = heute;
+                return e 
             })
         );    
-        editPostAtBackend(postId);
-        // console.log("Flaschen-Post geändert am: " + heute.toLocaleDateString())
+        editPostAtBackend(postId, heute);
+        console.log("Flaschen-Post geändert am: " + heute.toLocaleDateString());
     }
 
     // delete post

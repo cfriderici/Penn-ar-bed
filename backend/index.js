@@ -52,8 +52,7 @@ const bottlepostSchema = new mongoose.Schema({
   date: Date,
   title: String,
   text: String,
-  edited: Boolean,
-  editingDate: String,
+  edited: Date,
   share: String,
   comments: String,
   likes: String, 
@@ -95,9 +94,9 @@ app.put('/toggle-post', async (req, res) => {
 // PUT - update
 app.put('/edit-post', async (req, res) => {
   const postId = req.query.id;
+  const postEdited = req.query.date;
   const post = await Bottlepost.findOne({ id: postId })
-  post.edited = !post.edited;
-  post.editingDate = "post.editingDate.toLocaleString()!!!";
+  post.edited = postEdited;
   const response = await Bottlepost.updateOne({ id: postId}, post);
   res.status(200).send("Post geändert")
 });

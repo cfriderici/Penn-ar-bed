@@ -23,7 +23,7 @@ const PostsHeader = ()  => {
     return  (
         <StyledPostsHeader>
             <h1>Meine Flaschen-Posts</h1>
-                <StyledLink to="/create-bottle-posts">
+                <StyledLink to="/create-bottle-post">
                     <div> Neuer Flaschen-Post <FaWineBottle /> </div>
                 </StyledLink>
             <Sort placeHolder="Select..."  />         

@@ -79,7 +79,7 @@ const PostActions = ({ postId, star, edited, editingDate })  => {
                 <FaRegStar className="star" ref={AddTogglestarRef} onClick={handleToggleClick} />
             </div>
             <div>
-                <Link to="/edit-bottle-posts">
+                <Link to={"/edit-bottle-post/"+postId}>
                     {/* <FaRegEdit className="edit" ref={AddPostEditRef} onClick={handleEditClick} /> */}
                     <FaRegEdit className="edit" />
                 </Link>

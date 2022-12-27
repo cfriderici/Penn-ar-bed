@@ -18,16 +18,21 @@ import { useParams } from "react-router-dom";
 
 
 // ------ COMPONENT ------  //
-const EditPost = ({ postId, title, edited }) => {
+const EditPost = ({ postId, place, date, title, text, edited }) => {
 
-    const { id } = useParams();         // für den pfad in der app.js --> der aktuelle post
     const { posts, setPosts, addPost, toggleStar, editPost, deletePost } = useSocialAppContext();
+    const { id } = useParams();         // für den pfad in der app.js --> der aktuelle post
+
+    console.log("useParams:", id);
+    console.log("title:", title);
+
 
     // Funktionen
     const handleEditClick = () => {        
         editPost(postId);
     }    
     
+
     //useRefs
     const EditPostBeacheRef = useRef();
     const EditPostTitleRef = useRef();
@@ -44,19 +49,23 @@ const EditPost = ({ postId, title, edited }) => {
                 <h1>Flaschen-Post bearbeiten</h1>
 
                 <StyledInputWrapper>
-                    <StyledInput placeholder="Bild hochlagen" /*ref={todoNameRef} */ ></StyledInput>
+                    <StyledInput placeholder="Bild" /*ref={todoNameRef} */ ></StyledInput>
                 </StyledInputWrapper>
 
                 <StyledInputWrapper>
-                    <StyledInput placeholder="Strand eingeben"  ref={EditPostBeacheRef} ></StyledInput>
+                    <StyledInput placeholder="Strand"  ref={EditPostBeacheRef} ></StyledInput>
                 </StyledInputWrapper>
 
                 <StyledInputWrapper>
-                    <StyledInput placeholder="" ref={EditPostTitleRef} ></StyledInput>
+                    <StyledInput placeholder="Titel" ref={EditPostTitleRef} ></StyledInput>
                 </StyledInputWrapper>
                 
                 <StyledInputWrapper>
-                    <StyledTextarea placeholder="Text eingeben" ref={EditPostTextRef} ></StyledTextarea>
+                    <StyledTextarea placeholder="Text" ref={EditPostTextRef} ></StyledTextarea>
+                </StyledInputWrapper>
+
+                <StyledInputWrapper>
+                    <StyledInput placeholder={id} ></StyledInput>
                 </StyledInputWrapper>
 
                 <StyledButton  >

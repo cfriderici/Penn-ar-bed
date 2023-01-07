@@ -70,20 +70,20 @@ app.get('/', (req, res) => {
 });
 
 // GET - read
-app.get('/posts', async (req, res) => {
+app.get('/api/posts', async (req, res) => {
   const response = await Bottlepost.find();
   res.status(200).send(response)
 });
 
 // POST - create
-app.post('/post', async (req, res) => {
+app.post('/api/post', async (req, res) => {
   const bottlepost = req.body;
   const response = await Bottlepost.create(bottlepost);
   res.status(200).send("Post hinzugefügt")
 });
 
 // PUT - update
-app.put('/toggle-post', async (req, res) => {
+app.put('/api/toggle-post', async (req, res) => {
   const postId = req.query.id;
   const post = await Bottlepost.findOne({ id: postId })
   post.star = !post.star;
@@ -91,19 +91,36 @@ app.put('/toggle-post', async (req, res) => {
   res.status(200).send("Star getoggled")
 });
 
-// PUT - update
-app.put('/edit-post', async (req, res) => {
-  console.log(req.query);
-  const postId = req.query.id;
-  const postEdited = req.query.date;
+// PUT - update via url
+// app.put('/edit-post', async (req, res) => {
+//   console.log(req.query);
+//   const postId = req.query.id;
+//   const postEdited = req.query.date;
+//   const post = await Bottlepost.findOne({ id: postId })
+//   post.edited = postEdited;
+//   post.place = req.query.place;
+//   post.title = req.query.title;
+//   post.text = req.query.text;
+//   const response = await Bottlepost.updateOne({ id: postId}, post);
+//   res.status(200).send("Post geändert")
+// });
+
+// PUT - update via object
+app.put('/api/edit-post', async (req, res) => {
+  const postId = req.body.id;
+  const postEdited = req.body.date;
   const post = await Bottlepost.findOne({ id: postId })
   post.edited = postEdited;
+  post.place = req.body.place;
+  post.title = req.body.title;
+  post.text = req.body.text;
   const response = await Bottlepost.updateOne({ id: postId}, post);
   res.status(200).send("Post geändert")
 });
 
+
 // DELETE - delete
-app.delete('/delete-post', async (req, res) => {
+app.delete('/api/delete-post', async (req, res) => {
   const postId = req.query.id;
   const response = await Bottlepost.deleteOne({ id: postId});
   res.status(200).send("Post gelöscht")

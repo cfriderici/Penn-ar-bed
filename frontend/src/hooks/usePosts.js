@@ -30,7 +30,7 @@ const usePosts = () => {
             headers: { }
         };          
         const response = await axios(config);
-        console.log(response)
+        console.log('mein use-hook:', response)
         return response.data;
     }
 
@@ -61,7 +61,7 @@ const usePosts = () => {
         return response.data;
     }
 
-    // 
+    // toggle star
     const toggleStarAtBackend = async postId => {
         var config = {
             method: 'put',
@@ -72,23 +72,38 @@ const usePosts = () => {
           return response.data;
     }
 
-    // 
-    const editPostAtBackend = async (postId, date) => {
+    // edited post as url
+    // const editPostAtBackend = async (postId, date, place, title, text) => {
+    //     var config = {
+    //         method: 'put',
+    //         url: '/edit-post?id='+postId+'&date='+date+'&place='+place+'&title='+title+'&text='+text,
+    //         headers: { }
+    //         };
+    //         const response = await axios(config);
+    //         return response.data;
+    // }
+
+
+    // edited post as object
+    const editPostAtBackend = async (postId, date, place, title, text) => {
+        const editPostObject = {
+            id: postId,
+            place: place,
+            title: title,
+            text: text,
+            date: date
+        }
         var config = {
             method: 'put',
-            url: '/edit-post?id='+postId+'&date='+date,
-            headers: { }
-            };
-            const response = await axios(config);
-            return response.data;
+            url: '/edit-post',
+            headers: { 
+                'Content-Type': 'application/json'
+            },
+            data: JSON.stringify(editPostObject)
+        };
+        const response = await axios(config);
+        return response.data;
     }
-
-
-
-
-
-
-
 
 
     // EFFECT-HOOK --> speichern eines neuen Elements im LocalStorage
@@ -105,7 +120,7 @@ const usePosts = () => {
     // async-Funktion hier mit then benutzen
     useEffect( () => {
         loadPostsFromBackend().then(res => {
-            console.log(res)
+            console.log('mein state: ', res)
             setPosts(res);
         })
     }, [] ); 
@@ -140,7 +155,7 @@ const usePosts = () => {
         setPosts(
             posts.map( e => {
                 if (e.id === postId)
-                e.star = !e.star; 
+                    e.star = !e.star; 
                 return e
             })
         );
@@ -148,19 +163,25 @@ const usePosts = () => {
         console.log("Stern getoggled")
     }
 
-    //edit post
-    const editPost = (postId) => {
+    //edit post 
+    const editPost = (postId, place, title, text) => {
         const heute = new Date();
         setPosts(
             posts.map( e => {
-                if (e.id === postId) 
+                if (e.id === postId) { 
                     e.edited = heute;
+                    e.place = place;
+                    e.title = title;
+                    e.text = text;
+                }
                 return e 
             })
         );    
-        editPostAtBackend(postId, heute);
+        editPostAtBackend(postId, heute, place, title, text);
         console.log("Flaschen-Post geändert am: " + heute.toLocaleDateString());
     }
+
+
 
     // delete post
     const deletePost = (postId) => {

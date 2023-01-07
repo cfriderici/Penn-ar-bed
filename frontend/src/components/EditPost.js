@@ -1,6 +1,7 @@
 // My Components
 import Header from "./Header";
 import StyledButton from "./styled/StyledButton";
+import StyledLink from "./styled/StyledLink";
 import StyledInput, { StyledInputWrapper, StyledTextarea } from "./styled/StyledInput";
 
 // My Context
@@ -8,10 +9,12 @@ import { useSocialAppContext } from "../providers/SocialAppContext";
 
 // External Components 
 import styled from "styled-components";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { useRef } from "react";
 import { useParams } from "react-router-dom";
+import { FaTimes } from "react-icons/fa";
+
 
 
 
@@ -24,12 +27,22 @@ const EditPost = ({ postId, place, date, title, text, edited }) => {
     const { id } = useParams();         // für den pfad in der app.js --> der aktuelle post
 
     console.log("useParams:", id);
+    console.log("place:", place);
     console.log("title:", title);
+    console.log("text:", posts[0].text);
+    console.log("meine posts:", posts);
+
 
 
     // Funktionen
-    const handleEditClick = () => {        
-        editPost(postId);
+    const handleEditClick = () => {     
+        console.log('EditPostBeacheRef', EditPostBeacheRef.current.value)   
+        editPost(
+            id, 
+            EditPostBeacheRef.current.value, 
+            EditPostTitleRef.current.value,
+            EditPostTextRef.current.value
+        );
     }    
     
 
@@ -38,6 +51,18 @@ const EditPost = ({ postId, place, date, title, text, edited }) => {
     const EditPostTitleRef = useRef();
     const EditPostTextRef = useRef();
     const AddPostEditRef = useRef(); 
+
+
+    // Daten des Post einladen (hier muss map-Funktion in {} und nicht in () wie in Posts.js)
+    useEffect (() => {
+        posts.map(e => {
+            if (e.id === id) {
+                EditPostBeacheRef.current.value = e.place;
+                EditPostTitleRef.current.value = e.title;
+                EditPostTextRef.current.value = e.text;
+            }
+        })
+    }, [])
 
 
     //
@@ -53,27 +78,32 @@ const EditPost = ({ postId, place, date, title, text, edited }) => {
                 </StyledInputWrapper>
 
                 <StyledInputWrapper>
-                    <StyledInput placeholder="Strand"  ref={EditPostBeacheRef} ></StyledInput>
+                    <StyledInput  ref={EditPostBeacheRef} ></StyledInput>
                 </StyledInputWrapper>
 
                 <StyledInputWrapper>
-                    <StyledInput placeholder="Titel" ref={EditPostTitleRef} ></StyledInput>
+                    <StyledInput ref={EditPostTitleRef} ></StyledInput>
                 </StyledInputWrapper>
                 
                 <StyledInputWrapper>
-                    <StyledTextarea placeholder="Text" ref={EditPostTextRef} ></StyledTextarea>
+                    <StyledTextarea ref={EditPostTextRef} ></StyledTextarea>
                 </StyledInputWrapper>
 
                 <StyledInputWrapper>
                     <StyledInput placeholder={id} ></StyledInput>
                 </StyledInputWrapper>
 
-                <StyledButton  >
-                    <Link to="/bottle-posts" ref={AddPostEditRef} onClick={handleEditClick}> Zurück ins Meer </Link>
-                    {/* <Link to="/bottle-posts"> Zurück ins Meer </Link> */}
+                <StyledWrapper>
+                    <StyledButton>
+                        <StyledLink to="/bottle-posts"> Abbrechen </StyledLink>
+                    </StyledButton>
 
-                </StyledButton>
-            
+                    <StyledButton>
+                        <StyledLink to="/bottle-posts" ref={AddPostEditRef} onClick={handleEditClick}> Zurück ins Meer </StyledLink>
+                    </StyledButton>
+                </StyledWrapper>
+
+
             </StyledEditPostWrapper>        
         </Fragment>
     )
@@ -88,5 +118,18 @@ const StyledEditPostWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
+    /* padding: 5% 10%; */
+
+    h1 {
+        background-color: rgba(250, 0, 0, 0.2);
+        /* width: 80%; */
+    }
+`
+
+const StyledWrapper = styled.div`
+    background-color: rgba(250, 0, 0, 0.2);
+    display: flex;
+    /* gap: 10px; */
+    width: 100%;
 `

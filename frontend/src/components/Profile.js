@@ -1,6 +1,5 @@
 // My components 
 import Header from "./Header";
-import Input from "./sub/Input";
 import StyledButton from "./styled/StyledButton";
 import StyledInput, { StyledInputWrapper, StyledTextarea } from "./styled/StyledInput";
 
@@ -164,6 +163,5 @@ const StyledProfileImg  = styled.div`
             }
         }       
     }
-
 `
 

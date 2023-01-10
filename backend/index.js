@@ -1,12 +1,16 @@
-
 const express = require('express');
 const mongoose = require('mongoose');
 
 // die Routen aus api.js einladen
 const apiRoutes = require("./routes/api");
 
+// helperFUnktions
+// const showHelloWorldInConsole = require('./modules/helperFunctions');
+const {showHelloWorldInConsole, showHelloWorldInConsole2} = require('./modules/helperFunctions');
+
 const app = express()
 const port = 3001
+
 
 
 
@@ -26,11 +30,14 @@ app.use(async function (req, res, next) {
 app.use(apiRoutes);
 
 
+
+
 // mongodb+srv://cfriderici:<password>@cluster0.cfgd3zr.mongodb.net/?retryWrites=true&w=majority
 // app.use(async function (req, res, next) {
 //   await mongoose.connect(MONGO_URI);
 //   next();
 // });
+
 
 
 
@@ -41,13 +48,15 @@ app.get('/', (req, res) => {
 });
 
 app.get('/health-check', (req, res) => {
+  showHelloWorldInConsole();
+  showHelloWorldInConsole2();
   res.status(200).send("Healt check passed. Status 200")
 });
 
 
 
 
-// SERVER STARTEN
+// ----- SERVER STARTEN  ----- //
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

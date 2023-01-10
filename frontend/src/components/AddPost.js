@@ -46,7 +46,7 @@ const AddPost = () => {
             <Header full />
             <StyledAddPostWrapper>
 
-                <h1>Neuer Post</h1>
+                <h1>Neuen Flaschen-Post erstellen</h1>
 
                 <StyledInputWrapper>
                     <StyledInput placeholder="Bild hochlagen" /*ref={todoNameRef} */ ></StyledInput>

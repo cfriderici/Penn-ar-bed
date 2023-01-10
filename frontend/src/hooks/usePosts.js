@@ -26,7 +26,7 @@ const usePosts = () => {
     const loadPostsFromBackend = async () => {
         var config = {
             method: 'get',
-            url: '/posts',
+            url: '/api/posts',
             headers: { }
         };          
         const response = await axios(config);
@@ -40,7 +40,7 @@ const usePosts = () => {
     const addPostToBackend = async post => {
         var config = {
         method: 'post',
-        url: '/post',
+        url: '/api/post',
         headers: { 
             'Content-Type': 'application/json'
         },
@@ -54,7 +54,7 @@ const usePosts = () => {
     const deletePostFromBackend = async postId => {
         var config = {
             method: 'delete',
-            url: '/delete-post?id='+postId,
+            url: '/api/delete-post?id='+postId,
             headers: { }
           };
         const response = await axios(config);
@@ -65,7 +65,7 @@ const usePosts = () => {
     const toggleStarAtBackend = async postId => {
         var config = {
             method: 'put',
-            url: '/toggle-post?id='+postId,
+            url: '/api/toggle-post?id='+postId,
             headers: { }
           };
           const response = await axios(config);

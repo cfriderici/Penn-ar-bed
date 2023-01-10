@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 
-
-// ----- MONGOOSE SCHEMA + MODEL definieren ----- //
 const bottlepostSchema = new mongoose.Schema({
     id: String,
     place: String,

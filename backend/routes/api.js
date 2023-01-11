@@ -2,12 +2,20 @@ const express = require('express');
 
 //bcrypt statt bcryptjs ?!?
 const bcrypt = require('bcrypt');
+
 // warum jwt als var?
-var jwt = require('jsonwebtoken');  
+var jwt = require('jsonwebtoken');
+
+// wird wofür benötigt ?!?
+// const dotenv = require('dotenv');  
 
 const Bottlepost = require('../models/Post.model');
 const User = require('../models/User.model');
 
+// was tut es?
+// dotenv.config();
+
+// was tut es?
 const JWT_KEY = process.env.EXPRESS_APP_JWT_KEY;
 
 // Router-Object > definieren
@@ -47,9 +55,10 @@ router.post('/api/register', async (req, res) => {
 // LOGIN USER
 router.post('/api/login', async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
+    console.log("user: ", user);    //
     
     if (!user) {
-        res.status(400).send({ status: 'error', error: 'invalid login' });
+        res.status(400).send({ status: 'error', error: 'invalid login' });  
         return;
     }
 
@@ -57,18 +66,24 @@ router.post('/api/login', async (req, res) => {
         req.body.password,
         user.password
     );
+    console.log("isPasswordValid: ", isPasswordValid);  //
 
     if (isPasswordValid) {
         const token = jwt.sign(
             {
+                id:user.id,
                 email: user.email,
+                name: user.name
             },
             JWT_KEY
         )
-        res.status(200).send({ status: 'ok', access: token });
+        res.status(200).send({ status: 'ok', access: token });   
+        console.log("Password valid - token: ", token);  //
         return;
+        
     } else {
-        res.status(400).send({ status: 'eroor', access: false });
+        res.status(400).send({ status: 'error', access: false });
+        console.log("Password not valid - token: ", token);  //
         return;
     }
 });

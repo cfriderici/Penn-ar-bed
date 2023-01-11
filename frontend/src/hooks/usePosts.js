@@ -1,11 +1,12 @@
 // External Components 
 import { v4 as uuidv4 } from 'uuid';
 import { useState, useEffect } from 'react';
-
 import axios from 'axios';
 
 
+
 const LOCAL_STORAGE_KEY = "local_storage_posts"
+
 
 
 // ------ MAIN COMPONENT ------  //

@@ -28,19 +28,19 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 // Arrays
-const userArray = [
-  {
-    id: uuidv4(),
-    name: "Christina",
-    mail: "christina@friderici.net",
-    passwort: "geheim"
-  }
+// const userArray = [
+//   {
+//     id: uuidv4(),
+//     name: "Christina",
+//     mail: "christina@friderici.net",
+//     passwort: "geheim"
+//   }
   // {
   //   id: uuidv4(),
   //   name: "Tom",
   //   mail: "tom@mot.de"
   // },
-]
+// ]
 
 
 
@@ -52,9 +52,9 @@ function App() {
   //useState definieren
   // const [posts, setPosts] = useState(postArray);
 
-const { posts, setPosts, addPost, deletePost } = useSocialAppContext();
+const { posts, setPosts, addPost, deletePost, user, setUser } = useSocialAppContext();
 
-  const [users, setUsers] = useState(userArray);
+  // const [user, setUsers] = useState(userArray);
   // const [players, setPlayers] = useState(["a", "b", "c", "d", "e", "f"]);
 
   // useEffect(() => {
@@ -66,11 +66,15 @@ const { posts, setPosts, addPost, deletePost } = useSocialAppContext();
       <BrowserRouter>
         <Routes>
 
-          <Route path="/" element={ <Start /> } />
-          <Route path="/login" element={ <Login users={users} setUsers={setUsers} /> } />
-          <Route path="/register" element={ <Register users={users} setUsers={setUsers} /> } />
+          {/* <Route path="/" element={ <Start /> } /> */}
+          <Route path="/" element={user ? <Dashboard /> : < Start /> } />
 
-          <Route path="/profile" element={ <Profile users={users} setUsers={setUsers} /> } />
+          <Route path="/login" element={ <Login /> } />
+          {/* <Route path="/login" element={user ? <Dashboard /> : < Login /> } /> */}
+          <Route path="/register" element={ <Register /> } />
+
+
+          <Route path="/profile" element={ <Profile /> } />
           <Route path="/password" element={ <Password /> } />
 
           <Route path="/dashboard" element={ <Dashboard /> } />

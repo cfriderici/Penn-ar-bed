@@ -7,10 +7,15 @@ import StyledButton from "./styled/StyledButton";
 
 // External Components 
 import styled from "styled-components";
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import {Fragment} from "react";
 
-  
+import axios from 'axios';
+import { useSocialAppContext } from "../providers/SocialAppContext";
+import { useState } from 'react';
+import jwt_decode from "jwt-decode";
+
+
 
 // ------ INSIDE COMPONENTS ------  //
 const LoginHeader = ()  => {
@@ -25,29 +30,131 @@ const LoginContent = ()  => {
     return  (
         <Fragment>   
 
-            <div>E-Mail</div>
+            {/* <div>E-Mail</div>
             <Input />
 
             <div>Passwort</div>
-            <Input /> 
+            <Input />  */}
 
         </Fragment>
     )
 }
 const LoginActions = ()  => {
-    return  (
-        <Fragment>              
-            <StyledButton><Link to="/dashboard">anmelden</Link></StyledButton>  
-            <StyledLink to="/password">Passwort verggessen?</StyledLink>
 
-            <StyledLink to="/register">Neu hier? Registrieren</StyledLink>  
-        </Fragment>
+    const {user, setUser, token, setToken, userData, setUserData, logoutUser } = useSocialAppContext();
+    
+    const LOCAL_STORAGE_KEY = "token";
+
+    // Error falls falsche Logindaten
+    const [showErrorMessage, setShowErrorMessage] = useState(false);
+    
+    const navigate = useNavigate();
+
+
+
+    // FUNKTIONEN
+    // Mittels FormData wird überprüft was im Frontend eingegeben wurde
+    // Diese Daten werden in credentials zwischengespeichert und an data übergeben (?)
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        console.log("Anmelden wurde gedrückt")
+        
+        const data = new FormData(event.currentTarget);
+        console.log("login data: ", data);
+
+        const credentials = {
+            email: data.get('email'),
+            password: data.get('password'),
+        }
+        console.log("Login credentials: ", credentials);
+
+        var config = {
+            method: 'post',
+            url: '/api/login',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data : credentials
+        };
+        console.log("Login config: ", config);
+
+
+        // data wird an axios-Abfrage geschickt mit Daten aus DB überprüft
+        // wenn korrekt erhält man den token (string aus logindaten: email + Password)
+        // der token wird in den Lokal Storage geschrieben 
+        // token wird in State geschrieben (setToken) 
+        // user wird in State geschrieben (setUser)
+        // Error-Meldung wird geleert (weil hier die Login-Daten ja jetzt stimmen)
+        // dann wird zur Hauptroute navigiert --> weil user jetzt angemeldet, wird Dashboard statt Login angezeigt
+        try {
+            const response = await axios(config);
+            const data = response.data;
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
+      
+            var decodedJwt = jwt_decode(data.access);
+            console.log("Login UserData: ", decodedJwt);
+
+            
+            setToken(data.access);       
+            setUser(credentials.email);      
+            setUserData(decodedJwt);
+      
+            console.log("mein Token: ", data.access);
+            console.log("mein User: ", credentials.email);
+            console.log("mein UserData: ", decodedJwt);
+
+            setShowErrorMessage(false);
+      
+            navigate("/dashboard");
+          } catch (error) {
+            setShowErrorMessage(true);
+        }
+    };
+
+
+
+
+    return  (
+        <StyledActionWrapper>    
+            <StyledFormWrapper>         
+                <form onSubmit={handleSubmit}>
+
+                    <label>E-Mail</label>
+                    <StyledInput  id="email" label="E-Mail" name="email"  /> 
+
+                    <label>Passwort</label>
+                    <StyledInput name="password" label="Passwort" type="password" id="password" /> 
+
+                    <StyledButton type="submit" >
+                        anmelden
+                    </StyledButton>
+
+                    {/* <Link to="/dashboard">anmelden</Link> */}
+                    
+                </form>  
+            </StyledFormWrapper>
+
+            {/* <StyledButton> */}
+                <StyledLink to="/password">Passwort verggessen?</StyledLink>
+            {/* </StyledButton> */}
+
+            {/* <StyledButton> */}
+                <StyledLink to="/register">Neu hier? </StyledLink>  
+            {/* </StyledButton> */}
+      
+        </StyledActionWrapper>
     )
 }
 
 
 // ------ COMPONENT ------  //
 const Login = () => {
+
+  
+    const {user, setUser, token, setToken, userData, setUserData, logoutUser } = useSocialAppContext();
+
+
+
     return (
         <Fragment>
 
@@ -84,4 +191,42 @@ const StyledLockinWrapper = styled.div`
         /* background-color: rgba(250, 200, 0, 0.6);
         width: 100% */
     }
+`
+
+
+const StyledActionWrapper = styled.div`
+    background-color: rgba(250, 200, 0, 0.6);
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+`
+const StyledFormWrapper = styled.div`
+    background-color: rgba(250, 100, 0, 0.6);
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* flex-wrap: wrap; */
+    /* align-content: center; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* width: 100%; */
+    margin-bottom: 30px;
+
+`
+const StyledInput = styled.input`
+    background-color: white;
+    background-color: rgba(0, 250, 0, 0.2);
+    /* background-color: transparent; */
+    /* display: flex; */
+    /* flex-direction: row; */
+    border-radius: 4px;
+    box-shadow: inset 1px 1px 4px gray;
+    padding: 6px;
+    margin-bottom: 30px;
+    /* background-color: rgba(0, 250, 0, 0.2); */
+    width: 100%;
+    border: none;
+    /* outline: none; */
 `

@@ -121,7 +121,7 @@ const usePosts = () => {
     // async-Funktion hier mit then benutzen
     useEffect( () => {
         loadPostsFromBackend().then(res => {
-            console.log('mein state: ', res)
+            console.log('mein Post-useState: ', res)
             setPosts(res);
         })
     }, [] ); 

@@ -34,7 +34,7 @@ const Input = ( /*{ addTodo } */ ) => {
     return (
         <StyledInputWrapper>
 
-            <StyledInput placeholder="" /*ref={todoNameRef} onKeyDown={handleAddKeyPress} */ ></StyledInput>
+            <StyledInput /*ref={todoNameRef} onKeyDown={handleAddKeyPress} */ ></StyledInput>
             
             <StyledImgWrapper> 
                 <FaPen  /* onClick={handleAddClick} */  /> 

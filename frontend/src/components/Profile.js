@@ -10,8 +10,8 @@ import { FaRegTimesCircle, FaUserCircle, FaRegUserCircle } from "react-icons/fa"
 import { CiFaceSmile } from "react-icons/ci";
 import { Link } from 'react-router-dom';
 import {Fragment} from "react";
-import ImageUploader from "react-image-upload";
-import "react-image-upload/dist/index.css";
+// import ImageUploader from "react-image-upload";
+// import "react-image-upload/dist/index.css";
 
 
 
@@ -23,10 +23,10 @@ const ProfileHeader = ()  => {
         <StyledProfileHeader>
             <h1>Mein Profil</h1>
             <StyledProfileImg>
-                <ImageUploader 
+                {/* <ImageUploader 
                     deleteIcon={ <FaRegTimesCircle className="deleteImg"/> } 
                     uploadIcon={ <CiFaceSmile className="addImg"/>  }
-                />                
+                />                 */}
             </StyledProfileImg>
         </StyledProfileHeader>
     )

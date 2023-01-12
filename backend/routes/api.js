@@ -3,20 +3,22 @@ const express = require('express');
 //bcrypt statt bcryptjs ?!?
 const bcrypt = require('bcrypt');
 
-// warum jwt als var?
-var jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
-// wird wofür benötigt ?!?
-// const dotenv = require('dotenv');  
+// required .env für jwt-key
+const dotenv = require('dotenv');  
 
 const Bottlepost = require('../models/Post.model');
 const User = require('../models/User.model');
 
-// was tut es?
-// dotenv.config();
+// Standardconfig für die .env
+dotenv.config();
 
-// was tut es?
+// ließt die .env wo der jwt-key definiert ist 
 const JWT_KEY = process.env.EXPRESS_APP_JWT_KEY;
+
+console.log(JWT_KEY);
+
 
 // Router-Object > definieren
 const router = express.Router();

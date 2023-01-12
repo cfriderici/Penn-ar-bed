@@ -1,30 +1,38 @@
 // // External Components 
-// import { useState, useEffect } from 'react';
-// import jwt_decode from "jwt-decode";
+import { useState, useEffect } from 'react';
+import jwt_decode from "jwt-decode";
+import axios from 'axios';
 
-// const useAuth = () => {
 
-//     const LOCAL_STORAGE_KEY = "token";
+const useAuth = () => {
 
-//     const [user, setUser] = useState();
-//     const [token, setToken] = useState();
-//     // const [userData, setUserData] = useState();
+    const LOCAL_STORAGE_KEY = "token";
 
-//     // Erstes Rendern der App ruft den Custom Hook aus
-//     useEffect(() => {
-//         const ls = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-//         try {
-//             var decodedJwt = jwt_decode(ls.access);
-//             console.log("decodedJwt: ", decodedJwt);
+    const [user, setUser] = useState();
+    const [token, setToken] = useState();
+    const [userData, setUserData] = useState();
 
-//             setUser(decodedJwt.email);
-//             setToken(ls.access);
-//             // setUserData(decodedJwt);
-//         } catch (error) {
-//             console.log(error);
-//         }
-//     }, [])
+    // Erstes Rendern der App ruft den Custom Hook aus
+    useEffect(() => {
+        const ls = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+        console.log("mein ls", ls);
 
-// }
 
-// export default useAuth;
+        try {
+            var decodedJwt = jwt_decode(ls.access);
+            console.log("mein User-useState: ", decodedJwt.email);
+            console.log("mein Token-useState: ", ls);
+            console.log("mein UserData-useState: ", decodedJwt);
+
+            setUser(decodedJwt.email);
+            setToken(ls.access);
+            setUserData(decodedJwt);
+        } catch (error) {
+            console.log("mein error", error);
+        }
+    }, [])
+
+    return [LOCAL_STORAGE_KEY, user, setUser, token, setToken, userData, setUserData ];
+}
+
+export default useAuth;

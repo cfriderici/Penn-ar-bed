@@ -1,6 +1,6 @@
 // My components 
 import usePosts from '../hooks/usePosts';
-// import useAuth from '../hooks/useAuth';
+import useAuth from '../hooks/useAuth';
 
 
 // External Components 
@@ -19,14 +19,14 @@ const useSocialAppContext = () => useContext (SocialAppContext)
 //CUSTOM-HOOCK deklarieren --> alle props für die Komponenten 
 const SocialAppContextProvider = ({ children }) => {
     const [ posts, setPosts, addPost, toggleStar, editPost, deletePost ] = usePosts();
-    // const [ user, setUser ] = useAuth();
+    const [ LOCAL_STORAGE_KEY, user, setUser, token, setToken, userData, setUserData, logoutUser, reloadUserData ] = useAuth();
 
     return (
         <SocialAppContext.Provider 
             value={
                 {
                     posts, setPosts, addPost, toggleStar, editPost, deletePost,
-                    // user, setUser
+                    user, setUser, token, setToken, userData, setUserData, logoutUser, reloadUserData
                 }
             } 
         >

@@ -3,7 +3,7 @@ import Header from "./Header";
 import Input from "./sub/Input";
 import StyledLink from "./styled/StyledLink";
 import StyledButton from "./styled/StyledButton";
-import { StyledH2, StyledH3} from "./styled/StyledHeadlines";
+import StyledH1, { StyledH2, StyledH3} from "./styled/StyledHeadlines";
 import StyledInput, { StyledInputWrapper, StyledTextarea } from "./styled/StyledInput";
 
 
@@ -89,8 +89,8 @@ const Register = ({ users, setUsers }) => {
 
                 {/* <RegisterHeader /> */}
                 <StyledRegisterHeader>
-                    <StyledH2>Registrieren</StyledH2>
-                    <StyledH3>Hallo  - du bist wohl neu hier!</StyledH3>    
+                    <StyledH1>Registrieren</StyledH1>
+                    <StyledH2>Hallo!<br />Du bist wohl neu hier!</StyledH2>
                 </StyledRegisterHeader>
 
                 {/* <RegisterContent /> */}
@@ -98,9 +98,11 @@ const Register = ({ users, setUsers }) => {
                     <StyledInputWrapper>
                         <StyledInput placeholder="Vorname" ref={AddUserNameRef} ></StyledInput>
                     </StyledInputWrapper>
+                   
                     <StyledInputWrapper>
                         <StyledInput placeholder="E-Mail" ref={AddUserMailRef} ></StyledInput>
                     </StyledInputWrapper>
+                   
                     <StyledInputWrapper>
                         <StyledInput placeholder="Passwort" ref={AddPasswortRef} ></StyledInput>
                     </StyledInputWrapper>
@@ -109,10 +111,12 @@ const Register = ({ users, setUsers }) => {
                 {/* <RegisterActions /> */}
                 <StyledRegisterActions>                
                     <StyledButton onClick={handleAddClick}> <Link to="/profile">registrieren</Link> </StyledButton>
-                    <StyledLink to="/login">Du hast bereits einen Account? Anmelden</StyledLink>  
                 </StyledRegisterActions>
 
             </StyledRegisterWrapper>
+
+            <StyledLink to="/login">Du hast bereits einen Account?</StyledLink>  
+
         </Fragment>
     )
 }

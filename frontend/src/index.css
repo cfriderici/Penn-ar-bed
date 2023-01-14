@@ -1,0 +1,20 @@
+@font-face {
+    font-family: "MontserratLight";
+    src:
+        local("MontserratLight"),
+        url("./fonts/Montserrat/static/Montserrat-Light.ttf") format(truetype);
+}
+
+@font-face {
+    font-family: "MontserratMedium";
+    src: 
+        local("MontserratMedium"),
+        url("./fonts/Montserrat/static/Montserrat-Medium.ttf") format(truetype);
+}
+
+@font-face {
+    font-family: "MontserratBold";
+    src: 
+        local("MontserratBold"),
+        url("./fonts/Montserrat/static/Montserrat-Bold.ttf") format(truetype);
+}

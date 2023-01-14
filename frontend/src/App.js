@@ -19,6 +19,7 @@ import { useSocialAppContext } from "./providers/SocialAppContext";
 
 // External Components 
 import './App.css';
+
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
@@ -54,6 +55,8 @@ function App() {
 
 const { posts, setPosts, addPost, deletePost, user, setUser } = useSocialAppContext();
 
+  console.log("App.js User:", user );
+
   // const [user, setUsers] = useState(userArray);
   // const [players, setPlayers] = useState(["a", "b", "c", "d", "e", "f"]);
 
@@ -66,23 +69,20 @@ const { posts, setPosts, addPost, deletePost, user, setUser } = useSocialAppCont
       <BrowserRouter>
         <Routes>
 
-          {/* <Route path="/" element={ <Start /> } /> */}
           <Route path="/" element={user ? <Dashboard /> : < Start /> } />
 
-          <Route path="/login" element={ <Login /> } />
-          {/* <Route path="/login" element={user ? <Dashboard /> : < Login /> } /> */}
-          <Route path="/register" element={ <Register /> } />
+          <Route path="/login" element={user ? <Dashboard /> : <Login /> } />
+          <Route path="/register" element={user ? <Dashboard /> : <Register /> } />
 
-
-          <Route path="/profile" element={ <Profile /> } />
+          <Route path="/profile" element={user ? <Profile /> : <Start /> } />
           <Route path="/password" element={ <Password /> } />
 
-          <Route path="/dashboard" element={ <Dashboard /> } />
-          <Route path="/my-beach" element={ <Beaches /> } />
+          <Route path="/dashboard" element={user ? <Dashboard /> : <Start /> } />
+          <Route path="/my-beach" element={user ? <Beaches /> : <Start /> } />
 
-          <Route path="/bottle-posts" element={ posts ? <Posts posts={posts} setPosts={setPosts} /> : null } />
-          <Route path="/create-bottle-post" element={ <AddPost posts={posts} setPosts={setPosts} /> } />
-          <Route path="/edit-bottle-post/:id" element={ <EditPost posts={posts} setPosts={setPosts} /> } />
+          <Route path="/bottle-posts" element={user ? <Posts posts={posts} setPosts={setPosts} /> : <Start /> } />
+          <Route path="/create-bottle-post" element={user ? <AddPost posts={posts} setPosts={setPosts} /> : <Start /> } />
+          <Route path="/edit-bottle-post/:id" element={user ? <EditPost posts={posts} setPosts={setPosts} /> : <Start /> } />
           
           <Route path="/chats" element={ <Chats /> } />
           <Route path="/events" element={ <Events /> } />

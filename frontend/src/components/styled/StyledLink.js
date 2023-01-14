@@ -9,6 +9,8 @@ const StyledLink  = styled(Link)`
     font-size: smaller;
     text-transform: uppercase;
     text-decoration: none!important;
+    letter-spacing: 0.01rem;
+
     /* padding: 10px; */
 
     /* &:last-of-type {

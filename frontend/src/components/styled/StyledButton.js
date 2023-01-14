@@ -4,7 +4,8 @@ import styled from "styled-components";
 
 const StyledButton = styled.button`
     background-color: rgba(250, 200, 200, 0.6);
-    letter-spacing: 0.05rem;
+    font-family: inherit;
+    letter-spacing: 0.075rem;
     text-transform: uppercase;
     font-weight: bold;    
     padding: 10px 15px;

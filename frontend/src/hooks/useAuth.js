@@ -4,6 +4,9 @@ import jwt_decode from "jwt-decode";
 import axios from 'axios';
 
 
+
+// LokalStorage, useStates, Token laden 
+
 const useAuth = () => {
 
     const LOCAL_STORAGE_KEY = "token";
@@ -16,7 +19,6 @@ const useAuth = () => {
     useEffect(() => {
         const ls = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
         console.log("mein ls", ls);
-
 
         try {
             var decodedJwt = jwt_decode(ls.access);
@@ -32,7 +34,14 @@ const useAuth = () => {
         }
     }, []);
 
-    // Logout 
+
+
+
+    // FUNKTIONEN
+
+
+    // Logout (CustomHook-Funktion)
+    // Alle States/Token/LokalStorage werden geleert
     const logoutUser = () => {
         setUser(undefined);
         setToken(undefined);

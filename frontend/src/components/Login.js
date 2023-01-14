@@ -3,8 +3,8 @@ import Header from "./Header";
 import Input from "./sub/Input";
 import StyledLink from "./styled/StyledLink";
 import StyledButton from "./styled/StyledButton";
-// import { StyledInputWrapper, StyledInput } from "./styled/StyledInput";
-import {StyledInputWrapper} from "./styled/StyledInput";
+import StyledInput, { StyledInputWrapper } from "./styled/StyledInput";
+import StyledH1, { StyledH2, StyledH3} from "./styled/StyledHeadlines";
 
 
 // External Components 
@@ -22,10 +22,10 @@ import jwt_decode from "jwt-decode";
 // ------ INSIDE COMPONENTS ------  //
 const LoginHeader = ()  => {
     return  (
-        <Fragment>
-            <h2>Login</h2>
-            <h3>Prima - du hast schon einen Account!</h3>
-        </Fragment>
+        <StyledHeaderWrapper>
+            <StyledH1>Login</StyledH1>
+            <StyledH2>Prima!<br />Du hast schon einen Account.</StyledH2>
+        </StyledHeaderWrapper>
     )
 }   
 const LoginContent = ()  => {
@@ -118,12 +118,16 @@ const LoginActions = ()  => {
     return  (
         <StyledActionWrapper>    
             <StyledForm onSubmit={handleSubmit}>
+                <StyledInputWrapper>
+                    <StyledInput  placeholder="E-Mail" id="email" label="E-Mail" name="email"  /> 
+                </StyledInputWrapper>
 
-                <StyledInput  placeholder="E-Mail" id="email" label="E-Mail" name="email"  /> 
-                <StyledInput placeholder="Passwort" name="password" label="Passwort" type="password" id="password" /> 
+                <StyledInputWrapper>
+                    <StyledInput placeholder="Passwort" name="password" label="Passwort" type="password" id="password" /> 
+                </StyledInputWrapper>
 
-                <StyledButton type="submit" >
-                    anmelden
+                <StyledButton type="submit">
+                    Login
                 </StyledButton>
 
                 {showErrorMessage && 
@@ -131,15 +135,11 @@ const LoginActions = ()  => {
                         Ups - wohl leicht seekrank ...<br />
                         Bitte versuche es noch einmal.
                     </div>
-                }
-                
+                }                
             </StyledForm>  
 
-
-            <StyledLink to="/password">Passwort verggessen?</StyledLink>
-
+            <StyledLink to="/password">Logindaten verggessen?</StyledLink>
             <StyledLink to="/register">Neu hier? </StyledLink>  
-
 
         </StyledActionWrapper>
     )
@@ -181,15 +181,14 @@ const StyledLockinWrapper = styled.div`
     /* flex-wrap: wrap; */
     justify-content: center;
     align-items: center;
+`
 
-    > h2, h3 {
-        /* text-align: center; */
-    }
-
-    > div {
-        /* background-color: rgba(250, 200, 0, 0.6);
-        width: 100% */
-    }
+const StyledHeaderWrapper = styled.div`
+    background-color: rgba(250, 200, 0, 0.6);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 `
 
 
@@ -202,35 +201,20 @@ const StyledActionWrapper = styled.div`
     flex-wrap: wrap;
     justify-content: space-evenly;
 `
+
 const StyledForm = styled.form`
     /* background-color: rgba(250, 100, 0, 0.6); */
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    /* align-content: center; */
     justify-content: center;
-    /* align-items: center; */
-    /* width: 100%; */
     margin-bottom: 30px;
 
     .loginError {
         background-color: rgba(0, 250, 0, 0.2);
         margin: 10px;
+        text-align: center;
     }
 `
-const StyledInput = styled.input`
-    background-color: white;
-    background-color: rgba(0, 250, 0, 0.2);
-    /* background-color: transparent; */
-    /* display: flex; */
-    /* flex-direction: row; */
-    border-radius: 4px;
-    box-shadow: inset 1px 1px 4px gray;
-    padding: 6px;
-    margin-bottom: 30px;
-    /* background-color: rgba(0, 250, 0, 0.2); */
-    width: 100%;
-    border: none;
-    /* outline: none; */
-`
+
 

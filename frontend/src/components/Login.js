@@ -3,6 +3,8 @@ import Header from "./Header";
 import Input from "./sub/Input";
 import StyledLink from "./styled/StyledLink";
 import StyledButton from "./styled/StyledButton";
+// import { StyledInputWrapper, StyledInput } from "./styled/StyledInput";
+import {StyledInputWrapper} from "./styled/StyledInput";
 
 
 // External Components 
@@ -93,7 +95,6 @@ const LoginActions = ()  => {
       
             var decodedJwt = jwt_decode(data.access);
             console.log("Login UserData: ", decodedJwt);
-
             
             setToken(data.access);       
             setUser(credentials.email);      
@@ -116,32 +117,30 @@ const LoginActions = ()  => {
 
     return  (
         <StyledActionWrapper>    
-            <StyledFormWrapper>         
-                <form onSubmit={handleSubmit}>
+            <StyledForm onSubmit={handleSubmit}>
 
-                    <label>E-Mail</label>
-                    <StyledInput  id="email" label="E-Mail" name="email"  /> 
+                <StyledInput  placeholder="E-Mail" id="email" label="E-Mail" name="email"  /> 
+                <StyledInput placeholder="Passwort" name="password" label="Passwort" type="password" id="password" /> 
 
-                    <label>Passwort</label>
-                    <StyledInput name="password" label="Passwort" type="password" id="password" /> 
+                <StyledButton type="submit" >
+                    anmelden
+                </StyledButton>
 
-                    <StyledButton type="submit" >
-                        anmelden
-                    </StyledButton>
+                {showErrorMessage && 
+                    <div className="loginError">
+                        Ups - wohl leicht seekrank ...<br />
+                        Bitte versuche es noch einmal.
+                    </div>
+                }
+                
+            </StyledForm>  
 
-                    {/* <Link to="/dashboard">anmelden</Link> */}
-                    
-                </form>  
-            </StyledFormWrapper>
 
-            {/* <StyledButton> */}
-                <StyledLink to="/password">Passwort verggessen?</StyledLink>
-            {/* </StyledButton> */}
+            <StyledLink to="/password">Passwort verggessen?</StyledLink>
 
-            {/* <StyledButton> */}
-                <StyledLink to="/register">Neu hier? </StyledLink>  
-            {/* </StyledButton> */}
-      
+            <StyledLink to="/register">Neu hier? </StyledLink>  
+
+
         </StyledActionWrapper>
     )
 }
@@ -195,7 +194,7 @@ const StyledLockinWrapper = styled.div`
 
 
 const StyledActionWrapper = styled.div`
-    background-color: rgba(250, 200, 0, 0.6);
+    /* background-color: rgba(250, 200, 0, 0.6); */
     padding: 20px;
     width: 100%;
     display: flex;
@@ -203,17 +202,21 @@ const StyledActionWrapper = styled.div`
     flex-wrap: wrap;
     justify-content: space-evenly;
 `
-const StyledFormWrapper = styled.div`
-    background-color: rgba(250, 100, 0, 0.6);
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* flex-wrap: wrap; */
+const StyledForm = styled.form`
+    /* background-color: rgba(250, 100, 0, 0.6); */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     /* align-content: center; */
-    /* justify-content: center; */
+    justify-content: center;
     /* align-items: center; */
     /* width: 100%; */
     margin-bottom: 30px;
 
+    .loginError {
+        background-color: rgba(0, 250, 0, 0.2);
+        margin: 10px;
+    }
 `
 const StyledInput = styled.input`
     background-color: white;
@@ -230,3 +233,4 @@ const StyledInput = styled.input`
     border: none;
     /* outline: none; */
 `
+

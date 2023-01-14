@@ -30,9 +30,17 @@ const useAuth = () => {
         } catch (error) {
             console.log("mein error", error);
         }
-    }, [])
+    }, []);
 
-    return [LOCAL_STORAGE_KEY, user, setUser, token, setToken, userData, setUserData ];
+    // Logout 
+    const logoutUser = () => {
+        setUser(undefined);
+        setToken(undefined);
+        setUserData(undefined)
+        localStorage.removeItem(LOCAL_STORAGE_KEY);
+    }
+
+    return [LOCAL_STORAGE_KEY, user, setUser, token, setToken, userData, setUserData, logoutUser];
 }
 
 export default useAuth;

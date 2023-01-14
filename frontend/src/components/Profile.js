@@ -2,7 +2,7 @@
 import Header from "./Header";
 import StyledButton from "./styled/StyledButton";
 import StyledInput, { StyledInputWrapper, StyledTextarea } from "./styled/StyledInput";
-
+import { useSocialAppContext } from "../providers/SocialAppContext";
 
 // External Components 
 import styled from "styled-components";
@@ -49,8 +49,18 @@ const ProfileContent = ({ users, setUsers, name })  => {
 
 // ACTIONS
 const ProfileActions = ()  => {
+
+    const {user, setUser, token, setToken, logoutUser } = useSocialAppContext();
+
+    const handleAccountClick = () => {
+        logoutUser();
+        console.log("User abgemeldet")
+      }
+
     return  (
-        <StyledButton><Link to="/">Logout</Link></StyledButton>
+        <StyledButton onClick={handleAccountClick}>
+            <Link to="/">Logout</Link>
+        </StyledButton>
     )
 }
 

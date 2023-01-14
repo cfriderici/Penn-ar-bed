@@ -60,7 +60,7 @@ router.post('/api/login', async (req, res) => {
     console.log("user: ", user);    //
     
     if (!user) {
-        res.status(400).send({ status: 'error', error: 'invalid login' });  
+        res.status(401).send({ status: 'error', error: 'invalid login' });  
         return;
     }
 
@@ -84,7 +84,7 @@ router.post('/api/login', async (req, res) => {
         return;
         
     } else {
-        res.status(400).send({ status: 'error', access: false });
+        res.status(401).send({ status: 'error', access: false });
         console.log("Password not valid - token: ", token);  //
         return;
     }

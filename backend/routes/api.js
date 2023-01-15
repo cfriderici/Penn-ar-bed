@@ -36,7 +36,10 @@ router.use((req, res, next) => {
 
 
 
-// ----- ROUTEN ----- //
+// ---------- ROUTEN ---------- //
+
+
+// ----- USERS ----- //
 
 // REGISTER USER
 router.post('/api/register', async (req, res) => {
@@ -90,6 +93,18 @@ router.post('/api/login', async (req, res) => {
     }
 });
 
+
+
+// GET - read users
+router.get('/api/register', async (req, res) => {
+    const response = await Users.find();
+    res.status(200).send(response)
+    console.log("Users: ", Users)
+});
+
+
+
+// ----- BOTTLE-POSTS ----- //
 
 // GET - read posts
 router.get('/api/posts', async (req, res) => {

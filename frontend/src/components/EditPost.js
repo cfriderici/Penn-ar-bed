@@ -1,8 +1,14 @@
 // My Components
 import Header from "./Header";
+
+
+// My Styled Components
+import StyledWrapper from "./styled/StyledWrapper";
+import StyledH1, { StyledH2, StyledH3 } from "./styled/StyledHeadlines";
+import StyledInput, { StyledInputWrapper, StyledTextarea } from "./styled/StyledInput";
 import StyledButton from "./styled/StyledButton";
 import StyledLink from "./styled/StyledLink";
-import StyledInput, { StyledInputWrapper, StyledTextarea } from "./styled/StyledInput";
+
 
 // My Context
 import { useSocialAppContext } from "../providers/SocialAppContext";
@@ -71,36 +77,42 @@ const EditPost = ({ postId, place, date, title, text, edited }) => {
             <Header full />
             <StyledEditPostWrapper>
 
-                <h1>Flaschen-Post bearbeiten</h1>
-
-                <StyledInputWrapper>
-                    <StyledInput placeholder="Bild" /*ref={todoNameRef} */ ></StyledInput>
-                </StyledInputWrapper>
-
-                <StyledInputWrapper>
-                    <StyledInput  ref={EditPostBeacheRef} ></StyledInput>
-                </StyledInputWrapper>
-
-                <StyledInputWrapper>
-                    <StyledInput ref={EditPostTitleRef} ></StyledInput>
-                </StyledInputWrapper>
-                
-                <StyledInputWrapper>
-                    <StyledTextarea ref={EditPostTextRef} ></StyledTextarea>
-                </StyledInputWrapper>
-
-                <StyledInputWrapper>
-                    <StyledInput placeholder={id} ></StyledInput>
-                </StyledInputWrapper>
+                <StyledWrapper>
+                    <StyledH1>Flaschen-Post bearbeiten</StyledH1>
+                </StyledWrapper>
 
                 <StyledWrapper>
-                    <StyledButton>
-                        <StyledLink to="/bottle-posts"> Abbrechen </StyledLink>
-                    </StyledButton>
+                    <StyledInputWrapper>
+                        <StyledInput placeholder="Bild" /*ref={todoNameRef} */ ></StyledInput>
+                    </StyledInputWrapper>
 
-                    <StyledButton>
-                        <StyledLink to="/bottle-posts" ref={AddPostEditRef} onClick={handleEditClick}> Zurück ins Meer </StyledLink>
-                    </StyledButton>
+                    <StyledInputWrapper>
+                        <StyledInput placeholder="Strandname" ref={EditPostBeacheRef} ></StyledInput>
+                    </StyledInputWrapper>
+
+                    <StyledInputWrapper>
+                        <StyledInput placeholder="Titel" ref={EditPostTitleRef} ></StyledInput>
+                    </StyledInputWrapper>
+                    
+                    <StyledInputWrapper>
+                        <StyledTextarea placeholder="Beitrag" ref={EditPostTextRef} ></StyledTextarea>
+                    </StyledInputWrapper>
+
+                    <StyledInputWrapper>
+                        <StyledInput placeholder={id} ></StyledInput>
+                    </StyledInputWrapper>
+                </StyledWrapper>
+
+                <StyledWrapper>
+                    <div className="wrapper">
+                        <StyledButton>
+                            <StyledLink to="/bottle-posts"> Abbrechen </StyledLink>
+                        </StyledButton>
+
+                        <StyledButton>
+                            <StyledLink to="/bottle-posts" ref={AddPostEditRef} onClick={handleEditClick}> Zurück ins Meer </StyledLink>
+                        </StyledButton>
+                    </div>
                 </StyledWrapper>
 
 
@@ -127,9 +139,9 @@ const StyledEditPostWrapper = styled.div`
     }
 `
 
-const StyledWrapper = styled.div`
-    background-color: rgba(250, 0, 0, 0.2);
-    display: flex;
-    /* gap: 10px; */
-    width: 100%;
-`
+// const StyledWrapper = styled.div`
+//     background-color: rgba(250, 0, 0, 0.2);
+//     display: flex;
+//     /* gap: 10px; */
+//     width: 100%;
+// `

@@ -9,8 +9,10 @@ import axios from 'axios';
 
 const useAuth = () => {
 
+    // LokalStorage als Token
     const LOCAL_STORAGE_KEY = "token";
 
+    // useState-Hooks für den angemeldeten user und alle User und dern Token
     const [user, setUser] = useState();
     const [token, setToken] = useState();
     const [userData, setUserData] = useState();
@@ -23,7 +25,7 @@ const useAuth = () => {
         try {
             var decodedJwt = jwt_decode(ls.access);
             console.log("mein User-useState: ", decodedJwt.email);
-            console.log("mein Token-useState: ", ls);
+            console.log("mein UserToken-useState: ", ls);
             console.log("mein UserData-useState: ", decodedJwt);
 
             setUser(decodedJwt.email);

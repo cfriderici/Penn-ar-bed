@@ -1,7 +1,10 @@
 // My Components
-import { StyledH3 } from "../styled/StyledHeadlines";
-import StyledButton from "../styled/StyledButton";
 
+ // My Styled Components
+ import StyledLink from "../styled/StyledLink";
+ import StyledButton from "../styled/StyledButton";
+ import StyledH1, { StyledH2, StyledH3} from "../styled/StyledHeadlines";
+ import StyledWrapper from "../styled/StyledWrapper";
 
 // My Context
 import { useSocialAppContext } from "../../providers/SocialAppContext";
@@ -47,9 +50,6 @@ const PostActions = ({ postId, star, edited, editingDate })  => {
     
     const { posts, setPosts, addPost, toggleStar, editPost, deletePost } = useSocialAppContext();
 
-
-
-
     // Funktionen aufrufen
     const handleToggleClick = () => {        
         toggleStar(postId);
@@ -61,10 +61,7 @@ const PostActions = ({ postId, star, edited, editingDate })  => {
 
     const handleDeleteClick = () => {        
         deletePost(postId);
-    }
-
-
-    
+    }  
    
     //useRefs definieren
     const AddTogglestarRef = useRef();
@@ -109,12 +106,12 @@ export default Post;
 
 // ------ STYLED COMPONENTS ------  //
 const StyledPostWrapper = styled.div`
-    /* background-color: rgba(0, 250, 0, 0.2); */
+    background-color: rgba(0, 250, 0, 0.2);
     margin-bottom: 20px;
 `
 
 const StyledPostHeader = styled.div`
-    /* background-color: rgba(0, 250, 0, 0.2); */
+    /* background-color: rgba(0, 250, 0, 0.6); */
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -139,7 +136,8 @@ const StyledPostHeader = styled.div`
 `
 
 const StyledPostContent = styled.div`
-    /* background-color: rgba(0, 250, 0, 0.2); */
+    background-color: rgba(0, 250, 0, 0.8);
+
 `
 
 const StyledPostActions = styled.div`

@@ -28,8 +28,8 @@ import jwt_decode from "jwt-decode";
 const LoginHeader = ()  => {
     return  (
         <StyledWrapper>
-            <StyledH1>Login</StyledH1>
-            <StyledH2>Prima!<br />Du hast schon einen Account.</StyledH2>
+            <StyledH1>Logindaten vergessen</StyledH1>
+            <StyledH2>Kein Ding - <br /> kann ja mal passieren.</StyledH2>
         </StyledWrapper>
     )
 }   
@@ -108,6 +108,7 @@ const LoginContent = ()  => {
                     <StyledInput  placeholder="E-Mail" id="email" label="E-Mail" name="email"  /> 
                 </StyledInputWrapper>
 
+                <label>Neues Passwort schicken</label>
                 <StyledInputWrapper>
                     <StyledInput placeholder="Passwort" name="password" label="Passwort" type="password" id="password" /> 
                 </StyledInputWrapper>
@@ -130,7 +131,7 @@ const LoginContent = ()  => {
 const LoginActions = ()  => {
     return (
         <StyledWrapper>
-            <StyledLink to="/password">Logindaten verggessen?</StyledLink>
+            <StyledLink to="/login">Du hast bereits einen Account?</StyledLink>  
             <StyledLink to="/register">Neu hier? </StyledLink>  
         </StyledWrapper>
     )
@@ -165,7 +166,7 @@ export default Login;
 
 // ------ STYLED COMPONENTS ------  //
 const StyledLockinWrapper = styled.div`
-    background-color: rgba(250, 250, 0, 0.2);
+    background-color: rgba(250, 0, 250, 0.2);
     display: flex;
     flex-direction: column;
     /* flex-wrap: wrap; */

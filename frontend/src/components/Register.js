@@ -1,11 +1,15 @@
-// My components 
+// My Components 
 import Header from "./Header";
 import Input from "./sub/Input";
+
+
+ // My Styled Components
 import StyledLink from "./styled/StyledLink";
 import StyledButton from "./styled/StyledButton";
 import StyledH1, { StyledH2, StyledH3} from "./styled/StyledHeadlines";
 import StyledInput, { StyledInputWrapper, StyledTextarea } from "./styled/StyledInput";
-
+import StyledWrapper from "./styled/StyledWrapper";
+import StyledForm from "./styled/StyledForm";
 
 
 // External Components 
@@ -19,39 +23,54 @@ import { useRef } from "react";
 
 
 // ------ SUB COMPONENTS ------  //
-// const RegisterHeader = ()  => {
-//     return  (
-//         <StyledRegisterHeader>
-//             <StyledH2>Registrieren</StyledH2>
-//             <StyledH3>Hallo  - du bist wohl neu hier!</StyledH3>    
-//         </StyledRegisterHeader>
-//     )
-// }   
+const RegisterHeader = ()  => {
+    return  (
+        <StyledWrapper>
+            <StyledH1>Registrieren</StyledH1>
+            <StyledH2>Hallo! <br /> du bist wohl neu hier.</StyledH2>    
+        </StyledWrapper>
+    )
+}   
 
-// const RegisterContent = ()  => {
-//     return  (
-//         <StyledRegisterContent>  
-//             <StyledInputWrapper>
-//                 <StyledInput placeholder="Vorname" /*ref={todoNameRef} */ ></StyledInput>
-//             </StyledInputWrapper>
-//             <StyledInputWrapper>
-//                 <StyledInput placeholder="E-Mail" /*ref={todoNameRef} */ ></StyledInput>
-//             </StyledInputWrapper>
-//             <StyledInputWrapper>
-//                 <StyledInput placeholder="Passwort" /*ref={todoNameRef} */ ></StyledInput>
-//             </StyledInputWrapper>
-//         </StyledRegisterContent>
-//     )
-// }
+const RegisterContent = ()  => {
+    return  (
+        <StyledWrapper>  
+            <StyledForm>
+            {/* <StyledForm onSubmit={handleSubmit}> */}
+                <StyledInputWrapper>
+                    <StyledInput  placeholder="Name" id="email" label="E-Mail" name="email"  /> 
+                </StyledInputWrapper>
 
-// const RegisterActions = ()  => {
-//     return  (
-//         <StyledRegisterActions>                
-//             <StyledButton><Link to="/profile">registrieren</Link></StyledButton>
-//             <StyledLink to="/login">Du hast bereits einen Account? Anmelden</StyledLink>  
-//         </StyledRegisterActions>
-//     )
-// }
+                <StyledInputWrapper>
+                    <StyledInput placeholder="E-Mail" name="password" label="Passwort" type="password" id="password" /> 
+                </StyledInputWrapper>
+
+                <StyledInputWrapper>
+                    <StyledInput placeholder="Passwort" name="password" label="Passwort" type="password" id="password" /> 
+                </StyledInputWrapper>
+
+                <StyledButton type="submit">
+                    Registrieren
+                </StyledButton>
+
+                {/* {showErrorMessage && 
+                    <div className="loginError">
+                        Ups - wohl leicht seekrank ...<br />
+                        Bitte versuche es noch einmal.
+                    </div>
+                }                 */}
+            </StyledForm>  
+        </StyledWrapper>
+    )
+}
+
+const RegisterActions = ()  => {
+    return  (
+        <StyledWrapper>                
+            <StyledLink to="/login">Du hast bereits einen Account?</StyledLink>  
+        </StyledWrapper>
+    )
+}
 
 
 
@@ -84,38 +103,14 @@ const Register = ({ users, setUsers }) => {
 
     return (
         <Fragment>
+
             <Header />
+
             <StyledRegisterWrapper>
-
-                {/* <RegisterHeader /> */}
-                <StyledRegisterHeader>
-                    <StyledH1>Registrieren</StyledH1>
-                    <StyledH2>Hallo!<br />Du bist wohl neu hier!</StyledH2>
-                </StyledRegisterHeader>
-
-                {/* <RegisterContent /> */}
-                <StyledRegisterContent>  
-                    <StyledInputWrapper>
-                        <StyledInput placeholder="Vorname" ref={AddUserNameRef} ></StyledInput>
-                    </StyledInputWrapper>
-                   
-                    <StyledInputWrapper>
-                        <StyledInput placeholder="E-Mail" ref={AddUserMailRef} ></StyledInput>
-                    </StyledInputWrapper>
-                   
-                    <StyledInputWrapper>
-                        <StyledInput placeholder="Passwort" ref={AddPasswortRef} ></StyledInput>
-                    </StyledInputWrapper>
-                </StyledRegisterContent>
-
-                {/* <RegisterActions /> */}
-                <StyledRegisterActions>                
-                    <StyledButton onClick={handleAddClick}> <Link to="/profile">registrieren</Link> </StyledButton>
-                </StyledRegisterActions>
-
+                <RegisterHeader />
+                <RegisterContent />
+                <RegisterActions />
             </StyledRegisterWrapper>
-
-            <StyledLink to="/login">Du hast bereits einen Account?</StyledLink>  
 
         </Fragment>
     )
@@ -135,32 +130,3 @@ const StyledRegisterWrapper = styled.div`
     align-items: center;
     width: 100%;
 `
-
-
-const StyledRegisterHeader = styled.div`
-    background-color: rgba(250, 0, 0, 0.2);
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`
-
-const StyledRegisterContent = styled.div`
-    background-color: rgba(0, 0, 250, 0.2);
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`
-
-const StyledRegisterActions = styled.div`
-    background-color: rgba(0, 250, 250, 0.2);
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`
-
-
-
-

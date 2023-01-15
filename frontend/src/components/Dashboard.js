@@ -1,34 +1,77 @@
 // My components 
 import Header from "./Header";
 
-// import Post from "./Post";
-// import Friendpost from "./Friendpost";
-// import Beach from "./Beach";
-
-
+// My Styled Components
+import StyledWrapper from "./styled/StyledWrapper";
+import StyledH1, { StyledH2, StyledH3 } from "./styled/StyledHeadlines";
+import StyledLink from "./styled/StyledLink";
 
 // External Components 
 import styled from "styled-components";
+import { Fragment } from "react";
      
+
+
+
+// ------ SUB COMPONENTS ------  //
+
+const DashboardHeader = ()  => {
+    return  (
+        <StyledWrapper>
+            <StyledH1>Dashboard</StyledH1>
+            <StyledH2>Hallo (NAME)! <br /> Schön das du da bist!</StyledH2>
+        </StyledWrapper>
+    )
+}   
+
+const DashboardContent = ()  => {
+    return  (
+        <Fragment>
+            <StyledWrapper>
+                <StyledH3>Mein letzter Post</StyledH3>
+                <p>Hier wird der letzte eigene Post gelistet</p>
+            </StyledWrapper>
+
+            <StyledWrapper>
+                <StyledH3>Mein Lieblingsstrand</StyledH3>
+                <p>Hier wird der eigene Lieblingsstand gelistet</p>
+            </StyledWrapper>
+
+            <StyledWrapper>
+                <StyledH3>Akteuelles von den Freunden</StyledH3>
+                <p>Hier wird der letzte Post eines Freundse gelistet</p>
+            </StyledWrapper>
+
+            <StyledWrapper>
+                <StyledH3>Neues aus der Community</StyledH3>
+                <p>Hier wird der letzte öffnetliche Post gelistet</p>
+            </StyledWrapper>
+        </Fragment>
+    )
+}
+
+const DashboardActions = ()  => {
+    return  (
+        <StyledWrapper>                
+            <StyledLink to="/login">Irgendeine Aktion</StyledLink>  
+        </StyledWrapper>
+    )
+}
 
 
 // ------ COMPONENT ------  //
 const Dashboard = () => {
     return (
-        <StyledDashboardWrapper>
+        <Fragment>
 
-            {/* <StyledStickyHeader> */}
-                <Header full />
-            {/* </StyledStickyHeader> */}
+            <Header full />
 
-            <h1>Mein Dashboard</h1>
-            <div>Mein letzter Post</div>
-            <div>mein letzter Freundes-Post</div>
-            <div>Mein Lieblingsstrand</div>
-            <p>Auch gibt es niemanden, der den Schmerz an sich liebt, sucht oder wünscht, nur, weil er Schmerz ist, es sei denn, es kommt zu zufälligen Umständen, in denen Mühen und Schmerz ihm große Freude bereiten können. Um ein triviales Beispiel zu nehmen, wer von uns unterzieht sich je anstrengender körperlicher Betätigung, außer um Vorteile daraus zu ziehen? Aber wer hat irgend ein Recht, einen Menschen zu tadeln, der die Entscheidung trifft, eine Freude zu genießen, die keine unangenehmen Folgen hat, oder einen, der Schmerz vermeidet, welcher keine daraus resultierende Freude nach sich zieht?</p> 
-            <p>Auch gibt es niemanden, der den Schmerz an sich liebt, sucht oder wünscht, nur, weil er Schmerz ist, es sei denn, es kommt zu zufälligen Umständen, in denen Mühen und Schmerz ihm große Freude bereiten können. Um ein triviales Beispiel zu nehmen, wer von uns unterzieht sich je anstrengender körperlicher Betätigung, außer um Vorteile daraus zu ziehen? Aber wer hat irgend ein Recht, einen Menschen zu tadeln, der die Entscheidung trifft, eine Freude zu genießen, die keine unangenehmen Folgen hat, oder einen, der Schmerz vermeidet, welcher keine daraus resultierende Freude nach sich zieht?</p> 
-
-        </StyledDashboardWrapper>
+            <StyledDashboardWrapper>
+                <DashboardHeader />
+                <DashboardContent />
+                <DashboardActions /> 
+            </StyledDashboardWrapper>
+        </Fragment>
     )
 }
 
@@ -38,6 +81,10 @@ export default Dashboard;
 
 // ------ STYLED COMPONENTS ------  //
 const StyledDashboardWrapper = styled.div`
-    background-color: rgba(20, 20, 20, 0.2);
+    background-color: rgba(0, 0, 250, 0.2);
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;    
+    width: 100%; */
 `
 

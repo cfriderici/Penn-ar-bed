@@ -1,7 +1,14 @@
 // My components 
 import Header from "./Header";
+
+// My Styled Components
+import StyledWrapper from "./styled/StyledWrapper";
+import StyledH1, { StyledH2, StyledH3 } from "./styled/StyledHeadlines";
+import StyledLink from "./styled/StyledLink";
 import StyledButton from "./styled/StyledButton";
 import StyledInput, { StyledInputWrapper, StyledTextarea } from "./styled/StyledInput";
+
+// My Context
 import { useSocialAppContext } from "../providers/SocialAppContext";
 
 // External Components 
@@ -10,8 +17,7 @@ import { FaRegTimesCircle, FaUserCircle, FaRegUserCircle } from "react-icons/fa"
 import { CiFaceSmile } from "react-icons/ci";
 import { Link } from 'react-router-dom';
 import {Fragment} from "react";
-// import ImageUploader from "react-image-upload";
-// import "react-image-upload/dist/index.css";
+
 
 
 
@@ -20,30 +26,53 @@ import {Fragment} from "react";
 // HEADER
 const ProfileHeader = ()  => {
     return  (
-        <StyledProfileHeader>
-            <h1>Mein Profil</h1>
-            <StyledProfileImg>
-                {/* <ImageUploader 
-                    deleteIcon={ <FaRegTimesCircle className="deleteImg"/> } 
-                    uploadIcon={ <CiFaceSmile className="addImg"/>  }
-                />                 */}
-            </StyledProfileImg>
-        </StyledProfileHeader>
+        <StyledWrapper>
+            <StyledH1>Profil</StyledH1>
+        </StyledWrapper>
     )
 }
 
 //CONTENT
 const ProfileContent = ({ users, setUsers, name })  => {
     return  (
-        <StyledProfileContent>              
+        <Fragment>
+            <StyledWrapper>    
+                <StyledProfileImg>
+                    Hier kommt das Profilbild hin
+                </StyledProfileImg>
+
                 <StyledInputWrapper>
-                    <div>name: {name}</div>
-                    <StyledInput placeholder="Vorname" /*ref={todoNameRef} */ ></StyledInput>
+                    <StyledInput placeholder="Name" /*ref={todoNameRef} */ ></StyledInput>
                 </StyledInputWrapper>
+
                 <StyledInputWrapper>
-                    <StyledInput placeholder="Nachname" /*ref={todoNameRef} */ ></StyledInput>
+                    <StyledInput placeholder="E-Mail" /*ref={todoNameRef} */ ></StyledInput>
                 </StyledInputWrapper>
-        </StyledProfileContent>
+
+                <StyledInputWrapper>
+                    <StyledInput placeholder="Passwort ändern" /*ref={todoNameRef} */ ></StyledInput>
+                </StyledInputWrapper>
+            </StyledWrapper>
+
+            <StyledWrapper>    
+                <StyledH3>Kontodetails</StyledH3>
+                <StyledInputWrapper>
+                    <StyledInput placeholder="Dabei seit: Datum" /*ref={todoNameRef} */ ></StyledInput>
+                </StyledInputWrapper>
+
+                <StyledInputWrapper>
+                    <StyledInput placeholder="Posts" /*ref={todoNameRef} */ ></StyledInput>
+                </StyledInputWrapper>
+
+                <StyledInputWrapper>
+                    <StyledInput placeholder="Likes" /*ref={todoNameRef} */ ></StyledInput>
+                </StyledInputWrapper>
+
+                <StyledInputWrapper>
+                    <StyledInput placeholder="Freunde" /*ref={todoNameRef} */ ></StyledInput>
+                </StyledInputWrapper>            
+            </StyledWrapper>
+        </Fragment>
     )
 }
 
@@ -58,9 +87,14 @@ const ProfileActions = ()  => {
       }
 
     return  (
-        <StyledButton onClick={handleAccountClick}>
-            <Link to="/">Logout</Link>
-        </StyledButton>
+        <StyledWrapper>              
+
+            <StyledButton onClick={handleAccountClick}>
+                <StyledLink to="/">Logout</StyledLink>
+            </StyledButton>
+
+        </StyledWrapper>
+
     )
 }
 
@@ -91,18 +125,18 @@ export default Profile;
 // ------ STYLED COMPONENTS ------  //
 
 
-const StyledProfileHeader = styled.div`
-`
+// const StyledProfileHeader = styled.div`
+// `
 
-const StyledProfileContent = styled.div`
-    background-color: rgba(250, 250, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`
+// const StyledProfileContent = styled.div`
+//     background-color: rgba(250, 250, 0, 0.2);
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+// `
 
-const StyledProfileAction = styled.div`
-`
+// const StyledProfileAction = styled.div`
+// `
 
 
 
@@ -118,11 +152,14 @@ const StyledProfileWrapper = styled.div`
 
 
 const StyledProfileImg  = styled.div`
-    /* background-color: rgba(250, 0, 250, 0.2); */
+    background-color: rgba(250, 0, 250, 0.2);
+    width: 50vw;
+    height: 50vw;
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
+    margin-bottom: 30px;
 
     .uploader__container {
         /* background-color: rgba(250, 250, 0, 0.2); */

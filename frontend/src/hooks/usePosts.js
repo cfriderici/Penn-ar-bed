@@ -14,8 +14,9 @@ const LOCAL_STORAGE_KEY = "local_storage_posts"
 //CUSTOM HOOK
 const usePosts = () => {
  
-    // STATE-HOOK
+    // STATE-HOOK der Flaschen-Posts
     const [posts, setPosts] = useState();
+    console.log("useStateHook - alle Flaschen-Posts: ", posts)
 
 
     // USE-EFFECT-HOOK --> laden des Arrays
@@ -31,7 +32,7 @@ const usePosts = () => {
             headers: { }
         };          
         const response = await axios(config);
-        console.log('mein use-hook:', response)
+        console.log('useEffektHook - alle Flaschen-Posts aus DB:', response)
         return response.data;
     }
 

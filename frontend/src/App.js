@@ -1,9 +1,9 @@
 // My components 
 import Start from "./components/Start";
 import Login from "./components/Login";
+import NewLogin from "./components/NewLogin";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
-import Password from "./components/Password";
 import Dashboard from "./components/Dashboard";
 import Beaches from "./components/Beaches";
 import Posts from "./components/Posts";
@@ -75,7 +75,7 @@ const { posts, setPosts, addPost, deletePost, user, setUser } = useSocialAppCont
           <Route path="/register" element={user ? <Dashboard /> : <Register /> } />
 
           <Route path="/profile" element={user ? <Profile /> : <Start /> } />
-          <Route path="/password" element={ <Password /> } />
+          <Route path="/password" element={ <NewLogin /> } />
 
           <Route path="/dashboard" element={user ? <Dashboard /> : <Start /> } />
           <Route path="/my-beach" element={user ? <Beaches /> : <Start /> } />

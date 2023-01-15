@@ -2,7 +2,13 @@
 import Header from "./Header";
 import Post from "./sub/Post";
 import Sort from "./sub/Sort";
-import StyledLink from "./styled/StyledLink";
+
+ // My Styled Components
+ import StyledLink from "./styled/StyledLink";
+ import StyledButton from "./styled/StyledButton";
+ import StyledH1, { StyledH2, StyledH3} from "./styled/StyledHeadlines";
+ import StyledWrapper from "./styled/StyledWrapper";
+
 
 // My Context
 import { useSocialAppContext } from "../providers/SocialAppContext";
@@ -21,13 +27,21 @@ import { FaWineBottle } from "react-icons/fa";
 // HEADER
 const PostsHeader = ()  => {
     return  (
-        <StyledPostsHeader>
-            <h1>Meine Flaschen-Posts</h1>
-                <StyledLink to="/create-bottle-post">
-                    <div> Neuer Flaschen-Post <FaWineBottle /> </div>
-                </StyledLink>
-            <Sort placeHolder="Select..."  />         
-        </StyledPostsHeader>
+        <StyledWrapper>
+            
+            <StyledH1>Flaschen-Posts</StyledH1>
+            
+            <div className="wrapper">
+                <StyledButton>
+                    <StyledLink to="/create-bottle-post">
+                        <div>Neuer Flaschen-Post <FaWineBottle /> </div>
+                    </StyledLink>
+                </StyledButton>
+
+                <Sort />      
+            </div>   
+
+        </StyledWrapper>
     )
 }
 
@@ -77,19 +91,19 @@ const StyledPostsWrapper = styled.div`
     align-items: center;
 `
 
-const StyledPostsHeader = styled.div`
-    background-color: rgba(0, 250, 250, 0.4);
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    /* flex-wrap: wrap; */
-    /* justify-content: space-between; */
-    align-items: center;
-    border-radius: 4px;
-    /* box-shadow: inset 1px 1px 4px gray; */
-    padding: 6px;
-    margin-bottom: 30px;
-`
+// const StyledPostsHeader = styled.div`
+//     background-color: rgba(0, 250, 250, 0.4);
+//     width: 100%;
+//     display: flex;
+//     flex-direction: column;
+//     /* flex-wrap: wrap; */
+//     /* justify-content: space-between; */
+//     align-items: center;
+//     border-radius: 4px;
+//     /* box-shadow: inset 1px 1px 4px gray; */
+//     padding: 6px;
+//     margin-bottom: 30px;
+// `
 
 const StyledPostsContent = styled.div`
     background-color: rgba(0, 250, 250, 0.4);
@@ -99,8 +113,8 @@ const StyledPostsContent = styled.div`
     /* flex-wrap: wrap; */
     /* justify-content: space-between; */
     align-items: center;
-    border-radius: 4px;
+    /* border-radius: 4px; */
     /* box-shadow: inset 1px 1px 4px gray; */
-    padding: 6px;
-    margin-bottom: 30px;
+    /* padding: 6px; */
+    /* margin-bottom: 30px; */
 `

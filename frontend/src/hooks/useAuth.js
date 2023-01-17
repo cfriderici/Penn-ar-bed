@@ -39,8 +39,27 @@ const useAuth = () => {
 
 
 
-    // FUNKTIONEN
+// ----- FUNKTIONEN ----- //
 
+    // Register 
+    const registerUser = async credentials => {
+        var config = {
+            method: 'post',
+            url: '/api/register',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data : credentials
+        };
+        console.log("Register config: ", config);
+
+        const response = await axios(config);
+    }
+
+    // Login ?
+
+
+    
 
     // Logout (CustomHook-Funktion)
     // Alle States/Token/LokalStorage werden geleert
@@ -51,7 +70,10 @@ const useAuth = () => {
         localStorage.removeItem(LOCAL_STORAGE_KEY);
     }
 
-    return [LOCAL_STORAGE_KEY, user, setUser, token, setToken, userData, setUserData, logoutUser];
+
+
+
+    return [LOCAL_STORAGE_KEY, user, setUser, token, setToken, userData, setUserData, registerUser, logoutUser];
 }
 
 export default useAuth;

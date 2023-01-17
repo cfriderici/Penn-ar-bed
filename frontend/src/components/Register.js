@@ -15,9 +15,11 @@ import StyledForm from "./styled/StyledForm";
 // External Components 
 import styled from "styled-components";
 import { v4 as uuidv4 } from 'uuid';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {Fragment} from "react";
 import { useRef } from "react";
+import { useSocialAppContext } from "../providers/SocialAppContext";
+
 
 
 
@@ -33,20 +35,46 @@ const RegisterHeader = ()  => {
 }   
 
 const RegisterContent = ()  => {
+
+    const { registerUser } = useSocialAppContext();
+
+    const navigate = useNavigate();
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        console.log("Registrieren wurde gedrückt")
+
+        const data = new FormData(event.currentTarget);
+        console.log("register data: ", data);
+
+        const registerData = {
+            id: uuidv4(),
+            email: data.get('email'),
+            name: data.get('name'),
+            password: data.get('password'),
+        }
+        console.log("Register registerData: ", registerData);
+
+        registerUser(registerData);
+
+        navigate("/profile");
+
+    }
+
     return  (
         <StyledWrapper>  
-            <StyledForm>
+            <StyledForm onSubmit={handleSubmit}>
             {/* <StyledForm onSubmit={handleSubmit}> */}
                 <StyledInputWrapper>
-                    <StyledInput  placeholder="Name" id="email" label="E-Mail" name="email"  /> 
+                    <StyledInput  placeholder="Name" id="name"  name="name" label="Name" /> 
                 </StyledInputWrapper>
 
                 <StyledInputWrapper>
-                    <StyledInput placeholder="E-Mail" name="password" label="Passwort" type="password" id="password" /> 
+                    <StyledInput placeholder="E-Mail" id="email"  name="email" label="E-Mail" /> 
                 </StyledInputWrapper>
 
                 <StyledInputWrapper>
-                    <StyledInput placeholder="Passwort" name="password" label="Passwort" type="password" id="password" /> 
+                    <StyledInput placeholder="Passwort" id="password" name="password" label="Passwort" type="password"  /> 
                 </StyledInputWrapper>
 
                 <StyledButton type="submit">
@@ -91,7 +119,7 @@ const Register = ({ users, setUsers }) => {
                     id: uuidv4(),
                     name: AddUserNameRef.current.value,
                     mail: AddUserMailRef.current.value,
-                    passwort: AddPasswortRef.current.value,
+                    password: AddPasswortRef.current.value,
                 }
             ])
         }

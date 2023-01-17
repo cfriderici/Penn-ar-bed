@@ -38,11 +38,13 @@ router.use((req, res, next) => {
 
 // ---------- ROUTEN ---------- //
 
-
 // ----- USERS ----- //
 
 // REGISTER USER
 router.post('/api/register', async (req, res) => {
+
+console.log(req.body)
+
     try {
         const encryptedPassword = await bcrypt.hash(req.body.password, 10);
         const result = await User.create({
@@ -53,6 +55,9 @@ router.post('/api/register', async (req, res) => {
         });
         res.status(200).send({ status: 'user created' });
     } catch (error) {
+
+        console.log(error)
+
         res.status(400).send({ status: 'user already exits' });
     }
 })
@@ -76,7 +81,7 @@ router.post('/api/login', async (req, res) => {
     if (isPasswordValid) {
         const token = jwt.sign(
             {
-                id:user.id,
+                id: user.id,
                 email: user.email,
                 name: user.name
             },

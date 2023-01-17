@@ -72,7 +72,7 @@ const Register = ({ users, setUsers }) => {
                     id: uuidv4(),
                     name: AddUserNameRef.current.value,
                     mail: AddUserMailRef.current.value,
-                    passwort: AddPasswortRef.current.value,
+                    password: AddPasswortRef.current.value,
                 }
             ])
         }

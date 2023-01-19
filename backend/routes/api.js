@@ -38,26 +38,29 @@ router.use((req, res, next) => {
 
 // ---------- ROUTEN ---------- //
 
+
 // ----- USERS ----- //
+
+// USERS
+router.get('/api/users', async (req, res) => {
+    const response = await User.find();
+    res.status(200).send(response)
+});
 
 // REGISTER USER
 router.post('/api/register', async (req, res) => {
-
-console.log(req.body)
-
+// console.log(req.body)
     try {
         const encryptedPassword = await bcrypt.hash(req.body.password, 10);
         const result = await User.create({
             id: req.body.id,
             email: req.body.email,
             name: req.body.name,
-            password: encryptedPassword
+            password: encryptedPassword,
         });
         res.status(200).send({ status: 'user created' });
     } catch (error) {
-
-        console.log(error)
-
+        // console.log(error)
         res.status(400).send({ status: 'user already exits' });
     }
 })
@@ -98,14 +101,13 @@ router.post('/api/login', async (req, res) => {
     }
 });
 
+// GET - read users DOPPELT?!?
+// router.get('/api/register', async (req, res) => {
+//     const response = await Users.find();
+//     res.status(200).send(response)
+//     console.log("Users: ", Users)
+// });
 
-
-// GET - read users
-router.get('/api/register', async (req, res) => {
-    const response = await Users.find();
-    res.status(200).send(response)
-    console.log("Users: ", Users)
-});
 
 
 

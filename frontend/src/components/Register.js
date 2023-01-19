@@ -57,7 +57,7 @@ const RegisterContent = ()  => {
 
         registerUser(registerData);
 
-        navigate("/profile");
+        navigate("/login");
 
     }
 
@@ -120,6 +120,9 @@ const Register = ({ users, setUsers }) => {
                     name: AddUserNameRef.current.value,
                     mail: AddUserMailRef.current.value,
                     password: AddPasswortRef.current.value,
+                    numberOfPosts: "",
+                    numberOfLikes: "1",
+                    numberOfFriends: "2",
                 }
             ])
         }

@@ -53,7 +53,7 @@ function App() {
   //useState definieren
   // const [posts, setPosts] = useState(postArray);
 
-const { posts, setPosts, addPost, deletePost, user, setUser } = useSocialAppContext();
+const { posts, setPosts, addPost, deletePost, user, setUser, userData, setUserData } = useSocialAppContext();
 
   console.log("App.js User:", user );
 
@@ -74,7 +74,7 @@ const { posts, setPosts, addPost, deletePost, user, setUser } = useSocialAppCont
           <Route path="/login" element={user ? <Dashboard /> : <Login /> } />
           <Route path="/register" element={user ? <Dashboard /> : <Register /> } />
 
-          <Route path="/profile" element={user ? <Profile /> : <Start /> } />
+          <Route path="/profile" element={user ? <Profile userData={userData} setUserData={setUserData} /> : <Start /> } />
           <Route path="/password" element={ <NewLogin /> } />
 
           <Route path="/dashboard" element={user ? <Dashboard /> : <Start /> } />

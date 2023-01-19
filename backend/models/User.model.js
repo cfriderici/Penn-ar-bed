@@ -7,7 +7,11 @@ const userSchema = new mongoose.Schema({
         unique: true
     },
     name: String,
-    password: String
+    password: String,
+    // registerDate: Date,
+    numberOfPosts: Number,
+    numberOfLikes: Number,
+    numberOfFriends: Number
 });
 
 const User = mongoose.model("User", userSchema);

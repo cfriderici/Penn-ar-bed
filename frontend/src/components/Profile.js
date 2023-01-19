@@ -33,7 +33,11 @@ const ProfileHeader = ()  => {
 }
 
 //CONTENT
-const ProfileContent = ({ users, setUsers, name })  => {
+const ProfileContent = ({ users, setUsers, name, email })  => {
+
+    const {user, setUser, token, setToken, logoutUser, userData, setUserData } = useSocialAppContext();
+
+
     return  (
         <Fragment>
             <StyledWrapper>    
@@ -42,11 +46,11 @@ const ProfileContent = ({ users, setUsers, name })  => {
                 </StyledProfileImg>
 
                 <StyledInputWrapper>
-                    <StyledInput placeholder="Name" /*ref={todoNameRef} */ ></StyledInput>
+                    <StyledInput placeholder={userData.name} /*ref={todoNameRef} */ ></StyledInput>
                 </StyledInputWrapper>
 
                 <StyledInputWrapper>
-                    <StyledInput placeholder="E-Mail" /*ref={todoNameRef} */ ></StyledInput>
+                    <StyledInput placeholder={userData.email} /*ref={todoNameRef} */ ></StyledInput>
                 </StyledInputWrapper>
 
                 <StyledInputWrapper>
@@ -61,15 +65,15 @@ const ProfileContent = ({ users, setUsers, name })  => {
                 </StyledInputWrapper>
 
                 <StyledInputWrapper>
-                    <StyledInput placeholder="Posts" /*ref={todoNameRef} */ ></StyledInput>
+                    <StyledInput placeholder={userData.numberOfPosts} /*ref={todoNameRef} */ ></StyledInput>
                 </StyledInputWrapper>
 
                 <StyledInputWrapper>
-                    <StyledInput placeholder="Likes" /*ref={todoNameRef} */ ></StyledInput>
+                    <StyledInput placeholder={userData.numberOfLikes} /*ref={todoNameRef} */ ></StyledInput>
                 </StyledInputWrapper>
 
                 <StyledInputWrapper>
-                    <StyledInput placeholder="Freunde" /*ref={todoNameRef} */ ></StyledInput>
+                    <StyledInput placeholder={userData.numberOfFriends} /*ref={todoNameRef} */ ></StyledInput>
                 </StyledInputWrapper>            
             </StyledWrapper>
         </Fragment>
@@ -79,7 +83,7 @@ const ProfileContent = ({ users, setUsers, name })  => {
 // ACTIONS
 const ProfileActions = ()  => {
 
-    const {user, setUser, token, setToken, logoutUser } = useSocialAppContext();
+    const {user, setUser, token, setToken, logoutUser, userData, setUserData } = useSocialAppContext();
 
     const handleAccountClick = () => {
         logoutUser();
@@ -102,7 +106,7 @@ const ProfileActions = ()  => {
 
 
 // ------ COMPONENT ------  //
-const Profile = ({ users, setUsers, name }) => {
+const Profile = ({ users, setUsers, name, userData, setUserData }) => {
     return (
         <Fragment>
 

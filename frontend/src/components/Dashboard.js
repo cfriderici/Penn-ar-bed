@@ -6,6 +6,9 @@ import StyledWrapper from "./styled/StyledWrapper";
 import StyledH1, { StyledH2, StyledH3 } from "./styled/StyledHeadlines";
 import StyledLink from "./styled/StyledLink";
 
+// My Context
+import { useSocialAppContext } from "../providers/SocialAppContext";
+
 // External Components 
 import styled from "styled-components";
 import { Fragment } from "react";
@@ -16,10 +19,13 @@ import { Fragment } from "react";
 // ------ SUB COMPONENTS ------  //
 
 const DashboardHeader = ()  => {
+
+    const {user, setUser, token, setToken, logoutUser, userData, setUserData } = useSocialAppContext();
+
     return  (
         <StyledWrapper>
             <StyledH1>Dashboard</StyledH1>
-            <StyledH2>Hallo (NAME)! <br /> Schön das du da bist!</StyledH2>
+            <StyledH2>Hallo {userData.name}! <br /> Schön das du da bist!</StyledH2>
         </StyledWrapper>
     )
 }   

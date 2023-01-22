@@ -8,10 +8,7 @@ const userSchema = new mongoose.Schema({
     },
     name: String,
     password: String,
-    // registerDate: Date,
-    numberOfPosts: Number,
-    numberOfLikes: Number,
-    numberOfFriends: Number
+    avatarImageLink: String,
 });
 
 const User = mongoose.model("User", userSchema);

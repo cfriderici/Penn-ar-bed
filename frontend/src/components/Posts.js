@@ -48,13 +48,13 @@ const PostsHeader = ()  => {
 // CONTENT
 const PostsContent = () => {
 
-    const { posts, setPosts } = useSocialAppContext();
+    const { posts, setPosts, userData, setUserData } = useSocialAppContext();
 
     return (
         <StyledPostsContent>
             {           
                 posts.map(e => (
-                    <Post key={e.id} image={e.image} title={e.title} text={e.text} userId={e.userId} userName={e.userName} place={e.place} date={e.date} postId={e.id} edited={e.edited} editingDate={e.editingDate} star={e.star} posts={posts} setPosts={setPosts} />
+                    <Post key={e.id} image={e.image} title={e.title} text={e.text} userId={e.userId} userName={e.userName} place={e.place} date={e.date} postId={e.id} edited={e.edited} editingDate={e.editingDate} star={e.star} posts={posts} setPosts={setPosts} userData={userData} setUserData={setUserData} />
                 ))
             }
         </StyledPostsContent>        
@@ -66,14 +66,14 @@ const PostsContent = () => {
 // ------ COMPONENT ------  //
 const Posts = ({ players, setPlayers }) => {
 
-    const { posts, setPosts, addPost, deletePost } = useSocialAppContext();
+    const { posts, setPosts, addPost, deletePost, userData, setUserData } = useSocialAppContext();
 
     return (
         <Fragment>            
             <Header full />
             <StyledPostsWrapper>
                 <PostsHeader />
-                <PostsContent posts={posts} setPosts={setPosts} />                    
+                <PostsContent posts={posts} setPosts={setPosts} userData={userData} setUserData={setUserData} />                    
             </StyledPostsWrapper>
         </Fragment>
     )

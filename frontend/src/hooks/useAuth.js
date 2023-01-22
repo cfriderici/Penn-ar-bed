@@ -51,9 +51,10 @@ const useAuth = () => {
             },
             data : credentials
         };
-        console.log("Register config: ", config);
-
+        console.log("Register config 54: ", config);
         const response = await axios(config);
+        console.log("Register response.date 56: ", response.data);
+        return response.data;
     }
 
     // Login ?

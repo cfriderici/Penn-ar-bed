@@ -22,12 +22,17 @@ import { FaLifeRing, FaRegCompass, FaDharmachakra, FaFish, FaSwimmer, FaUmbrella
 
 // HEADER
 const PostHeader = ({ place, date })  => {
+
+    const {user, setUser, token, setToken, logoutUser, userData, setUserData } = useSocialAppContext();
+
     return  (
         <StyledPostHeader>
             <div className="header_img">
-                <img className="post-img" src={ require('../../img/FullSizeRender.JPG') } alt=""/>
-                <img className="profile-img" src={ require('../../img/IMG_3115.jpg') } alt=""/>
+                <img className="post-img" src={ require('../../img/sunset.jpg') } alt=""/>
+                <img className="profile-img" src={userData.avatarImageLink ? userData.avatarImageLink : 'https://upload.wikimedia.org/wikipedia/commons/6/62/E_pulcherrima_ies.jpg'} alt="Avatar"/>
+                {/* <img className="profile-img" src={ require('../../img/IMG_3115.jpg') } alt=""/> */}
             </div>
+
             <div>{place}</div>
             <div>{date.toLocaleString()}</div> 
         </StyledPostHeader>
@@ -92,6 +97,10 @@ const PostActions = ({ postId, star, edited, editingDate })  => {
 
 // ------ COMPONENT ------  //
 const Post = ({ place, date, title, text, id, userId, userName, postId, edited, editingDate, star, posts, setPosts } ) => {
+
+    const {user, setUser, token, setToken, logoutUser, userData, setUserData } = useSocialAppContext();
+
+
     return (        
         <StyledPostWrapper>
             <PostHeader place={place} date={date}/>
@@ -128,7 +137,9 @@ const StyledPostHeader = styled.div`
             position: absolute;
             top: 5%;
             right: 5%;
-            width: 25%;
+            width: 25vw;
+            height: 25vw;
+            object-fit: cover;
             border-radius: 50%;
             border: 3px solid white;
         }

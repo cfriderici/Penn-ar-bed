@@ -45,15 +45,16 @@ const RegisterContent = ()  => {
         console.log("Registrieren wurde gedrückt")
 
         const data = new FormData(event.currentTarget);
-        console.log("register data: ", data);
+        console.log("Register data 48: ", data);
 
         const registerData = {
             id: uuidv4(),
             email: data.get('email'),
             name: data.get('name'),
             password: data.get('password'),
+            registerDate: new Date(),
         }
-        console.log("Register registerData: ", registerData);
+        console.log("Register registerData 57: ", registerData);
 
         registerUser(registerData);
 

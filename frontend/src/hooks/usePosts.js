@@ -41,12 +41,12 @@ const usePosts = () => {
     // wenn Objekt übergeben wird muss header angegeben werden
     const addPostToBackend = async post => {
         var config = {
-        method: 'post',
-        url: '/api/post',
-        headers: { 
-            'Content-Type': 'application/json'
-        },
-        data : JSON.stringify(post)
+            method: 'post',
+            url: '/api/post',
+            headers: { 
+                'Content-Type': 'application/json'
+            },
+            data : JSON.stringify(post)
         };
         const response = await axios(config);
         return response.data;

@@ -9,6 +9,10 @@ const userSchema = new mongoose.Schema({
     name: String,
     password: String,
     avatarImageLink: String,
+    registerDate: String,
+    numberOfPosts: String,
+    numberOfLikes: String,
+    numberOfFriends: String,
 });
 
 const User = mongoose.model("User", userSchema);

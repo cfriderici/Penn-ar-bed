@@ -89,8 +89,9 @@ const ProfileContent = ({ users, setUsers, name, email })  => {
 
                 <StyledImgWrapper>
                     <button className="avatarButton" component="label" >
-                        <img className="avatarImage" alt="Avatar" src={userData.avatarImageLink} />
+                        <img className="avatarImage" alt="Avatar" src={userData.avatarImageLink ? userData.avatarImageLink : 'https://upload.wikimedia.org/wikipedia/commons/6/62/E_pulcherrima_ies.jpg'} />
                         {/* <img style={{width: '100px', height: '100px' }} className="post-img"  src='https://upload.wikimedia.org/wikipedia/commons/6/62/E_pulcherrima_ies.jpg' alt=""/> */}
+
                         <input className="avatarInput"
                             type="file"
                             multiple accept="image/jpeg, image/png"
@@ -101,34 +102,34 @@ const ProfileContent = ({ users, setUsers, name, email })  => {
                 </StyledImgWrapper>
 
                 <StyledInputWrapper>
-                    <StyledInput placeholder={userData.name} /*ref={todoNameRef} */ ></StyledInput>
+                    <StyledInput placeholder={userData.name} ></StyledInput>
                 </StyledInputWrapper>
 
                 <StyledInputWrapper>
-                    <StyledInput placeholder={userData.email} /*ref={todoNameRef} */ ></StyledInput>
+                    <StyledInput placeholder={userData.email} ></StyledInput>
                 </StyledInputWrapper>
 
                 <StyledInputWrapper>
-                    <StyledInput placeholder="Passwort ändern" /*ref={todoNameRef} */ ></StyledInput>
+                    <StyledInput placeholder="Passwort ändern" ></StyledInput>
                 </StyledInputWrapper>
             </StyledWrapper>
 
             <StyledWrapper>    
                 <StyledH3>Kontodetails</StyledH3>
                 <StyledInputWrapper>
-                    <StyledInput placeholder="Dabei seit: Datum" /*ref={todoNameRef} */ ></StyledInput>
+                    <StyledInput placeholder="Dabei seit: Datum" ></StyledInput>
                 </StyledInputWrapper>
 
                 <StyledInputWrapper>
-                    <StyledInput placeholder={userData.numberOfPosts} /*ref={todoNameRef} */ ></StyledInput>
+                    <StyledInput placeholder={userData.numberOfPosts} ></StyledInput>
                 </StyledInputWrapper>
 
                 <StyledInputWrapper>
-                    <StyledInput placeholder={userData.numberOfLikes} /*ref={todoNameRef} */ ></StyledInput>
+                    <StyledInput placeholder={userData.numberOfLikes} ></StyledInput>
                 </StyledInputWrapper>
 
                 <StyledInputWrapper>
-                    <StyledInput placeholder={userData.numberOfFriends} /*ref={todoNameRef} */ ></StyledInput>
+                    <StyledInput placeholder={userData.numberOfFriends} ></StyledInput>
                 </StyledInputWrapper>            
             </StyledWrapper>
         </Fragment>
@@ -211,9 +212,9 @@ const StyledProfileWrapper = styled.div`
 
 
 const StyledImgWrapper  = styled.div`
-    /* background-color: rgba(0, 200, 0, 0.2); */
-    width: 50vw;
-    height: 50vw;
+    background-color: rgba(0, 200, 0, 0.2);
+    /* width: 50vw; */
+    /* height: 50vw; */
     /* display: flex; */
     /* flex-direction: column; */
     /* justify-content: center; */
@@ -223,17 +224,17 @@ const StyledImgWrapper  = styled.div`
     /* border-radius: 50%; */
 
     .avatarButton {
-        /* background-color: rgba(250, 0, 250, 0.2); */
         background-color: transparent;
         border: none;
         /* border: dashed 1px black; */
-        width: 100%;
-        height: 100%;
+        /* width: 50vw; */
+        /* height: 50vw; */
         padding: 0;
 
         .avatarImage {
-            width: 100%;
-            height: 100%;
+            width: 50vw;
+            height: 50vw;
+            object-fit: cover;
             border: 5px solid white;
             border-radius: 50%;
         }

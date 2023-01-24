@@ -21,32 +21,33 @@ import { FaLifeRing, FaRegCompass, FaDharmachakra, FaFish, FaSwimmer, FaUmbrella
 // ------ INSIDE COMPONENTS ------  //
 
 // HEADER
-const PostHeader = ({ place, date })  => {
+const PostHeader = ({ place, date, postImageLink })  => {
 
     const {user, setUser, token, setToken, logoutUser, userData, setUserData } = useSocialAppContext();
 
     return  (
-        <StyledPostHeader>
-            <div className="header_img">
-                <img className="post-img" src={ require('../../img/sunset.jpg') } alt=""/>
+        <StyledWrapper>
+            <div className="imageWrapper">
+                <img className="post-img" src={ postImageLink ? postImageLink : require('../../img/flaschen-post.jpg') } alt=""/>
                 <img className="profile-img" src={userData.avatarImageLink ? userData.avatarImageLink : 'https://upload.wikimedia.org/wikipedia/commons/6/62/E_pulcherrima_ies.jpg'} alt="Avatar"/>
-                {/* <img className="profile-img" src={ require('../../img/IMG_3115.jpg') } alt=""/> */}
             </div>
 
-            <div>{place}</div>
-            <div>{date.toLocaleString()}</div> 
-        </StyledPostHeader>
+            <div className="wrapper">
+                <div>{place}</div>
+                <div>{date.toLocaleString()}</div> 
+            </div>
+        </StyledWrapper>
     )
 }
 
 // CONTENT
 const PostContent = ({ title, text, postId })  => {
     return  (
-        <StyledPostContent>
+        <StyledWrapper>
             <StyledH3>{title}</StyledH3>
             <div>{text}</div>
             <div>{postId}</div>
-        </StyledPostContent>
+        </StyledWrapper>
     )
 }
 
@@ -96,14 +97,14 @@ const PostActions = ({ postId, star, edited, editingDate })  => {
 
 
 // ------ COMPONENT ------  //
-const Post = ({ place, date, title, text, id, userId, userName, postId, edited, editingDate, star, posts, setPosts } ) => {
+const Post = ({ place, date, title, text, id, userId, userName, postId, edited, editingDate, star, postImageLink, posts, setPosts } ) => {
 
     const {user, setUser, token, setToken, logoutUser, userData, setUserData } = useSocialAppContext();
 
 
     return (        
         <StyledPostWrapper>
-            <PostHeader place={place} date={date}/>
+            <PostHeader place={place} date={date} postImageLink={postImageLink}/>
             <PostContent title={title} text={text} postId={postId} />
             <PostActions postId={postId} edited={edited} editingDate={editingDate} star={star} posts={posts} setPosts={setPosts}/>
         </StyledPostWrapper>
@@ -127,12 +128,15 @@ const StyledPostHeader = styled.div`
     justify-content: space-between;
     font-size: small;
 
-    .header_img {
+    .imageWrapper {
         position: relative;
 
         .post-img {
-            width: 100%;
+            width: 100vw;
+            max-height: 100vw;
+            object-fit: cover;
         }
+        
         .profile-img {
             position: absolute;
             top: 5%;
@@ -143,6 +147,10 @@ const StyledPostHeader = styled.div`
             border-radius: 50%;
             border: 3px solid white;
         }
+    }
+
+    .textWrapper {
+        background-color: rgba(250, 0, 0, 0.2);
     }
 `
 
@@ -158,12 +166,12 @@ const StyledPostActions = styled.div`
     flex-wrap: wrap;
     justify-content: space-between;
     margin: 20px 0;
+    padding: 0 20px;
     font-size: large;
 
-        .star {
-            color: ${props => props.star ? "red" : "black"};
-
-        }
+    .star {
+        color: ${props => props.star ? "red" : "black"};
+    }
 
     .edited {
         background-color: rgba(250, 0, 250, 0.6);

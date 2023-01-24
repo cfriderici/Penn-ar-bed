@@ -10,7 +10,8 @@ const bottlepostSchema = new mongoose.Schema({
     share: String,
     comments: String,
     likes: String, 
-    star: Boolean
+    star: Boolean,
+    postImageLink: String,
   });
   
   const Bottlepost = mongoose.model("bottlepost", bottlepostSchema);

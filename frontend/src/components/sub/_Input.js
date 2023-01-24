@@ -1,7 +1,7 @@
 // External Components 
 import { FaPen } from "react-icons/fa";
 import styled from "styled-components";
-import StyledImgWrapper from "../styled/StyledImgWrapper";
+import StyledImgWrapper from "../styled/_StyledImgWrapper";
 
 // REF-HOOK in der jeweiligen Komponente importieren 
 // import { useRef } from "react";

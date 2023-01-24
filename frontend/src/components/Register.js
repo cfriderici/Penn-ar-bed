@@ -1,6 +1,6 @@
 // My Components 
 import Header from "./Header";
-import Input from "./sub/Input";
+// import Input from "./sub/_Input";
 
 
  // My Styled Components
@@ -59,7 +59,6 @@ const RegisterContent = ()  => {
         registerUser(registerData);
 
         navigate("/login");
-
     }
 
     return  (

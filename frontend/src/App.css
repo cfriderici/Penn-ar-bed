@@ -13,4 +13,6 @@ body {
     -webkit-hyphens: auto;
     -ms-hyphens: auto;
     hyphens: auto;  */
+    padding: 0;
+    margin: 0;
 }

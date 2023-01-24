@@ -39,7 +39,7 @@ const usePosts = () => {
     // der Funktion einen Parameter definieren (post) 
     // diesen dem Objekt (data) als string übergeben --> axios kann nur strings 
     // wenn Objekt übergeben wird muss header angegeben werden
-    const addPostToBackend = async post => {
+    const addPostToBackend = async (post, imageFile) => {
         var config = {
             method: 'post',
             url: '/api/post',
@@ -49,8 +49,32 @@ const usePosts = () => {
             data : JSON.stringify(post)
         };
         const response = await axios(config);
+        console.log(response);
+        changePostImageInBackend(imageFile, post.id);
         return response.data;
     }
+
+    // POST IMAGE
+    const changePostImageInBackend = async (imageFile, postId) => {
+        var formData = new FormData();
+        formData.append('file', imageFile);
+
+        var config = {
+            method: 'post',
+            url: '/api/change-post-image?postId='+postId,
+            headers: { 
+              'Content-Type': 'multipart/form-data'
+            },
+            data : formData
+          };
+          const response = await axios(config);
+          console.log(response);
+    }
+
+
+
+
+
     
     // Hier wird der Parameter (postId) benötigt
     const deletePostFromBackend = async postId => {
@@ -135,7 +159,7 @@ const usePosts = () => {
     // und per Funktion (addPostToBackend) an die DB übergeben
     
     // add post
-    const addPost = (place, title, text) => {
+    const addPost = (place, title, text, imageFile) => {
         const post = {
             id: uuidv4(),
             place: place,
@@ -149,7 +173,7 @@ const usePosts = () => {
             star: false
         }
         setPosts([...posts, post]);
-        addPostToBackend(post);
+        addPostToBackend(post, imageFile);
     }
 
     // toggle star

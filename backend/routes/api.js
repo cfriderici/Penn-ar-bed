@@ -154,8 +154,27 @@ router.get('/api/posts', async (req, res) => {
 router.post('/api/post', async (req, res) => {
 const bottlepost = req.body;
 const response = await Bottlepost.create(bottlepost);
-res.status(200).send("Post hinzugefügt")
+res.status(200).send(response)
 });
+
+// POST IMAGE
+router.post('/api/change-post-image', upload.single('file'), async (req, res) => {
+    const saveFileResult = await asyncSaveFile(req.file.originalname, req.file.buffer);
+    const cloudinaryURL  = await uploadImage(req.file.originalname); 
+    
+    // console.log("api.js 167 saveFileResult: ", req.file);
+    // console.log("api.js 168 cloudinaryURL : ", cloudinaryURL );
+    // console.log("api.js 169 userId: ", req.query.userId);
+
+    fs.unlink(req.file.originalname, () => {});
+
+    const post = await Bottlepost.findOne({ id: req.query.postId });
+    post.postImageLink = cloudinaryURL ;
+    const response = await Bottlepost.updateOne({ id: req.query.postId }, post);
+
+    res.status(200).send("OK");
+})
+
   
 // UPDATE POST
 router.put('/api/toggle-post', async (req, res) => {

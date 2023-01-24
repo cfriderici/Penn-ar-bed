@@ -12,10 +12,12 @@ import StyledLink from "./styled/StyledLink";
 import { useSocialAppContext } from "../providers/SocialAppContext";
 
 // External Components 
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import styled from "styled-components";
 import { Fragment } from "react";
 import { Link } from 'react-router-dom';
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 
 
 
@@ -24,6 +26,27 @@ import { useRef } from "react";
 const AddPost = () => {
 
     const { addPost } = useSocialAppContext();
+
+    const navigate = useNavigate();
+
+
+    // IMAGE -----
+    const [postFile, setPostFile] = useState();
+
+    const handleFileChange = e => {
+        setPostFile(e.target.files[0])
+        // console.log("AddPost.js.js handleFileChange 55 (e): ", e);
+        console.log("Profile.js handleFileChange 44 (e.target.files[0]): ", e.target.files[0]);
+    } 
+
+        useEffect(() => {
+        if (postFile) {
+        //   changePostImageInBackend();
+        }
+      }, [postFile])
+
+    // ----- IMAGE
+
 
     //useRefs definieren
     const AddPostBeacheRef = useRef();
@@ -36,13 +59,15 @@ const AddPost = () => {
             addPost(
 				AddPostBeacheRef.current.value, 
                 AddPostTitleRef.current.value, 
-                AddPostTextRef.current.value
+                AddPostTextRef.current.value,
+                postFile
 			)
         }
         console.log("Flaschen Post geschmissen")
     }
     const handleAddClick = () => {
         newPost();
+        navigate("/bottle-posts");
     }
 
     //
@@ -65,7 +90,7 @@ const AddPost = () => {
                             <input className="uploadImageInput"
                                 type="file"
                                 multiple accept="image/jpeg, image/png"
-                                // onChange={(e) => handleFileChange(e)}
+                                onChange={(e) => handleFileChange(e)}
                                 // hidden
                             />
                         </button>
@@ -90,7 +115,7 @@ const AddPost = () => {
                     </StyledButton>
 
                     <StyledButton onClick={handleAddClick} >
-                        <StyledLink to="/bottle-posts">Ab ins Meer !!!</StyledLink>
+                        <StyledLink >Ab ins Meer !!!</StyledLink>
                     </StyledButton>
                 </StyledWrapper>
             
